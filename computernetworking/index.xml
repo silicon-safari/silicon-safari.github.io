@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ComputerNetworkings on The Silicon Safari</title>
+    <link>https://silicon-safari.github.io/computernetworking/</link>
+    <description>Recent content in ComputerNetworkings on The Silicon Safari</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Mar 2024 23:00:00 +0530</lastBuildDate>
+    <atom:link href="https://silicon-safari.github.io/computernetworking/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How Packet Transfer Works in Networks Using Dijkstra’s Algorithm</title>
+      <link>https://silicon-safari.github.io/computernetworking/packettransfer/</link>
+      <pubDate>Mon, 25 Mar 2024 23:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/computernetworking/packettransfer/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re going to explore how packet transfer works in computer networks and how Dijkstra’s Algorithm plays a crucial role in finding the most efficient paths for transferring data.</description>
+    </item>
+    <item>
+      <title>Understanding Subnetting: IP Addresses, Routers, and the Difference Between IP and MAC Addresses</title>
+      <link>https://silicon-safari.github.io/computernetworking/ipaddressingandsubnetting/</link>
+      <pubDate>Fri, 09 Feb 2024 14:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/computernetworking/ipaddressingandsubnetting/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re going to explore a critical concept in networking: Subnetting.</description>
+    </item>
+    <item>
+      <title>Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer</title>
+      <link>https://silicon-safari.github.io/computernetworking/computernetworking/</link>
+      <pubDate>Thu, 18 Jan 2024 12:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/computernetworking/computernetworking/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into the fascinating world of computer networking—from its early origins with ARPANET to how modern networks function using concepts like IP addresses, the OSI model, and packet transfer.</description>
+    </item>
+  </channel>
+</rss>

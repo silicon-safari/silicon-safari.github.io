@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Solving Sudoku with Dynamic Programming: A Step-by-Step Guide &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Solving Sudoku with Dynamic Programming: A Step-by-Step Guide">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most popular puzzle challenges—Sudoku—and how we can solve it using Dynamic Programming (DP).">
+  <meta itemprop="datePublished" content="2024-03-17T21:00:00+05:30">
+  <meta itemprop="dateModified" content="2024-03-17T21:00:00+05:30">
+  <meta itemprop="wordCount" content="1508">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Solving Sudoku with Dynamic Programming: A Step-by-Step Guide">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most popular puzzle challenges—Sudoku—and how we can solve it using Dynamic Programming (DP).">
+
+
+<meta property="og:url" content="https://silicon-safari.github.io/allblogs/sudokusolver/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Solving Sudoku with Dynamic Programming: A Step-by-Step Guide">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most popular puzzle challenges—Sudoku—and how we can solve it using Dynamic Programming (DP).">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="allblogs">
+    <meta property="article:published_time" content="2024-03-17T21:00:00+05:30">
+    <meta property="article:modified_time" content="2024-03-17T21:00:00+05:30">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "https://silicon-safari.github.io/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://silicon-safari.github.io/#website",
+      "url": "https://silicon-safari.github.io/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://silicon-safari.github.io/allblogs/sudokusolver/#webpage",
+      "url": "https://silicon-safari.github.io/allblogs/sudokusolver/",
+      "name": "Solving Sudoku with Dynamic Programming: A Step-by-Step Guide",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/#website"
+      },
+      "about": {
+         "@id": "https://silicon-safari.github.io/#author"
+      },
+      "datePublished": "2024-03-17T21:00:00+05:30",
+      "dateModified": "2024-03-17T21:00:00+05:30",
+      "description": "Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most popular puzzle challenges—Sudoku—and how we can solve it using Dynamic Programming (DP).",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://silicon-safari.github.io/allblogs/sudokusolver/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/allblogs/sudokusolver/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://silicon-safari.github.io/allblogs/sudokusolver/#webpage"
+      },
+      "headline": "Solving Sudoku with Dynamic Programming: A Step-by-Step Guide",
+      "datePublished": "2024-03-17T21:00:00+05:30",
+      "dateModified": "2024-03-17T21:00:00+05:30",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "keywords": [
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "https://silicon-safari.github.io/allblogs/sudokusolver/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://silicon-safari.github.io/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">Me and My Life</a>
+        </li><li>
+          <a href="/algorithms/">Algorithms</a>
+        </li><li>
+          <a href="/allblogs/">All Blogs</a>
+        </li><li>
+          <a href="/computernetworking/">Computer Networks</a>
+        </li><li>
+          <a href="/datastructures/">Data Structures</a>
+        </li><li>
+          <a href="/databasedesign/">Database Design</a>
+        </li><li>
+          <a href="/distributedsystems/">Distributed Sytems</a>
+        </li><li>
+          <a href="/theoryofcomputation/">Theory Of Computation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Solving Sudoku with Dynamic Programming: A Step-by-Step Guide</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2024-03-17T21:00:00&#43;0530">Mar 17, 2024</time> <span class="readtime">&middot; 8 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most popular puzzle challenges—<strong>Sudoku</strong>—and how we can solve it using <strong>Dynamic Programming (DP)</strong>. While the traditional way to solve Sudoku involves backtracking, we can optimize the process using DP principles.</p>
+<p>In this blog, I’ll walk you through the problem, explain how DP can be applied to Sudoku, and provide a comprehensive pseudocode solution.</p>
+<p>Let’s get started! 🚀</p>
+<hr>
+<h2 id="what-is-sudoku">What is Sudoku?</h2>
+<p><strong>Sudoku</strong> is a classic puzzle where you are given a 9x9 grid, partially filled with numbers. The objective is to fill the empty cells with digits (1 to 9) such that:</p>
+<ol>
+<li>Each row contains the numbers 1 to 9 without repetition.</li>
+<li>Each column contains the numbers 1 to 9 without repetition.</li>
+<li>Each 3x3 subgrid (also called a &ldquo;box&rdquo;) contains the numbers 1 to 9 without repetition.</li>
+</ol>
+<p>A typical unsolved Sudoku puzzle looks like this:</p>
+<pre tabindex="0"><code>5 3 _ | _ 7 _ | _ _ _
+6 _ _ | 1 9 5 | _ _ _
+_ 9 8 | _ _ _ | _ 6 _
+------+------+------
+8 _ _ | _ 6 _ | _ _ 3
+4 _ _ | 8 _ 3 | _ _ 1
+7 _ _ | _ 2 _ | _ _ 6
+------+------+------
+_ 6 _ | _ _ _ | 2 8 _
+_ _ _ | 4 1 9 | _ _ 5
+_ _ _ | _ 8 _ | _ 7 9
+</code></pre><p>The goal is to fill all the blanks while respecting the constraints of the game.</p>
+<hr>
+<h2 id="approach-to-solving-sudoku-with-backtracking-and-dp">Approach to Solving Sudoku with Backtracking and DP</h2>
+<h3 id="problem-breakdown">Problem Breakdown:</h3>
+<p>The problem can be broken down into multiple <strong>decision-making</strong> steps:</p>
+<ul>
+<li>At each step, we choose a number (1–9) for a specific empty cell.</li>
+<li>After choosing a number, we move on to the next empty cell and make another decision.</li>
+</ul>
+<h3 id="why-backtracking-works">Why Backtracking Works:</h3>
+<p>Backtracking involves placing a number in an empty cell and recursively trying to solve the rest of the puzzle. If at any point we hit a dead-end (i.e., no number can be placed in a cell without violating Sudoku rules), we <strong>backtrack</strong> and try a different number in the previous cell.</p>
+<h3 id="how-dp-helps">How DP Helps:</h3>
+<p><strong>Dynamic Programming (DP)</strong> can optimize the backtracking solution by avoiding redundant computations. In Sudoku, this means storing the state of the puzzle (which numbers can be placed in certain cells) and reusing this information to minimize unnecessary checks.</p>
+<hr>
+<h2 id="solving-sudoku-step-by-step">Solving Sudoku Step-by-Step</h2>
+<h3 id="step-1-identifying-possible-values-for-each-cell">Step 1: Identifying Possible Values for Each Cell</h3>
+<p>For each empty cell, we need to determine the possible numbers that can be placed in it without violating the Sudoku rules (rows, columns, and subgrids).</p>
+<h3 id="step-2-use-recursion-with-backtracking">Step 2: Use Recursion with Backtracking</h3>
+<p>We start by placing a valid number in the first empty cell, then recursively solve the rest of the puzzle. If we encounter an invalid state, we backtrack and try a different number.</p>
+<h3 id="step-3-optimization-with-dp">Step 3: Optimization with DP</h3>
+<p>We can optimize by storing which numbers are available for each row, column, and subgrid in a DP-like structure, reducing the need to recompute constraints repeatedly.</p>
+<hr>
+<h2 id="comprehensive-pseudocode-for-sudoku-solver">Comprehensive Pseudocode for Sudoku Solver</h2>
+<h3 id="function-definitions">Function Definitions:</h3>
+<ol>
+<li><strong>isValid(num, row, col)</strong>: Checks if placing <code>num</code> in the cell <code>(row, col)</code> is valid.</li>
+<li><strong>findEmptyCell(grid)</strong>: Finds the next empty cell in the grid.</li>
+<li><strong>solveSudoku(grid)</strong>: Main function to solve the Sudoku puzzle using recursion and backtracking.</li>
+</ol>
+<h3 id="pseudocode">Pseudocode:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode"># Check if placing &#39;num&#39; in the (row, col) is valid according to Sudoku rules
+Function isValid(grid, num, row, col):
+    # Check the row
+    For c = 0 to 8:
+        If grid[row][c] == num:
+            Return False
+
+    # Check the column
+    For r = 0 to 8:
+        If grid[r][col] == num:
+            Return False
+
+    # Check the 3x3 subgrid
+    startRow = row - (row % 3)
+    startCol = col - (col % 3)
+    For r = 0 to 2:
+        For c = 0 to 2:
+            If grid[startRow + r][startCol + c] == num:
+                Return False
+
+    Return True
+
+# Find the next empty cell in the grid (returns None if no empty cells)
+Function findEmptyCell(grid):
+    For row = 0 to 8:
+        For col = 0 to 8:
+            If grid[row][col] == 0:  # 0 represents an empty cell
+                Return (row, col)
+    Return None
+
+# The main function to solve the Sudoku puzzle using backtracking
+Function solveSudoku(grid):
+    emptyCell = findEmptyCell(grid)
+    
+    # If no empty cells are found, the puzzle is solved
+    If emptyCell == None:
+        Return True
+
+    row, col = emptyCell
+
+    # Try placing numbers 1 to 9 in the current empty cell
+    For num = 1 to 9:
+        If isValid(grid, num, row, col):
+            # Place the number in the cell
+            grid[row][col] = num
+
+            # Recursively attempt to solve the rest of the grid
+            If solveSudoku(grid):
+                Return True
+
+            # If the current placement doesn&#39;t lead to a solution, backtrack
+            grid[row][col] = 0
+
+    # If no number can be placed in the current cell, return False to backtrack
+    Return False
+</code></pre><h3 id="explanation-of-the-pseudocode">Explanation of the Pseudocode:</h3>
+<ol>
+<li><strong>isValid()</strong>: This function checks whether placing a particular number in a specific row and column is valid. It verifies the current row, column, and 3x3 subgrid for any conflicts.</li>
+<li><strong>findEmptyCell()</strong>: This function scans the grid for the first empty cell (represented by <code>0</code>), indicating that a number needs to be placed there.</li>
+<li><strong>solveSudoku()</strong>: This is the main backtracking function that uses recursion to solve the puzzle. It finds the next empty cell, tries placing numbers from 1 to 9, and recurses until the puzzle is solved. If a dead end is reached, it backtracks and tries a different number.</li>
+</ol>
+<hr>
+<h2 id="example-of-solving-sudoku">Example of Solving Sudoku</h2>
+<p>Let’s walk through solving a small part of a Sudoku puzzle to illustrate how the algorithm works.</p>
+<h3 id="initial-sudoku-puzzle">Initial Sudoku Puzzle:</h3>
+<pre tabindex="0"><code>5 3 _ | _ 7 _ | _ _ _
+6 _ _ | 1 9 5 | _ _ _
+_ 9 8 | _ _ _ | _ 6 _
+------+------+------
+8 _ _ | _ 6 _ | _ _ 3
+4 _ _ | 8 _ 3 | _ _ 1
+7 _ _ | _ 2 _ | _ _ 6
+------+------+------
+_ 6 _ | _ _ _ | 2 8 _
+_ _ _ | 4 1 9 | _ _ 5
+_ _ _ | _ 8 _ | _ 7 9
+</code></pre><ol>
+<li>The algorithm starts by finding the first empty cell, which is <code>(0, 2)</code>.</li>
+<li>It tries placing the number <code>1</code> in this cell and checks if it&rsquo;s valid:
+<ul>
+<li>The number <code>1</code> is not in the row, column, or subgrid, so it&rsquo;s valid.</li>
+</ul>
+</li>
+<li>The algorithm places <code>1</code> in <code>(0, 2)</code> and recursively attempts to solve the rest of the puzzle.</li>
+<li>It continues this process, backtracking when necessary, until the entire grid is filled.</li>
+</ol>
+<h3 id="solved-puzzle">Solved Puzzle:</h3>
+<pre tabindex="0"><code>5 3 4 | 6 7 8 | 9 1 2
+6 7 2 | 1 9 5 | 3 4 8
+1 9 8 | 3 4 2 | 5 6 7
+------+------+------
+8 5 9 | 7 6 1 | 4 2 3
+4 2 6 | 8 5 3 | 7 9 1
+7 1 3 | 9 2 4 | 8 5 6
+------+------+------
+9 6 1 | 5 3 7 | 2 8 4
+2 8 7 | 4 1 9 | 6 3 5
+3 4 5 | 2 8 6 | 1 7 9
+</code></pre><hr>
+<h2 id="how-dp-optimizes-the-solution">How DP Optimizes the Solution</h2>
+<p>Dynamic Programming principles come into play in the way we optimize constraints checking (which numbers are valid in each row, column, and subgrid).</p>
+<h3 id="optimized-structure">Optimized Structure:</h3>
+<ul>
+<li><strong>Row Constraints</strong>: Track which numbers are already used in each row.</li>
+<li><strong>Column Constraints</strong>: Track which numbers are used in each column.</li>
+<li><strong>Subgrid Constraints</strong>: Track which numbers are used in each 3x3 subgrid.</li>
+</ul>
+<p>By maintaining these structures, we can quickly check whether placing a number is valid without having to scan the entire grid every time.</p>
+<h3 id="optimization-with-bitmasking">Optimization with Bitmasking:</h3>
+<p>We can further optimize using <strong>bitmasking</strong>. Instead of storing row</p>
+<p>, column, and subgrid constraints in arrays, we can use bitmasks to represent which numbers are available or used. This reduces the overhead and speeds up the constraint checking process.</p>
+<hr>
+<h2 id="time-complexity">Time Complexity</h2>
+<p>The time complexity of the backtracking algorithm depends on the number of empty cells and how many options (numbers) need to be tried for each cell. In the worst case, the algorithm has to try 9 possibilities for each of the 81 cells:</p>
+<ul>
+<li><strong>Worst-case Time Complexity</strong>: O(9^81) (though this is rarely encountered in practice).</li>
+<li>With constraints optimization using DP, this reduces the time spent on redundant checks.</li>
+</ul>
+<hr>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>In this blog, we explored how to solve Sudoku using <strong>backtracking</strong> and how <strong>Dynamic Programming (DP)</strong> principles can be applied to optimize the solution by storing and reusing information about valid placements. We walked through a comprehensive pseudocode solution that shows how recursion and backtracking work together to fill the puzzle.</p>
+<p>Understanding how to solve Sudoku with these techniques will help you tackle similar constraint-based problems and improve your algorithmic problem-solving skills.</p>
+<p>That’s all for today! I hope this post helped you understand how to solve Sudoku efficiently. Until next time, happy coding! 🚀</p>
+
+  </div>
+
+  
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="https://silicon-safari.github.io/allblogs/sudokusolver/"
+     data-text="Solving Sudoku with Dynamic Programming: A Step-by-Step Guide"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="https://silicon-safari.github.io/allblogs/sudokusolver/"
+     data-text="Solving Sudoku with Dynamic Programming: A Step-by-Step Guide"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="https://silicon-safari.github.io/allblogs/sudokusolver/"
+     data-text="Solving Sudoku with Dynamic Programming: A Step-by-Step Guide"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="https://silicon-safari.github.io/allblogs/sudokusolver/"
+     data-text="Solving Sudoku with Dynamic Programming: A Step-by-Step Guide"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="https://silicon-safari.github.io/allblogs/sudokusolver/"
+     data-text="Solving Sudoku with Dynamic Programming: A Step-by-Step Guide"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+      
+  
+
+
+    
+</body>
+</html>

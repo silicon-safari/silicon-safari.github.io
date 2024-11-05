@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Database Design Using Hash Indexes &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Database Design Using Hash Indexes">
+  <meta itemprop="description" content="Hi guys, this is alanturrr1703.
+This is my first blog, and honestly, I don’t know what I’m doing.">
+  <meta itemprop="datePublished" content="2023-08-18T11:50:51+05:30">
+  <meta itemprop="dateModified" content="2023-08-18T11:50:51+05:30">
+  <meta itemprop="wordCount" content="596">
+  <meta itemprop="keywords" content="Databases,Hash Indexes,Data Structures,Database Indexing,Hashing,Performance Optimization,Database Design">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Database Design Using Hash Indexes">
+  <meta name="twitter:description" content="Hi guys, this is alanturrr1703.
+This is my first blog, and honestly, I don’t know what I’m doing.">
+
+
+<meta property="og:url" content="https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Database Design Using Hash Indexes">
+  <meta property="og:description" content="Hi guys, this is alanturrr1703.
+This is my first blog, and honestly, I don’t know what I’m doing.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="allblogs">
+    <meta property="article:published_time" content="2023-08-18T11:50:51+05:30">
+    <meta property="article:modified_time" content="2023-08-18T11:50:51+05:30">
+    <meta property="article:tag" content="Databases">
+    <meta property="article:tag" content="Hash Indexes">
+    <meta property="article:tag" content="Data Structures">
+    <meta property="article:tag" content="Database Indexing">
+    <meta property="article:tag" content="Hashing">
+    <meta property="article:tag" content="Performance Optimization">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "https://silicon-safari.github.io/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://silicon-safari.github.io/#website",
+      "url": "https://silicon-safari.github.io/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/#webpage",
+      "url": "https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/",
+      "name": "Database Design Using Hash Indexes",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/#website"
+      },
+      "about": {
+         "@id": "https://silicon-safari.github.io/#author"
+      },
+      "datePublished": "2023-08-18T11:50:51+05:30",
+      "dateModified": "2023-08-18T11:50:51+05:30",
+      "description": "Hi guys, this is alanturrr1703.\nThis is my first blog, and honestly, I don’t know what I’m doing.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/#webpage"
+      },
+      "headline": "Database Design Using Hash Indexes",
+      "datePublished": "2023-08-18T11:50:51+05:30",
+      "dateModified": "2023-08-18T11:50:51+05:30",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "keywords": [
+        "Databases",
+        "Hash Indexes",
+        "Data Structures",
+        "Database Indexing",
+        "Hashing",
+        "Performance Optimization",
+        "Database Design"
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://silicon-safari.github.io/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">Me and My Life</a>
+        </li><li>
+          <a href="/algorithms/">Algorithms</a>
+        </li><li>
+          <a href="/allblogs/">All Blogs</a>
+        </li><li>
+          <a href="/computernetworking/">Computer Networks</a>
+        </li><li>
+          <a href="/datastructures/">Data Structures</a>
+        </li><li>
+          <a href="/databasedesign/">Database Design</a>
+        </li><li>
+          <a href="/distributedsystems/">Distributed Sytems</a>
+        </li><li>
+          <a href="/theoryofcomputation/">Theory Of Computation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Database Design Using Hash Indexes</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2023-08-18T11:50:51&#43;0530">Aug 18, 2023</time> <span class="readtime">&middot; 3 min read</span>
+  </div>
+
+  <div>
+  <p>Hi guys, this is alanturrr1703.</p>
+<p>This is my first blog, and honestly, I don’t know what I’m doing. But I’ll be writing these just for fun; some blogs might actually have some good points that could be useful to someone, but honestly, these blogs are my notes about things that I’m interested in.</p>
+<h2 id="why-do-we-need-databases">Why Do We Need Databases?</h2>
+<p>Let’s dive into database design using Hash Indexes.</p>
+<p>Now, why do we really need databases? Why can’t we use something like programs everywhere? When we’re designing software and want to output something that is, more often than not, static—say, user data—this type of problem, which is quite common, creates the need for a database. This data has to be stored permanently, so it can’t be kept in RAM. It also needs features like preventing redundant computation, ensuring simple data recovery, and so on.</p>
+<p>I feel like if you’re reading my blog, you’ve already done some diligent work to understand these basic concepts.</p>
+<h2 id="what-is-hashing-and-how-can-it-be-used-to-create-databases">What is Hashing and How Can It Be Used to Create Databases?</h2>
+<p>Now, let’s address the elephant in the room.</p>
+<p>What is hashing, and how can it be used to create databases? Well, let’s get to the real stuff—though, for this blog, a deep explanation isn’t required. Hashing is like a secret formula applied to a number that gives the data an ID, functioning somewhat like encryption-decryption. If someone knows the hashing formula, or for those familiar with mathematics, the hashing function, they can decrypt the data.</p>
+<p>However, we apply the hashing function not for data security but for fast data access.</p>
+<p>Let’s see this with an example:</p>
+<p><img src="/images/image.png" alt="alt text"></p>
+<p>Fetching data for many users is simple with hashing.</p>
+<p>For example, there’s this <code>h(x)</code>, the hashing function. Whatever it may be, when you input 1 into the function, it will always output <code>98798327</code>. And we know that in the hard drive, data related to Jake is stored at that location. But this might not be the case when using searching algorithms like binary search or linear search.</p>
+<p>This may require <code>O(N)</code> space, but so does storing the data for searching. The cool part is that the time complexity of this algorithm is <code>O(1)</code>. While writing a large amount of data can take time—<code>O(N)</code> with computation—the main issue here is the collision of data, where two hash functions produce the same output, like:</p>
+<ul>
+<li><code>h(5) = 12345678</code></li>
+<li><code>h(10) = 12345678</code></li>
+</ul>
+<p>which is the same.</p>
+<p>In such cases, collision resolution algorithms are used, which may increase the writing complexity to <code>O(N)</code>.</p>
+<p>Using this hashing, we can design a database that works efficiently with hash indexes.</p>
+<h2 id="downsides-of-hashing">Downsides of Hashing</h2>
+<p>Now, let’s understand the downsides.</p>
+<ol>
+<li>Hashing happens in RAM; reading and writing involve RAM.</li>
+<li>RAM is costly.</li>
+<li>RAM isn’t reliable for storing permanent data.</li>
+<li>In case of a system failure, some data might be lost.</li>
+<li>If you didn’t get it from the above explanation, here’s a more in-depth one—just for you. 😘😘</li>
+</ol>
+<p>You might be thinking, why not store the hash function in hard disk memory itself? Well, you’re not special; finding the data would be tough.</p>
+<p>Now you might think we could store it in a way that makes it very accessible. Alright, you’re getting somewhere, but you’re still not a genius. This has been done using a Write-Ahead Log, which is like data you’ll likely need next, read and preloaded into the system when restarting. But even this can be optimized.</p>
+<p>So yeah, that’s a summary of how this works.</p>
+<p>Enjoy! Do whatever you want with this information.</p>
+<p>I’ll be back with two more ways to design a database.</p>
+<p>HEHE. 😁😁😁😁</p>
+
+  </div>
+
+  
+<div>
+  <ul class="tags">
+  <li>
+    <a href="https://silicon-safari.github.io/tags/databases/" class="tag-link">Databases</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/hash-indexes/" class="tag-link">Hash Indexes</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/data-structures/" class="tag-link">Data Structures</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/database-indexing/" class="tag-link">Database Indexing</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/hashing/" class="tag-link">Hashing</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/performance-optimization/" class="tag-link">Performance Optimization</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/database-design/" class="tag-link">Database Design</a>
+  </li>
+  </ul>
+</div>
+
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/"
+     data-text="Database Design Using Hash Indexes"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/"
+     data-text="Database Design Using Hash Indexes"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/"
+     data-text="Database Design Using Hash Indexes"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/"
+     data-text="Database Design Using Hash Indexes"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="https://silicon-safari.github.io/allblogs/databasedesignusinghashmaps/"
+     data-text="Database Design Using Hash Indexes"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+      
+  
+
+
+    
+</body>
+</html>

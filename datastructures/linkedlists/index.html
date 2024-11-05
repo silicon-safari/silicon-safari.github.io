@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a core data structure that forms the foundation for many algorithms: Linked Lists.">
+  <meta itemprop="datePublished" content="2023-11-28T22:00:00+05:30">
+  <meta itemprop="dateModified" content="2023-11-28T22:00:00+05:30">
+  <meta itemprop="wordCount" content="1097">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a core data structure that forms the foundation for many algorithms: Linked Lists.">
+
+
+<meta property="og:url" content="https://silicon-safari.github.io/datastructures/linkedlists/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a core data structure that forms the foundation for many algorithms: Linked Lists.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="datastructures">
+    <meta property="article:published_time" content="2023-11-28T22:00:00+05:30">
+    <meta property="article:modified_time" content="2023-11-28T22:00:00+05:30">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "https://silicon-safari.github.io/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://silicon-safari.github.io/#website",
+      "url": "https://silicon-safari.github.io/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://silicon-safari.github.io/datastructures/linkedlists/#webpage",
+      "url": "https://silicon-safari.github.io/datastructures/linkedlists/",
+      "name": "Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/#website"
+      },
+      "about": {
+         "@id": "https://silicon-safari.github.io/#author"
+      },
+      "datePublished": "2023-11-28T22:00:00+05:30",
+      "dateModified": "2023-11-28T22:00:00+05:30",
+      "description": "Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a core data structure that forms the foundation for many algorithms: Linked Lists.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://silicon-safari.github.io/datastructures/linkedlists/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/datastructures/linkedlists/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://silicon-safari.github.io/datastructures/linkedlists/#webpage"
+      },
+      "headline": "Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode",
+      "datePublished": "2023-11-28T22:00:00+05:30",
+      "dateModified": "2023-11-28T22:00:00+05:30",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "keywords": [
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "https://silicon-safari.github.io/datastructures/linkedlists/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://silicon-safari.github.io/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">Me and My Life</a>
+        </li><li>
+          <a href="/algorithms/">Algorithms</a>
+        </li><li>
+          <a href="/allblogs/">All Blogs</a>
+        </li><li>
+          <a href="/computernetworking/">Computer Networks</a>
+        </li><li>
+          <a href="/datastructures/">Data Structures</a>
+        </li><li>
+          <a href="/databasedesign/">Database Design</a>
+        </li><li>
+          <a href="/distributedsystems/">Distributed Sytems</a>
+        </li><li>
+          <a href="/theoryofcomputation/">Theory Of Computation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2023-11-28T22:00:00&#43;0530">Nov 28, 2023</time> <span class="readtime">&middot; 6 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a core data structure that forms the foundation for many algorithms: <strong>Linked Lists</strong>. Linked lists are a simple yet powerful way to store and manipulate data, and they&rsquo;re essential for understanding more advanced data structures like queues, stacks, and graphs.</p>
+<p>In this blog, we’ll cover what linked lists are, the different types (including singly, doubly, and circular linked lists), and how to implement operations like <strong>insertion</strong>, <strong>deletion</strong>, and <strong>traversal</strong> using <strong>pseudocode</strong>. Let’s get started! 🚀</p>
+<h2 id="what-is-a-linked-list">What is a Linked List?</h2>
+<p>A <strong>linked list</strong> is a linear data structure consisting of <strong>nodes</strong>, where each node contains:</p>
+<ol>
+<li><strong>Data</strong>: The actual data the node is storing.</li>
+<li><strong>Next</strong>: A reference (or pointer) to the next node in the sequence.</li>
+</ol>
+<p>Unlike arrays, linked lists don&rsquo;t store elements in contiguous memory locations. This makes them more flexible for dynamic memory allocation but slower for direct access since elements must be accessed sequentially.</p>
+<h3 id="basic-terminology">Basic Terminology:</h3>
+<ul>
+<li><strong>Node</strong>: A single element in the linked list that stores the data and a reference to the next node.</li>
+<li><strong>Head</strong>: The first node in the list.</li>
+<li><strong>Tail</strong>: The last node in the list, which points to <code>null</code> (or <code>None</code>).</li>
+</ul>
+<h3 id="advantages-of-linked-lists">Advantages of Linked Lists:</h3>
+<ul>
+<li><strong>Dynamic Size</strong>: Unlike arrays, linked lists can grow and shrink in size dynamically.</li>
+<li><strong>Efficient Insertions/Deletions</strong>: Inserting and deleting elements in a linked list is efficient (no shifting of elements, unlike arrays).</li>
+</ul>
+<h3 id="disadvantages">Disadvantages:</h3>
+<ul>
+<li><strong>Sequential Access</strong>: You must traverse the list from the head to access any element, which can be slow (O(n) time complexity).</li>
+<li><strong>Extra Memory</strong>: Each node stores an additional pointer, which requires extra memory.</li>
+</ul>
+<h2 id="types-of-linked-lists">Types of Linked Lists</h2>
+<h3 id="1-singly-linked-list">1. <strong>Singly Linked List</strong></h3>
+<p>A <strong>singly linked list</strong> is a basic linked list where each node contains:</p>
+<ul>
+<li><strong>Data</strong>: The value stored in the node.</li>
+<li><strong>Next</strong>: A pointer/reference to the next node in the list.</li>
+</ul>
+<p>Each node only points forward to the next node.</p>
+<h3 id="2-doubly-linked-list">2. <strong>Doubly Linked List</strong></h3>
+<p>A <strong>doubly linked list</strong> is an extension of the singly linked list, where each node has:</p>
+<ul>
+<li><strong>Data</strong>: The value stored in the node.</li>
+<li><strong>Next</strong>: A pointer to the next node.</li>
+<li><strong>Prev</strong>: A pointer to the previous node.</li>
+</ul>
+<p>This allows traversal in both directions, forward and backward.</p>
+<h3 id="3-circular-linked-list">3. <strong>Circular Linked List</strong></h3>
+<p>In a <strong>circular linked list</strong>, the last node points back to the first node, creating a circular loop. This can be implemented with both singly and doubly linked lists.</p>
+<h2 id="operations-on-linked-lists">Operations on Linked Lists</h2>
+<p>Let’s break down the key operations you can perform on linked lists, including pseudocode for <strong>insertion</strong>, <strong>deletion</strong>, and <strong>traversal</strong> for each type.</p>
+<h3 id="1-singly-linked-list-operations">1. Singly Linked List Operations</h3>
+<h4 id="a-insertion-at-the-beginning">(a) <strong>Insertion at the Beginning</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InsertAtBeginning(head, data):
+    Create newNode with data
+    newNode.next = head
+    head = newNode
+    Return head
+</code></pre><h4 id="b-insertion-at-the-end">(b) <strong>Insertion at the End</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InsertAtEnd(head, data):
+    Create newNode with data
+    If head is NULL:
+        head = newNode
+        Return head
+    Set current = head
+    While current.next is not NULL:
+        current = current.next
+    current.next = newNode
+    Return head
+</code></pre><h4 id="c-deletion-from-the-beginning">(c) <strong>Deletion from the Beginning</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function DeleteAtBeginning(head):
+    If head is NULL:
+        Print &#34;List is empty&#34;
+        Return NULL
+    head = head.next
+    Return head
+</code></pre><h4 id="d-deletion-from-the-end">(d) <strong>Deletion from the End</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function DeleteAtEnd(head):
+    If head is NULL:
+        Print &#34;List is empty&#34;
+        Return NULL
+    If head.next is NULL:
+        head = NULL
+        Return head
+    Set current = head
+    While current.next.next is not NULL:
+        current = current.next
+    current.next = NULL
+    Return head
+</code></pre><h4 id="e-traversal">(e) <strong>Traversal</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Traverse(head):
+    If head is NULL:
+        Print &#34;List is empty&#34;
+        Return
+    Set current = head
+    While current is not NULL:
+        Print current.data
+        current = current.next
+</code></pre><h3 id="2-doubly-linked-list-operations">2. Doubly Linked List Operations</h3>
+<h4 id="a-insertion-at-the-beginning-1">(a) <strong>Insertion at the Beginning</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InsertAtBeginning(head, data):
+    Create newNode with data
+    newNode.next = head
+    If head is not NULL:
+        head.prev = newNode
+    head = newNode
+    Return head
+</code></pre><h4 id="b-insertion-at-the-end-1">(b) <strong>Insertion at the End</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InsertAtEnd(head, data):
+    Create newNode with data
+    If head is NULL:
+        head = newNode
+        Return head
+    Set current = head
+    While current.next is not NULL:
+        current = current.next
+    current.next = newNode
+    newNode.prev = current
+    Return head
+</code></pre><h4 id="c-deletion-from-the-beginning-1">(c) <strong>Deletion from the Beginning</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function DeleteAtBeginning(head):
+    If head is NULL:
+        Print &#34;List is empty&#34;
+        Return NULL
+    If head.next is not NULL:
+        head.next.prev = NULL
+    head = head.next
+    Return head
+</code></pre><h4 id="d-deletion-from-the-end-1">(d) <strong>Deletion from the End</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function DeleteAtEnd(head):
+    If head is NULL:
+        Print &#34;List is empty&#34;
+        Return NULL
+    If head.next is NULL:
+        head = NULL
+        Return head
+    Set current = head
+    While current.next is not NULL:
+        current = current.next
+    current.prev.next = NULL
+    Return head
+</code></pre><h4 id="e-traversal-forward-and-backward">(e) <strong>Traversal (Forward and Backward)</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function TraverseForward(head):
+    Set current = head
+    While current is not NULL:
+        Print current.data
+        current = current.next
+
+Function TraverseBackward(tail):
+    Set current = tail
+    While current is not NULL:
+        Print current.data
+        current = current.prev
+</code></pre><h3 id="3-circular-linked-list-operations">3. Circular Linked List Operations</h3>
+<h4 id="a-insertion-at-the-beginning-2">(a) <strong>Insertion at the Beginning</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InsertAtBeginningCircular(head, data):
+    Create newNode with data
+    If head is NULL:
+        newNode.next = newNode  # Single node points to itself
+        head = newNode
+        Return head
+    Set current = head
+    While current.next is not head:
+        current = current.next
+    newNode.next = head
+    current.next = newNode
+    head = newNode
+    Return head
+</code></pre><h4 id="b-insertion-at-the-end-2">(b) <strong>Insertion at the End</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InsertAtEndCircular(head, data):
+    Create newNode with data
+    If head is NULL:
+        newNode.next = newNode
+        head = newNode
+        Return head
+    Set current = head
+    While current.next is not head:
+        current = current.next
+    current.next = newNode
+    newNode.next = head
+    Return head
+</code></pre><h4 id="c-deletion-from-the-beginning-2">(c) <strong>Deletion from the Beginning</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function DeleteAtBeginningCircular(head):
+    If head is NULL:
+        Print &#34;List is empty&#34;
+        Return NULL
+    If head.next is head:
+        head = NULL  # Single node case
+        Return NULL
+    Set current = head
+    While current.next is not head:
+        current = current.next
+    head = head.next
+    current.next = head
+    Return head
+</code></pre><h4 id="d-deletion-from-the-end-2">(d) <strong>Deletion from the End</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function DeleteAtEndCircular(head):
+    If head is NULL:
+        Print &#34;List is empty&#34;
+        Return NULL
+    If head.next is head:
+        head = NULL
+        Return NULL
+    Set current = head
+    While current.next.next is not head:
+        current = current.next
+    current.next = head
+    Return head
+</code></pre><h4 id="e-traversal-1">(e) <strong>Traversal</strong></h4>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function TraverseCircular(head):
+    If head is NULL:
+        Print &#34;List is empty&#34;
+        Return
+    Set current = head
+    Do:
+        Print current.data
+        current = current.next
+    While current is not head
+</code></pre><h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p><strong>Linked lists</strong> are an incredibly versatile and foundational data structure used in a variety of applications, from low-level system programming to implementing complex data structures like queues, stacks, and hash maps. Understanding the basic operations and how to manipulate linked lists will make you a stronger programmer and help you tackle more complex problems in computer science.</p>
+<p>Whether you’re working with singly, doubly, or circular linked lists, the pseudocode examples provided here will give you a solid foundation for implementing them in any programming language.</p>
+<p>That’s all for today! I hope this blog helped clarify the concepts of linked lists and their operations. Until next time, happy coding! 🚀</p>
+
+  </div>
+
+  
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="https://silicon-safari.github.io/datastructures/linkedlists/"
+     data-text="Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="https://silicon-safari.github.io/datastructures/linkedlists/"
+     data-text="Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="https://silicon-safari.github.io/datastructures/linkedlists/"
+     data-text="Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="https://silicon-safari.github.io/datastructures/linkedlists/"
+     data-text="Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="https://silicon-safari.github.io/datastructures/linkedlists/"
+     data-text="Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+      
+  
+
+
+    
+</body>
+</html>

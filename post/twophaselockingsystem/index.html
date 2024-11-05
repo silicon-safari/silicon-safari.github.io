@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Understanding Two-Phase Locking in Databases &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Understanding Two-Phase Locking in Databases">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back again with another blog! 😁 Today, we’re diving into the concept of Two-Phase Locking (2PL)—a fundamental technique used to maintain concurrency control in databases.">
+  <meta itemprop="datePublished" content="2023-09-12T18:00:00+05:30">
+  <meta itemprop="dateModified" content="2023-09-12T18:00:00+05:30">
+  <meta itemprop="wordCount" content="1148">
+  <meta itemprop="keywords" content="Databases,Concurrency Control,Two-Phase Locking,2PL,Transaction Management,Serializability,Locks,Deadlocks,Database Consistency">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding Two-Phase Locking in Databases">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back again with another blog! 😁 Today, we’re diving into the concept of Two-Phase Locking (2PL)—a fundamental technique used to maintain concurrency control in databases.">
+
+
+<meta property="og:url" content="http://localhost:1313/post/twophaselockingsystem/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Understanding Two-Phase Locking in Databases">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back again with another blog! 😁 Today, we’re diving into the concept of Two-Phase Locking (2PL)—a fundamental technique used to maintain concurrency control in databases.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="post">
+    <meta property="article:published_time" content="2023-09-12T18:00:00+05:30">
+    <meta property="article:modified_time" content="2023-09-12T18:00:00+05:30">
+    <meta property="article:tag" content="Databases">
+    <meta property="article:tag" content="Concurrency Control">
+    <meta property="article:tag" content="Two-Phase Locking">
+    <meta property="article:tag" content="2PL">
+    <meta property="article:tag" content="Transaction Management">
+    <meta property="article:tag" content="Serializability">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "http://localhost:1313/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "http://localhost:1313/#website",
+      "url": "http://localhost:1313/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "http://localhost:1313/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "http://localhost:1313/post/twophaselockingsystem/#webpage",
+      "url": "http://localhost:1313/post/twophaselockingsystem/",
+      "name": "Understanding Two-Phase Locking in Databases",
+      "isPartOf": {
+        "@id": "http://localhost:1313/#website"
+      },
+      "about": {
+         "@id": "http://localhost:1313/#author"
+      },
+      "datePublished": "2023-09-12T18:00:00+05:30",
+      "dateModified": "2023-09-12T18:00:00+05:30",
+      "description": "Hey everyone, it’s alanturrr1703 back again with another blog! 😁 Today, we’re diving into the concept of Two-Phase Locking (2PL)—a fundamental technique used to maintain concurrency control in databases.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "http://localhost:1313/post/twophaselockingsystem/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "http://localhost:1313/post/twophaselockingsystem/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "http://localhost:1313/post/twophaselockingsystem/#webpage"
+      },
+      "headline": "Understanding Two-Phase Locking in Databases",
+      "datePublished": "2023-09-12T18:00:00+05:30",
+      "dateModified": "2023-09-12T18:00:00+05:30",
+      "publisher": {
+        "@id": "http://localhost:1313/#author"
+      },
+      "keywords": [
+        "Databases",
+        "Concurrency Control",
+        "Two-Phase Locking",
+        "2PL",
+        "Transaction Management",
+        "Serializability",
+        "Locks",
+        "Deadlocks",
+        "Database Consistency"
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "http://localhost:1313/post/twophaselockingsystem/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="http://localhost:1313/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Understanding Two-Phase Locking in Databases</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2023-09-12T18:00:00&#43;0530">Sep 12, 2023</time> <span class="readtime">&middot; 6 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it’s alanturrr1703 back again with another blog! 😁 Today, we’re diving into the concept of <strong>Two-Phase Locking (2PL)</strong>—a fundamental technique used to maintain <strong>concurrency control</strong> in databases. If you’ve been curious about how databases handle multiple transactions while keeping everything consistent, this is for you. Let&rsquo;s break it down!</p>
+<h2 id="what-is-two-phase-locking">What is Two-Phase Locking?</h2>
+<p><strong>Two-Phase Locking (2PL)</strong> is a protocol used by database management systems to ensure <strong>serializability</strong>, which is the highest level of transaction isolation. This means it allows transactions to run in such a way that their outcomes are <strong>equivalent</strong> to executing them one by one, even when they actually run concurrently.</p>
+<p>In simple terms, 2PL is all about controlling when and how transactions acquire and release <strong>locks</strong> on data. A <strong>lock</strong> is like a reservation on a data item (a row or a table), preventing other transactions from modifying it at the same time.</p>
+<p>2PL divides the life of a transaction into two distinct phases:</p>
+<ol>
+<li><strong>Growing Phase</strong>: The transaction can acquire locks but cannot release any.</li>
+<li><strong>Shrinking Phase</strong>: The transaction releases locks but cannot acquire any more.</li>
+</ol>
+<p>Let’s look at these phases more closely.</p>
+<h2 id="the-two-phases-of-2pl">The Two Phases of 2PL</h2>
+<h3 id="1-growing-phase">1. <strong>Growing Phase</strong></h3>
+<p>In the <strong>growing phase</strong>, the transaction starts by acquiring all the locks it needs. A transaction can lock different data items (e.g., rows or tables) for <strong>reading</strong> (shared lock) or <strong>writing</strong> (exclusive lock). During this phase, the transaction can continue requesting new locks as it encounters data it needs to read or modify.</p>
+<p>However, it cannot release any of these locks during the growing phase. This ensures that the transaction has complete control over the data it needs before it starts releasing locks.</p>
+<h3 id="2-shrinking-phase">2. <strong>Shrinking Phase</strong></h3>
+<p>Once the transaction starts releasing locks, it enters the <strong>shrinking phase</strong>. During this phase, no new locks can be acquired; the transaction only releases the locks it previously held.</p>
+<p>By following this strict order—first acquiring locks, then releasing them—a transaction prevents other transactions from accessing inconsistent or partially updated data. This helps maintain data integrity.</p>
+<h3 id="example-of-two-phase-locking">Example of Two-Phase Locking:</h3>
+<p>Let’s consider an example of two transactions working with a simple banking system:</p>
+<ul>
+<li><strong>Transaction 1</strong>: Transfers ₹500 from Account A to Account B.</li>
+<li><strong>Transaction 2</strong>: Reads the balance of Account A and Account B.</li>
+</ul>
+<p>Here’s how Two-Phase Locking works in this case:</p>
+<ol>
+<li>
+<p><strong>Growing Phase</strong>:</p>
+<ul>
+<li>Transaction 1 locks Account A and Account B for writing (exclusive lock).</li>
+<li>Transaction 2 tries to read Account A but has to wait because Transaction 1 has a write lock on it.</li>
+</ul>
+</li>
+<li>
+<p><strong>Shrinking Phase</strong>:</p>
+<ul>
+<li>Transaction 1 finishes the transfer and releases the locks on Account A and Account B.</li>
+<li>Now Transaction 2 can acquire a read lock and read the updated balances.</li>
+</ul>
+</li>
+</ol>
+<p>Thanks to 2PL, Transaction 2 will never read inconsistent or incomplete data, ensuring serializability.</p>
+<h2 id="types-of-two-phase-locking">Types of Two-Phase Locking</h2>
+<p>There are different versions of Two-Phase Locking that enhance its flexibility and performance:</p>
+<h3 id="1-strict-two-phase-locking-strict-2pl">1. <strong>Strict Two-Phase Locking (Strict 2PL)</strong></h3>
+<p>In <strong>Strict 2PL</strong>, a transaction holds <strong>all its exclusive locks</strong> (for writing) until the transaction commits or aborts. This means no other transaction can read or modify any data item that’s being written by the current transaction until the transaction completes.</p>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>It prevents <strong>dirty reads</strong>, ensuring that other transactions never see uncommitted data.</li>
+<li>Ensures strict serializability.</li>
+</ul>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li>Can lead to higher contention as transactions may need to wait longer to access locked resources.</li>
+</ul>
+<h3 id="2-rigorous-two-phase-locking">2. <strong>Rigorous Two-Phase Locking</strong></h3>
+<p>In <strong>Rigorous 2PL</strong>, all locks—both shared (read) and exclusive (write)—are held until the transaction commits. This is a slightly stricter version of Strict 2PL because even shared locks aren’t released until the transaction is done.</p>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>This makes it even easier to reason about transaction order since no locks are released early.</li>
+</ul>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li>It can cause more waiting for resources since locks are held longer than necessary.</li>
+</ul>
+<h3 id="3-conservative-two-phase-locking-static-2pl">3. <strong>Conservative Two-Phase Locking (Static 2PL)</strong></h3>
+<p>In <strong>Conservative 2PL</strong>, the transaction tries to acquire <strong>all the locks it will ever need</strong> before it starts. If the transaction can’t acquire all the locks at once, it waits and tries again.</p>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>Completely avoids <strong>deadlocks</strong> because the transaction ensures it has all the resources it needs before proceeding.</li>
+</ul>
+<p><strong>Cons</strong>:</p>
+<ul>
+<li>It can be inefficient and harder to implement because transactions need to know all the data they will access upfront, which isn&rsquo;t always possible.</li>
+</ul>
+<h2 id="how-2pl-prevents-common-concurrency-issues">How 2PL Prevents Common Concurrency Issues</h2>
+<p>By following the two-phase protocol, Two-Phase Locking prevents several common concurrency problems:</p>
+<h3 id="1-dirty-reads">1. <strong>Dirty Reads</strong>:</h3>
+<p>When a transaction reads uncommitted data from another transaction. 2PL avoids this by ensuring that locks are held until a transaction commits, so no other transaction can read partially completed data.</p>
+<h3 id="2-non-repeatable-reads">2. <strong>Non-Repeatable Reads</strong>:</h3>
+<p>When a transaction reads the same data twice and gets different values each time because another transaction has modified the data in between. With 2PL, locks prevent this from happening since the first transaction holds a lock on the data until it finishes.</p>
+<h3 id="3-phantom-reads">3. <strong>Phantom Reads</strong>:</h3>
+<p>When a transaction reads a range of data, but another transaction inserts new rows into that range, causing inconsistent results. By locking data ranges (in advanced implementations like index-range locking), 2PL can prevent this issue.</p>
+<h3 id="4-write-skew">4. <strong>Write Skew</strong>:</h3>
+<p>As we discussed in the previous blog, Write Skew happens when concurrent transactions make decisions based on the same data, leading to conflicting results. With 2PL, transactions must acquire locks on data before modifying it, which avoids the skew.</p>
+<h2 id="deadlocks-in-2pl">Deadlocks in 2PL</h2>
+<p>While 2PL is great for maintaining consistency, it comes with a risk: <strong>deadlocks</strong>. Deadlocks occur when two or more transactions are waiting for each other’s locks, and none of them can proceed. It’s like a &ldquo;traffic jam&rdquo; in the database.</p>
+<h3 id="example">Example:</h3>
+<ul>
+<li><strong>Transaction 1</strong> locks Account A and tries to lock Account B.</li>
+<li><strong>Transaction 2</strong> locks Account B and tries to lock Account A.</li>
+</ul>
+<p>Now both transactions are waiting for each other’s lock, and neither can move forward.</p>
+<h3 id="how-to-handle-deadlocks">How to Handle Deadlocks:</h3>
+<ul>
+<li><strong>Deadlock Detection</strong>: Some systems periodically check for deadlocks and terminate one of the transactions to resolve the situation.</li>
+<li><strong>Timeouts</strong>: Some databases set time limits for how long a transaction can wait for a lock. If it exceeds the limit, the transaction is aborted and retried.</li>
+<li><strong>Conservative 2PL</strong>: As mentioned earlier, this approach avoids deadlocks entirely by ensuring that a transaction acquires all required locks at once.</li>
+</ul>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>Two-Phase Locking (2PL) is a critical protocol for ensuring <strong>serializability</strong> in databases by controlling how and when transactions acquire and release locks. While it helps prevent common concurrency issues like dirty reads and phantom writes, it comes with the trade-off of potential deadlocks and performance bottlenecks.</p>
+<p>If you need strict data consistency and can afford some transaction delay, <strong>Strict 2PL</strong> is the way to go. For performance-sensitive applications, you might explore other concurrency control mechanisms alongside 2PL to find the right balance.</p>
+<p>That’s all for today! I hope this helped clarify Two-Phase Locking and how it keeps your database transactions safe and sound. Until next time! 🚀</p>
+
+  </div>
+
+  
+<div>
+  <ul class="tags">
+  <li>
+    <a href="http://localhost:1313/tags/databases/" class="tag-link">Databases</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/concurrency-control/" class="tag-link">Concurrency Control</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/two-phase-locking/" class="tag-link">Two-Phase Locking</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/2pl/" class="tag-link">2PL</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/transaction-management/" class="tag-link">Transaction Management</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/serializability/" class="tag-link">Serializability</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/locks/" class="tag-link">Locks</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/deadlocks/" class="tag-link">Deadlocks</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/database-consistency/" class="tag-link">Database Consistency</a>
+  </li>
+  </ul>
+</div>
+
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="http://localhost:1313/post/twophaselockingsystem/"
+     data-text="Understanding Two-Phase Locking in Databases"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="http://localhost:1313/post/twophaselockingsystem/"
+     data-text="Understanding Two-Phase Locking in Databases"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="http://localhost:1313/post/twophaselockingsystem/"
+     data-text="Understanding Two-Phase Locking in Databases"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="http://localhost:1313/post/twophaselockingsystem/"
+     data-text="Understanding Two-Phase Locking in Databases"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="http://localhost:1313/post/twophaselockingsystem/"
+     data-text="Understanding Two-Phase Locking in Databases"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+</body>
+</html>

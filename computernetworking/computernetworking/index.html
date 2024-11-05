@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into the fascinating world of computer networking—from its early origins with ARPANET to how modern networks function using concepts like IP addresses, the OSI model, and packet transfer.">
+  <meta itemprop="datePublished" content="2024-01-18T12:00:00+05:30">
+  <meta itemprop="dateModified" content="2024-01-18T12:00:00+05:30">
+  <meta itemprop="wordCount" content="1251">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into the fascinating world of computer networking—from its early origins with ARPANET to how modern networks function using concepts like IP addresses, the OSI model, and packet transfer.">
+
+
+<meta property="og:url" content="https://silicon-safari.github.io/computernetworking/computernetworking/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into the fascinating world of computer networking—from its early origins with ARPANET to how modern networks function using concepts like IP addresses, the OSI model, and packet transfer.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="computernetworking">
+    <meta property="article:published_time" content="2024-01-18T12:00:00+05:30">
+    <meta property="article:modified_time" content="2024-01-18T12:00:00+05:30">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "https://silicon-safari.github.io/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://silicon-safari.github.io/#website",
+      "url": "https://silicon-safari.github.io/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://silicon-safari.github.io/computernetworking/computernetworking/#webpage",
+      "url": "https://silicon-safari.github.io/computernetworking/computernetworking/",
+      "name": "Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/#website"
+      },
+      "about": {
+         "@id": "https://silicon-safari.github.io/#author"
+      },
+      "datePublished": "2024-01-18T12:00:00+05:30",
+      "dateModified": "2024-01-18T12:00:00+05:30",
+      "description": "Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into the fascinating world of computer networking—from its early origins with ARPANET to how modern networks function using concepts like IP addresses, the OSI model, and packet transfer.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://silicon-safari.github.io/computernetworking/computernetworking/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/computernetworking/computernetworking/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://silicon-safari.github.io/computernetworking/computernetworking/#webpage"
+      },
+      "headline": "Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer",
+      "datePublished": "2024-01-18T12:00:00+05:30",
+      "dateModified": "2024-01-18T12:00:00+05:30",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "keywords": [
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "https://silicon-safari.github.io/computernetworking/computernetworking/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://silicon-safari.github.io/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">Me and My Life</a>
+        </li><li>
+          <a href="/algorithms/">Algorithms</a>
+        </li><li>
+          <a href="/allblogs/">All Blogs</a>
+        </li><li>
+          <a href="/computernetworking/">Computer Networks</a>
+        </li><li>
+          <a href="/datastructures/">Data Structures</a>
+        </li><li>
+          <a href="/databasedesign/">Database Design</a>
+        </li><li>
+          <a href="/distributedsystems/">Distributed Sytems</a>
+        </li><li>
+          <a href="/theoryofcomputation/">Theory Of Computation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2024-01-18T12:00:00&#43;0530">Jan 18, 2024</time> <span class="readtime">&middot; 6 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into the fascinating world of <strong>computer networking</strong>—from its early origins with <strong>ARPANET</strong> to how modern networks function using concepts like <strong>IP addresses</strong>, the <strong>OSI model</strong>, and <strong>packet transfer</strong>. We’ll also explore how these ideas are applied in real-world situations, like <strong>online gaming</strong>, specifically in <strong>FPS (First-Person Shooter)</strong> games, to understand concepts like <strong>packet loss</strong>.</p>
+<p>Let’s get started! 🚀</p>
+<h2 id="a-brief-history-of-computer-networking-the-birth-of-arpanet">A Brief History of Computer Networking: The Birth of ARPANET</h2>
+<p>It all began in the late 1960s with a project called <strong>ARPANET (Advanced Research Projects Agency Network)</strong>, which was funded by the <strong>U.S. Department of Defense</strong>. The goal of ARPANET was to create a decentralized communication network that could survive a nuclear attack. In 1969, ARPANET became the world’s first operational <strong>packet-switching</strong> network.</p>
+<p>The core idea was that instead of sending data as a continuous stream, ARPANET would split data into smaller chunks called <strong>packets</strong>, which could be routed across various paths in the network. This packet-based approach led to more efficient and resilient communication compared to traditional circuit-switched networks.</p>
+<p>ARPANET became the precursor to the <strong>internet</strong>, evolving over the next few decades into the global system of interconnected networks we have today.</p>
+<h2 id="ip-addresses-how-computers-identify-each-other">IP Addresses: How Computers Identify Each Other</h2>
+<p>For computers to communicate over a network, they need unique addresses. This is where <strong>IP (Internet Protocol) addresses</strong> come in. An <strong>IP address</strong> is like a postal address for your device, allowing it to send and receive data across the internet.</p>
+<h3 id="types-of-ip-addresses">Types of IP Addresses:</h3>
+<ol>
+<li><strong>IPv4 (Internet Protocol version 4)</strong>: The most widely used version. An IPv4 address looks like this: <code>192.168.0.1</code> and consists of four sets of numbers separated by periods.</li>
+<li><strong>IPv6 (Internet Protocol version 6)</strong>: The newer version to handle the growing number of devices. An IPv6 address looks like this: <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>.</li>
+</ol>
+<h3 id="how-ip-addresses-are-assigned">How IP Addresses Are Assigned:</h3>
+<p>IP addresses can be assigned in two ways:</p>
+<ul>
+<li><strong>Static IP Address</strong>: A fixed address manually assigned to a device. These are often used for servers and network devices.</li>
+<li><strong>Dynamic IP Address</strong>: Assigned automatically by a <strong>DHCP (Dynamic Host Configuration Protocol)</strong> server. Most home devices, like laptops and phones, use dynamic IP addresses that change over time.</li>
+</ul>
+<h3 id="public-vs-private-ip-addresses">Public vs Private IP Addresses:</h3>
+<ul>
+<li><strong>Public IP addresses</strong> are globally unique and assigned by <strong>ISPs (Internet Service Providers)</strong> for devices on the internet.</li>
+<li><strong>Private IP addresses</strong> are used within local networks (home, office) and are not globally unique. Routers translate between private and public IPs using a technique called <strong>NAT (Network Address Translation)</strong>.</li>
+</ul>
+<h2 id="the-osi-model-layers-of-networking">The OSI Model: Layers of Networking</h2>
+<p>The <strong>OSI (Open Systems Interconnection) model</strong> is a conceptual framework that standardizes the functions of a networking system into seven layers. Each layer handles a specific aspect of data transmission.</p>
+<h3 id="the-seven-layers-of-the-osi-model">The Seven Layers of the OSI Model:</h3>
+<ol>
+<li>
+<p><strong>Layer 1: Physical Layer</strong></p>
+<ul>
+<li>This layer deals with the physical connection between devices (cables, switches, and electrical signals). It handles <strong>bit transmission</strong> over network hardware.</li>
+</ul>
+</li>
+<li>
+<p><strong>Layer 2: Data Link Layer</strong></p>
+<ul>
+<li>The data link layer manages <strong>node-to-node communication</strong>. It ensures that data is error-free and transmitted over the correct network interface (Ethernet, Wi-Fi). This is where <strong>MAC addresses</strong> (physical addresses) are used.</li>
+</ul>
+</li>
+<li>
+<p><strong>Layer 3: Network Layer</strong></p>
+<ul>
+<li>This is the layer where <strong>IP addresses</strong> operate. The network layer is responsible for <strong>routing</strong> packets between networks, determining the best path from source to destination.</li>
+</ul>
+</li>
+<li>
+<p><strong>Layer 4: Transport Layer</strong></p>
+<ul>
+<li>The transport layer ensures <strong>reliable transmission</strong> of data between devices. It handles <strong>flow control</strong>, <strong>error correction</strong>, and <strong>packet sequencing</strong>. Protocols like <strong>TCP (Transmission Control Protocol)</strong> and <strong>UDP (User Datagram Protocol)</strong> operate here.</li>
+</ul>
+</li>
+<li>
+<p><strong>Layer 5: Session Layer</strong></p>
+<ul>
+<li>This layer manages <strong>sessions</strong> between applications on different devices, such as opening and closing communication channels.</li>
+</ul>
+</li>
+<li>
+<p><strong>Layer 6: Presentation Layer</strong></p>
+<ul>
+<li>The presentation layer ensures that data is in a usable format. It handles tasks like <strong>encryption</strong>, <strong>compression</strong>, and <strong>data translation</strong> (e.g., converting data into formats like ASCII, JPEG, etc.).</li>
+</ul>
+</li>
+<li>
+<p><strong>Layer 7: Application Layer</strong></p>
+<ul>
+<li>This is the layer where applications interact with the network. It includes protocols like <strong>HTTP</strong> (for web browsing), <strong>FTP</strong> (for file transfer), and <strong>SMTP</strong> (for email).</li>
+</ul>
+</li>
+</ol>
+<h3 id="how-the-osi-model-works-in-practice">How the OSI Model Works in Practice:</h3>
+<p>When you send a message or data over a network, it moves through each of these seven layers, from <strong>Layer 7 (Application)</strong> down to <strong>Layer 1 (Physical)</strong> on the sending device. When the data reaches the receiving device, it moves from <strong>Layer 1 (Physical)</strong> back up to <strong>Layer 7 (Application)</strong>, ensuring the data is transmitted, interpreted, and displayed correctly.</p>
+<h2 id="packet-transfer-how-data-moves-across-the-internet">Packet Transfer: How Data Moves Across the Internet</h2>
+<p>Data traveling across a network is broken down into small, manageable chunks called <strong>packets</strong>. Each packet contains:</p>
+<ul>
+<li>The <strong>data</strong> being transmitted.</li>
+<li><strong>Source and destination IP addresses</strong> (for routing).</li>
+<li><strong>Error-checking information</strong> to ensure the data arrives intact.</li>
+</ul>
+<h3 id="how-packet-transfer-works">How Packet Transfer Works:</h3>
+<ol>
+<li>When you send data (e.g., streaming a video), your device breaks the data into packets.</li>
+<li>Each packet is sent through the network, hopping between routers and switches along the way.</li>
+<li>Routers use the <strong>IP addresses</strong> in the packets to direct them to their destination.</li>
+<li>Once all packets arrive, the receiving device reassembles them into the original data.</li>
+</ol>
+<h3 id="what-happens-during-packet-transfer">What Happens During Packet Transfer:</h3>
+<ul>
+<li><strong>Routing</strong>: Packets take the best available path, meaning they don’t necessarily follow the same route.</li>
+<li><strong>Fragmentation</strong>: Large data may be split into smaller packets for transmission.</li>
+<li><strong>Reassembly</strong>: Once all the packets reach the destination, they’re reassembled in the correct order.</li>
+</ul>
+<h2 id="packet-loss-what-happens-in-fps-games">Packet Loss: What Happens in FPS Games?</h2>
+<p>When playing an <strong>FPS (First-Person Shooter)</strong> game online, every action—moving, shooting, jumping—results in data being sent to the game server in real-time. The faster and more reliable this communication is, the better your gaming experience will be. However, sometimes <strong>packet loss</strong> occurs, which can seriously affect gameplay.</p>
+<h3 id="what-is-packet-loss">What is Packet Loss?</h3>
+<p><strong>Packet loss</strong> occurs when some packets of data fail to reach their destination. This can happen due to network congestion, poor signal strength, or other technical issues. In an FPS game, packet loss can lead to:</p>
+<ul>
+<li><strong>Lag</strong>: Delays in your actions being registered.</li>
+<li><strong>Rubberbanding</strong>: Your character might appear to jump back and forth on the map.</li>
+<li><strong>Hit Registration Issues</strong>: Shots that should have hit might not be registered correctly.</li>
+</ul>
+<h3 id="causes-of-packet-loss-in-gaming">Causes of Packet Loss in Gaming:</h3>
+<ol>
+<li><strong>Network Congestion</strong>: Too much traffic on the network can cause packets to be dropped.</li>
+<li><strong>Wi-Fi Interference</strong>: If you&rsquo;re on a wireless connection, interference can cause packets to be lost.</li>
+<li><strong>Bad Routing</strong>: Packets might take inefficient routes and get delayed or lost in transit.</li>
+</ol>
+<h3 id="how-to-minimize-packet-loss-in-fps-games">How to Minimize Packet Loss in FPS Games:</h3>
+<ol>
+<li><strong>Use a Wired Connection</strong>: Ethernet connections are more stable and reliable than Wi-Fi.</li>
+<li><strong>Optimize Network Settings</strong>: Adjust network configurations like packet size (MTU) to reduce packet loss.</li>
+<li><strong>Close Background Applications</strong>: Ensure that bandwidth isn’t being consumed by other apps while gaming.</li>
+</ol>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>From the birth of <strong>ARPANET</strong> to the complex and dynamic nature of modern networks, <strong>computer networking</strong> has come a long way. We’ve explored the essentials of networking, including <strong>IP addresses</strong>, the <strong>OSI model</strong>, and how <strong>packets</strong> are transferred across the internet. We also took a look at <strong>packet loss</strong>, which is especially important in applications like <strong>FPS gaming</strong>.</p>
+<p>Computer networks are an essential part of modern life, allowing us to browse the web, play games, and communicate in ways that were unimaginable just a few decades ago. Understanding how networks work and how data flows from one device to another can give you a deeper appreciation of the technology we often take for granted.</p>
+<p>That’s all for today! I hope this blog helped you understand the basics of computer networking. Until next time, happy browsing and gaming! 🚀</p>
+
+  </div>
+
+  
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="https://silicon-safari.github.io/computernetworking/computernetworking/"
+     data-text="Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="https://silicon-safari.github.io/computernetworking/computernetworking/"
+     data-text="Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="https://silicon-safari.github.io/computernetworking/computernetworking/"
+     data-text="Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="https://silicon-safari.github.io/computernetworking/computernetworking/"
+     data-text="Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="https://silicon-safari.github.io/computernetworking/computernetworking/"
+     data-text="Understanding Computer Networking: From ARPANET to Modern Networks, IP Addresses, OSI Model, and Packet Transfer"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+      
+  
+
+
+    
+</body>
+</html>

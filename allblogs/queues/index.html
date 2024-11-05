@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Understanding Queues: How to Build Custom Queues in Pseudocode &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Understanding Queues: How to Build Custom Queues in Pseudocode">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re exploring another essential data structure that plays a crucial role in a wide range of applications: the Queue.">
+  <meta itemprop="datePublished" content="2023-12-11T10:00:00+05:30">
+  <meta itemprop="dateModified" content="2023-12-11T10:00:00+05:30">
+  <meta itemprop="wordCount" content="1397">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding Queues: How to Build Custom Queues in Pseudocode">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re exploring another essential data structure that plays a crucial role in a wide range of applications: the Queue.">
+
+
+<meta property="og:url" content="https://silicon-safari.github.io/allblogs/queues/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Understanding Queues: How to Build Custom Queues in Pseudocode">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re exploring another essential data structure that plays a crucial role in a wide range of applications: the Queue.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="allblogs">
+    <meta property="article:published_time" content="2023-12-11T10:00:00+05:30">
+    <meta property="article:modified_time" content="2023-12-11T10:00:00+05:30">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "https://silicon-safari.github.io/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://silicon-safari.github.io/#website",
+      "url": "https://silicon-safari.github.io/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://silicon-safari.github.io/allblogs/queues/#webpage",
+      "url": "https://silicon-safari.github.io/allblogs/queues/",
+      "name": "Understanding Queues: How to Build Custom Queues in Pseudocode",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/#website"
+      },
+      "about": {
+         "@id": "https://silicon-safari.github.io/#author"
+      },
+      "datePublished": "2023-12-11T10:00:00+05:30",
+      "dateModified": "2023-12-11T10:00:00+05:30",
+      "description": "Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re exploring another essential data structure that plays a crucial role in a wide range of applications: the Queue.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://silicon-safari.github.io/allblogs/queues/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/allblogs/queues/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://silicon-safari.github.io/allblogs/queues/#webpage"
+      },
+      "headline": "Understanding Queues: How to Build Custom Queues in Pseudocode",
+      "datePublished": "2023-12-11T10:00:00+05:30",
+      "dateModified": "2023-12-11T10:00:00+05:30",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "keywords": [
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "https://silicon-safari.github.io/allblogs/queues/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://silicon-safari.github.io/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">Me and My Life</a>
+        </li><li>
+          <a href="/algorithms/">Algorithms</a>
+        </li><li>
+          <a href="/allblogs/">All Blogs</a>
+        </li><li>
+          <a href="/computernetworking/">Computer Networks</a>
+        </li><li>
+          <a href="/datastructures/">Data Structures</a>
+        </li><li>
+          <a href="/databasedesign/">Database Design</a>
+        </li><li>
+          <a href="/distributedsystems/">Distributed Sytems</a>
+        </li><li>
+          <a href="/theoryofcomputation/">Theory Of Computation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Understanding Queues: How to Build Custom Queues in Pseudocode</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2023-12-11T10:00:00&#43;0530">Dec 11, 2023</time> <span class="readtime">&middot; 7 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re exploring another essential data structure that plays a crucial role in a wide range of applications: the <strong>Queue</strong>. Queues are everywhere in computer science and are particularly useful when we need to maintain the order of elements, such as in task scheduling, buffering, or handling requests.</p>
+<p>In this blog, we’ll cover what a queue is, the types of queues, and how to implement operations like <strong>enqueue</strong>, <strong>dequeue</strong>, and <strong>peek</strong> using <strong>pseudocode</strong>. We’ll also discuss both array-based and linked-list-based implementations. Let’s dive in! 🚀</p>
+<h2 id="what-is-a-queue">What is a Queue?</h2>
+<p>A <strong>queue</strong> is a linear data structure that follows the <strong>First In, First Out (FIFO)</strong> principle. This means that the first element added to the queue will be the first one to be removed. Think of it like a line of people waiting for service—whoever gets in line first is served first.</p>
+<h3 id="basic-operations">Basic Operations:</h3>
+<ul>
+<li><strong>Enqueue</strong>: Add an element to the end of the queue.</li>
+<li><strong>Dequeue</strong>: Remove the element from the front of the queue.</li>
+<li><strong>Peek (Front)</strong>: Look at the front element without removing it.</li>
+<li><strong>isEmpty</strong>: Check if the queue is empty.</li>
+</ul>
+<h3 id="key-features">Key Features:</h3>
+<ul>
+<li><strong>FIFO</strong>: First In, First Out.</li>
+<li><strong>Sequential Access</strong>: You can only access the front or rear elements.</li>
+<li><strong>Dynamic Size</strong>: The queue can grow or shrink as needed, depending on the implementation.</li>
+</ul>
+<h3 id="applications-of-queues">Applications of Queues:</h3>
+<ul>
+<li><strong>Task Scheduling</strong>: In operating systems, queues manage tasks or processes to be executed.</li>
+<li><strong>Buffering</strong>: Queues are used to store data that’s waiting to be processed, such as when streaming videos or handling network packets.</li>
+<li><strong>Breadth-First Search (BFS)</strong>: Queues are used in graph traversal algorithms like BFS.</li>
+<li><strong>Print Queue</strong>: A print queue manages documents waiting to be printed in the order they were received.</li>
+</ul>
+<h2 id="types-of-queue-implementations">Types of Queue Implementations</h2>
+<p>Queues can be implemented in two main ways:</p>
+<ol>
+<li><strong>Array-based implementation</strong></li>
+<li><strong>Linked-list-based implementation</strong></li>
+</ol>
+<p>Let’s look at how to implement queues using these methods, complete with pseudocode for each operation.</p>
+<h2 id="array-based-queue-implementation">Array-Based Queue Implementation</h2>
+<p>In an array-based implementation, we use an array to store queue elements. The front of the queue is at the beginning of the array, and the rear is at the end of the array.</p>
+<h3 id="a-initialize-queue">(a) <strong>Initialize Queue</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InitializeQueue(size):
+    Create an array of size &#39;size&#39;
+    Set front = -1
+    Set rear = -1
+</code></pre><h3 id="b-enqueue-operation">(b) <strong>Enqueue Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Enqueue(queue, rear, size, data):
+    If rear == size - 1:
+        Print &#34;Queue Overflow&#34;
+        Return
+    If front == -1:
+        front = 0  # Initialize front on the first enqueue
+    rear = rear + 1
+    queue[rear] = data
+</code></pre><h3 id="c-dequeue-operation">(c) <strong>Dequeue Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Dequeue(queue, front, rear):
+    If front == -1 or front &gt; rear:
+        Print &#34;Queue Underflow&#34;
+        Return NULL
+    data = queue[front]
+    front = front + 1
+    If front &gt; rear:  # Reset the queue when it&#39;s empty
+        front = -1
+        rear = -1
+    Return data
+</code></pre><h3 id="d-peek-operation">(d) <strong>Peek Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Peek(queue, front):
+    If front == -1:
+        Print &#34;Queue is empty&#34;
+        Return NULL
+    Return queue[front]
+</code></pre><h3 id="e-isempty-operation">(e) <strong>isEmpty Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function isEmpty(front):
+    Return front == -1
+</code></pre><h3 id="array-based-example">Array-Based Example:</h3>
+<pre tabindex="0"><code>Queue = [1, 2, 3]  # Front element is 1
+front = 0
+rear = 2
+</code></pre><p>In the array-based implementation, we need to watch out for <strong>queue overflow</strong> (when the queue is full) and <strong>queue underflow</strong> (when we try to dequeue from an empty queue). Additionally, with a simple array, the queue size is fixed.</p>
+<h2 id="circular-queue-implementation">Circular Queue Implementation</h2>
+<p>A <strong>circular queue</strong> solves the issue of wasting space in a standard array-based queue by making the queue wrap around. In a circular queue, when the rear reaches the end of the array, it can wrap around to the beginning of the array (if there&rsquo;s free space).</p>
+<h3 id="a-enqueue-operation-in-circular-queue">(a) <strong>Enqueue Operation in Circular Queue</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function EnqueueCircular(queue, front, rear, size, data):
+    nextRear = (rear + 1) % size
+    If nextRear == front:
+        Print &#34;Queue Overflow&#34;
+        Return
+    rear = nextRear
+    queue[rear] = data
+</code></pre><h3 id="b-dequeue-operation-in-circular-queue">(b) <strong>Dequeue Operation in Circular Queue</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function DequeueCircular(queue, front, rear, size):
+    If front == -1:
+        Print &#34;Queue Underflow&#34;
+        Return NULL
+    data = queue[front]
+    front = (front + 1) % size
+    If front == (rear + 1) % size:  # Reset the queue when it&#39;s empty
+        front = -1
+        rear = -1
+    Return data
+</code></pre><p>In a circular queue, we efficiently use the space available in the array by making the queue wrap around when it reaches the end.</p>
+<h2 id="linked-list-based-queue-implementation">Linked-List-Based Queue Implementation</h2>
+<p>In the linked-list-based implementation, the queue is dynamic in size. Each element is represented as a node with two fields: <strong>data</strong> and a pointer to the <strong>next</strong> node. The <code>front</code> pointer points to the front of the queue, and the <code>rear</code> pointer points to the end.</p>
+<h3 id="node-structure">Node Structure</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Structure Node:
+    data
+    next
+</code></pre><h3 id="a-initialize-queue-1">(a) <strong>Initialize Queue</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InitializeQueue():
+    Set front = NULL
+    Set rear = NULL
+</code></pre><h3 id="b-enqueue-operation-1">(b) <strong>Enqueue Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Enqueue(front, rear, data):
+    Create newNode with data
+    If rear is NULL:
+        front = newNode
+        rear = newNode
+    Else:
+        rear.next = newNode
+        rear = newNode
+    Return front, rear
+</code></pre><h3 id="c-dequeue-operation-1">(c) <strong>Dequeue Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Dequeue(front, rear):
+    If front is NULL:
+        Print &#34;Queue Underflow&#34;
+        Return NULL
+    data = front.data
+    front = front.next
+    If front is NULL:
+        rear = NULL  # Reset rear if the queue is empty
+    Return data, front, rear
+</code></pre><h3 id="d-peek-operation-1">(d) <strong>Peek Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Peek(front):
+    If front is NULL:
+        Print &#34;Queue is empty&#34;
+        Return NULL
+    Return front.data
+</code></pre><h3 id="e-isempty-operation-1">(e) <strong>isEmpty Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function isEmpty(front):
+    Return front == NULL
+</code></pre><h3 id="linked-list-based-example">Linked-List-Based Example:</h3>
+<p>Let’s visualize the queue as a linked list:</p>
+<pre tabindex="0"><code>front → [data: 1, next: → [data: 2, next: → [data: 3, next: NULL]]] ← rear
+</code></pre><p>Here, the front element is 1 and the rear element is 3.</p>
+<h2 id="double-ended-queue-deque">Double-Ended Queue (Deque)</h2>
+<p>A <strong>deque (double-ended queue)</strong> is a more generalized form of a queue that allows insertion and deletion from both ends—front and rear.</p>
+<h3 id="a-insert-at-front-deque">(a) <strong>Insert at Front (Deque)</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InsertAtFront(deque, front, rear, data):
+    Create newNode with data
+    If front is NULL:
+        front = newNode
+        rear = newNode
+    Else:
+        newNode.next = front
+        front = newNode
+    Return front, rear
+</code></pre><h3 id="b-insert-at-rear-deque">(b) <strong>Insert at Rear (Deque)</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InsertAtRear(deque, front, rear, data):
+    Create newNode with data
+    If rear is NULL:
+        front = newNode
+        rear = newNode
+    Else:
+        rear.next = newNode
+        rear = newNode
+    Return front, rear
+</code></pre><h3 id="c-delete-from-front-deque">(c) <strong>Delete from Front (Deque)</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function DeleteAtFront(deque, front, rear):
+    If front is NULL:
+        Print &#34;Deque Underflow&#34;
+        Return NULL
+    data = front.data
+    front = front.next
+    If front is NULL:
+        rear = NULL
+    Return data, front, rear
+</code></pre><h3 id="d-delete-from-rear-deque">(d) <strong>Delete from Rear (Deque)</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function DeleteAtRear(deque, front, rear):
+    If rear is NULL:
+        Print &#34;Deque Underflow&#34;
+        Return NULL
+    If front == rear:
+        data = rear.data
+        front = NULL
+        rear = NULL
+        Return data, front, rear
+    Set current = front
+    While current.next != rear:
+        current = current.next
+    data = rear.data
+    rear = current
+    rear.next = NULL
+    Return data, front, rear
+</code></pre><p>A <strong>deque</strong> is useful when you need to efficiently insert and delete elements from both ends of the queue.</p>
+<h2 id="queue-operations-and-time-complexity">Queue Operations and Time Complexity</h2>
+<ul>
+<li>**</li>
+</ul>
+<p>Enqueue**: O(1) – We add an element at the rear.</p>
+<ul>
+<li><strong>Dequeue</strong>: O(1) – We remove an element from the front.</li>
+<li><strong>Peek</strong>: O(1) – We look at the front element.</li>
+<li><strong>isEmpty</strong>: O(1) – We check if the queue is empty.</li>
+</ul>
+<p>All these operations are highly efficient and take constant time.</p>
+<h2 id="real-world-applications-of-queues">Real-World Applications of Queues</h2>
+<h3 id="1-task-scheduling">1. <strong>Task Scheduling</strong></h3>
+<p>Operating systems use queues to manage tasks and processes that need to be executed. The CPU processes tasks in the order they are added to the queue.</p>
+<h3 id="2-printer-queue">2. <strong>Printer Queue</strong></h3>
+<p>When multiple documents are sent to a printer, they are placed in a queue and printed in the order they arrived.</p>
+<h3 id="3-network-buffers">3. <strong>Network Buffers</strong></h3>
+<p>In networking, queues are used to manage packets of data waiting to be processed or transmitted. Routers, for example, use queues to manage incoming and outgoing data packets.</p>
+<h3 id="4-breadth-first-search-bfs">4. <strong>Breadth-First Search (BFS)</strong></h3>
+<p>In graph traversal, BFS uses a queue to explore nodes level by level, ensuring that each node is processed in the order it was discovered.</p>
+<h3 id="5-request-handling">5. <strong>Request Handling</strong></h3>
+<p>Web servers and databases often use queues to manage incoming requests, ensuring that requests are processed in the order they are received.</p>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p><strong>Queues</strong> are a fundamental data structure that is incredibly useful in many real-world applications. Whether you’re using an array or a linked list, queues allow you to manage elements in a sequential, orderly manner. Understanding how queues work and how to implement them in pseudocode will make you a stronger programmer and better prepared to tackle various algorithmic challenges.</p>
+<p>That’s all for today! I hope this blog helped you understand the concepts of queues and their operations. Until next time, happy coding! 🚀</p>
+
+  </div>
+
+  
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="https://silicon-safari.github.io/allblogs/queues/"
+     data-text="Understanding Queues: How to Build Custom Queues in Pseudocode"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="https://silicon-safari.github.io/allblogs/queues/"
+     data-text="Understanding Queues: How to Build Custom Queues in Pseudocode"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="https://silicon-safari.github.io/allblogs/queues/"
+     data-text="Understanding Queues: How to Build Custom Queues in Pseudocode"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="https://silicon-safari.github.io/allblogs/queues/"
+     data-text="Understanding Queues: How to Build Custom Queues in Pseudocode"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="https://silicon-safari.github.io/allblogs/queues/"
+     data-text="Understanding Queues: How to Build Custom Queues in Pseudocode"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+      
+  
+
+
+    
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scalability on The Silicon Safari</title>
+    <link>https://silicon-safari.github.io/tags/scalability/</link>
+    <description>Recent content in Scalability on The Silicon Safari</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Oct 2023 22:30:00 +0530</lastBuildDate>
+    <atom:link href="https://silicon-safari.github.io/tags/scalability/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Consistent Hashing: A Key to Scalable Distributed Systems</title>
+      <link>https://silicon-safari.github.io/allblogs/consistenthashing/</link>
+      <pubDate>Wed, 04 Oct 2023 22:30:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/consistenthashing/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re exploring an essential concept in distributed systems: Consistent Hashing.</description>
+    </item>
+    <item>
+      <title>Understanding Consistent Hashing: A Key to Scalable Distributed Systems</title>
+      <link>https://silicon-safari.github.io/databasedesign/consistenthashing/</link>
+      <pubDate>Wed, 04 Oct 2023 22:30:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/databasedesign/consistenthashing/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re exploring an essential concept in distributed systems: Consistent Hashing.</description>
+    </item>
+    <item>
+      <title>Understanding Database Replication: What, Why, and How</title>
+      <link>https://silicon-safari.github.io/allblogs/replication/</link>
+      <pubDate>Sat, 30 Sep 2023 22:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/replication/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog! 😄 Today, we’re going to dive into the concept of database replication, a critical technique used to improve the availability, reliability, and performance of distributed systems.</description>
+    </item>
+    <item>
+      <title>Understanding Database Replication: What, Why, and How</title>
+      <link>https://silicon-safari.github.io/databasedesign/replication/</link>
+      <pubDate>Sat, 30 Sep 2023 22:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/databasedesign/replication/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog! 😄 Today, we’re going to dive into the concept of database replication, a critical technique used to improve the availability, reliability, and performance of distributed systems.</description>
+    </item>
+  </channel>
+</rss>

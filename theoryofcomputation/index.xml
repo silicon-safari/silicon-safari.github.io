@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TheoryOfComputations on The Silicon Safari</title>
+    <link>https://silicon-safari.github.io/theoryofcomputation/</link>
+    <description>Recent content in TheoryOfComputations on The Silicon Safari</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 30 Dec 2023 11:00:00 +0530</lastBuildDate>
+    <atom:link href="https://silicon-safari.github.io/theoryofcomputation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Exploring DFA, NFA, and Turing Machines: A Journey Through Theoretical Computer Science and Building a Programming Language</title>
+      <link>https://silicon-safari.github.io/theoryofcomputation/howtobuildprogramminglanguage/</link>
+      <pubDate>Sat, 30 Dec 2023 11:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/theoryofcomputation/howtobuildprogramminglanguage/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re going to explore some of the most important concepts in theoretical computer science: Deterministic Finite Automata (DFA), Nondeterministic Finite Automata (NFA), and Turing Machines.</description>
+    </item>
+  </channel>
+</rss>

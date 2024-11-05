@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Database Design Using LSM Trees and SSTables &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Database Design Using LSM Trees and SSTables">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 here again.
+I’m back with another blog post for you all.">
+  <meta itemprop="datePublished" content="2023-08-20T11:50:51+05:30">
+  <meta itemprop="dateModified" content="2023-08-20T11:50:51+05:30">
+  <meta itemprop="wordCount" content="397">
+  <meta itemprop="keywords" content="Databases,LSM Trees,SSTables,Data Structures,Database Design,Log-Structured Merge Trees,Storage Systems,Write Optimization">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Database Design Using LSM Trees and SSTables">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 here again.
+I’m back with another blog post for you all.">
+
+
+<meta property="og:url" content="http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Database Design Using LSM Trees and SSTables">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 here again.
+I’m back with another blog post for you all.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="distributedsystems">
+    <meta property="article:published_time" content="2023-08-20T11:50:51+05:30">
+    <meta property="article:modified_time" content="2023-08-20T11:50:51+05:30">
+    <meta property="article:tag" content="Databases">
+    <meta property="article:tag" content="LSM Trees">
+    <meta property="article:tag" content="SSTables">
+    <meta property="article:tag" content="Data Structures">
+    <meta property="article:tag" content="Database Design">
+    <meta property="article:tag" content="Log-Structured Merge Trees">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "http://localhost:1313/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "http://localhost:1313/#website",
+      "url": "http://localhost:1313/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "http://localhost:1313/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/#webpage",
+      "url": "http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/",
+      "name": "Database Design Using LSM Trees and SSTables",
+      "isPartOf": {
+        "@id": "http://localhost:1313/#website"
+      },
+      "about": {
+         "@id": "http://localhost:1313/#author"
+      },
+      "datePublished": "2023-08-20T11:50:51+05:30",
+      "dateModified": "2023-08-20T11:50:51+05:30",
+      "description": "Hey everyone, it\u0026rsquo;s alanturrr1703 here again.\nI’m back with another blog post for you all.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/#webpage"
+      },
+      "headline": "Database Design Using LSM Trees and SSTables",
+      "datePublished": "2023-08-20T11:50:51+05:30",
+      "dateModified": "2023-08-20T11:50:51+05:30",
+      "publisher": {
+        "@id": "http://localhost:1313/#author"
+      },
+      "keywords": [
+        "Databases",
+        "LSM Trees",
+        "SSTables",
+        "Data Structures",
+        "Database Design",
+        "Log-Structured Merge Trees",
+        "Storage Systems",
+        "Write Optimization"
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="http://localhost:1313/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/posts/">Posts</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Database Design Using LSM Trees and SSTables</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2023-08-20T11:50:51&#43;0530">Aug 20, 2023</time> <span class="readtime">&middot; 2 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it&rsquo;s alanturrr1703 here again.</p>
+<p>I’m back with another blog post for you all. In my last post, I talked about hash indexes. Today, let’s jump into something else that’s also cool: LSM Trees &amp; SSTables!</p>
+<h3 id="what-are-lsm-trees-and-sstables">What Are LSM Trees and SSTables?</h3>
+<p>LSM Trees (which stands for Log-Structured Merge) is a type of data structure that’s really simple but great for writing. Unlike traditional databases that write data directly to disk, an LSM Tree writes to an in-memory buffer first. This makes the first write really fast—great when you need to take in lots of data quickly!</p>
+<p>Now, about SSTables. They mean Sorted String Tables. These help LSM trees save data on disk. When the in-memory data buffer, known (not so charmingly) as MemTable, gets full, it flushes its contents to disk as an SSTable. Once written, an SSTable can’t be changed! This immutability helps in making systems secure.</p>
+<h3 id="why-should-you-care">Why Should You Care?</h3>
+<p>LSM Trees &amp; SSTables are key components for many modern NoSQL databases like Cassandra, LevelDB, and RocksDB. They work super well if your app needs a lot of write speed or has big datasets to handle.</p>
+<p>You see the real magic when you want to read data. With many SSTables stored on disk, a request might need to look through several files. But no worries! That’s where Bloom filters &amp; compaction strategies step in. Bloom filters can quickly tell you if an SSTable has the data you want. At the same time, compaction combines several SSTables into one for quicker reads later.</p>
+<h3 id="the-downsides">The Downsides?</h3>
+<p>But just like anything in tech, LSM Trees &amp; SSTables do have some downsides:</p>
+<ul>
+<li><strong>Compaction Overhead:</strong> Merging those SSTables takes up lots of resources—both CPU &amp; disk I/O.</li>
+<li><strong>Read Latency:</strong> Since data can be scattered across different SSTables, reading might be slower than using traditional B-Trees.</li>
+<li><strong>Write Amplification:</strong> Writing data repeatedly during compactions can ramp up the total I/O and wear out SSDs faster.</li>
+</ul>
+<p>Still, if you have a workload heavy on writes or deal with large datasets, these downsides could be worth it.</p>
+<h3 id="wrapping-it-up">Wrapping It Up</h3>
+<p>So there it is—LSM Trees and SSTables explained simply! They’re powerful options for some situations where you need fast write performance &amp; lots of storage.</p>
+<p>I hope this was interesting! Keep an eye out for my next blog where I&rsquo;ll talk about another way of designing databases.</p>
+<p>See you next time! 😁</p>
+
+  </div>
+
+  
+<div>
+  <ul class="tags">
+  <li>
+    <a href="http://localhost:1313/tags/databases/" class="tag-link">Databases</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/lsm-trees/" class="tag-link">LSM Trees</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/sstables/" class="tag-link">SSTables</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/data-structures/" class="tag-link">Data Structures</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/database-design/" class="tag-link">Database Design</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/log-structured-merge-trees/" class="tag-link">Log-Structured Merge Trees</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/storage-systems/" class="tag-link">Storage Systems</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/write-optimization/" class="tag-link">Write Optimization</a>
+  </li>
+  </ul>
+</div>
+
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/"
+     data-text="Database Design Using LSM Trees and SSTables"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/"
+     data-text="Database Design Using LSM Trees and SSTables"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/"
+     data-text="Database Design Using LSM Trees and SSTables"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/"
+     data-text="Database Design Using LSM Trees and SSTables"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="http://localhost:1313/distributedsystems/databasedesignusinglsmtreesandsstables/"
+     data-text="Database Design Using LSM Trees and SSTables"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+</body>
+</html>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on The Silicon Safari</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on The Silicon Safari</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Oct 2023 18:00:00 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Two Generals Problem: A Classic Dilemma in Distributed Systems</title>
+      <link>http://localhost:1313/post/twogeneralsproblem/</link>
+      <pubDate>Sun, 15 Oct 2023 18:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/twogeneralsproblem/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a fundamental theoretical problem in distributed systems: The Two Generals Problem.</description>
+    </item>
+    <item>
+      <title>Understanding Remote Procedure Call (RPC) in Distributed Systems</title>
+      <link>http://localhost:1313/post/rpc/</link>
+      <pubDate>Thu, 12 Oct 2023 15:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/rpc/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog! 😄 Today, we’re diving into a fundamental concept in distributed systems: Remote Procedure Call (RPC).</description>
+    </item>
+    <item>
+      <title>Understanding Distributed Consensus: The Backbone of Fault-Tolerant Systems</title>
+      <link>http://localhost:1313/post/distributedconsensus/</link>
+      <pubDate>Sat, 07 Oct 2023 10:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/distributedconsensus/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most important and challenging concepts in distributed systems: Distributed Consensus.</description>
+    </item>
+    <item>
+      <title>Understanding Consistent Hashing: A Key to Scalable Distributed Systems</title>
+      <link>http://localhost:1313/post/consistenthashing/</link>
+      <pubDate>Wed, 04 Oct 2023 22:30:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/consistenthashing/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re exploring an essential concept in distributed systems: Consistent Hashing.</description>
+    </item>
+    <item>
+      <title>Understanding Database Replication: What, Why, and How</title>
+      <link>http://localhost:1313/post/replication/</link>
+      <pubDate>Sat, 30 Sep 2023 22:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/replication/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog! 😄 Today, we’re going to dive into the concept of database replication, a critical technique used to improve the availability, reliability, and performance of distributed systems.</description>
+    </item>
+    <item>
+      <title>An Overview of Data Serialization Frameworks</title>
+      <link>http://localhost:1313/post/dataserializaiton/</link>
+      <pubDate>Wed, 27 Sep 2023 21:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/dataserializaiton/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😁 Today, we’ll be talking about something crucial in modern systems: Data Serialization Frameworks.</description>
+    </item>
+    <item>
+      <title>What is Column-Oriented Storage in Databases?</title>
+      <link>http://localhost:1313/post/columnorientedstorage/</link>
+      <pubDate>Mon, 25 Sep 2023 20:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/columnorientedstorage/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog post! 😄 Today, we’ll be exploring a fascinating concept in the world of databases: Column-Oriented Storage.</description>
+    </item>
+    <item>
+      <title>Understanding Serializable Snapshot Isolation in Databases</title>
+      <link>http://localhost:1313/post/serializablesnapshotisolation/</link>
+      <pubDate>Sat, 16 Sep 2023 19:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/serializablesnapshotisolation/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re diving into Serializable Snapshot Isolation (SSI)—a powerful and advanced database isolation level that offers the benefits of both Snapshot Isolation (SI) and Serializability.</description>
+    </item>
+    <item>
+      <title>Understanding Two-Phase Locking in Databases</title>
+      <link>http://localhost:1313/post/twophaselockingsystem/</link>
+      <pubDate>Tue, 12 Sep 2023 18:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/twophaselockingsystem/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog! 😁 Today, we’re diving into the concept of Two-Phase Locking (2PL)—a fundamental technique used to maintain concurrency control in databases.</description>
+    </item>
+    <item>
+      <title>What is Serial Execution in Databases?</title>
+      <link>http://localhost:1313/post/serialexecution/</link>
+      <pubDate>Sat, 09 Sep 2023 17:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/serialexecution/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: Serial Execution.</description>
+    </item>
+    <item>
+      <title>Write Skew vs Phantom Writes in Databases</title>
+      <link>http://localhost:1313/post/writeskewandphantomwrites/</link>
+      <pubDate>Wed, 06 Sep 2023 16:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/writeskewandphantomwrites/</guid>
+      <description>Hey everyone, it&amp;rsquo;s alanturrr1703 back with another blog! 😄 Today, we’ll be tackling two advanced phenomena in databases: Write Skew and Phantom Writes.</description>
+    </item>
+    <item>
+      <title>Snapshot Isolation vs Read Committed Isolation in Databases</title>
+      <link>http://localhost:1313/post/snapshotisolationreadcommitisolation/</link>
+      <pubDate>Fri, 01 Sep 2023 15:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/snapshotisolationreadcommitisolation/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog post! 😄 Today, we’ll be diving into two important isolation levels in databases—Snapshot Isolation and Read Committed Isolation.</description>
+    </item>
+    <item>
+      <title>Introduction to ACID Properties in Databases</title>
+      <link>http://localhost:1313/post/introtoacidproperties/</link>
+      <pubDate>Sun, 27 Aug 2023 12:30:00 +0530</pubDate>
+      <guid>http://localhost:1313/post/introtoacidproperties/</guid>
+      <description>Hey everyone, it&amp;rsquo;s alanturrr1703 back again with another blog! This time, we’ll be exploring something essential in the world of databases—ACID properties.</description>
+    </item>
+    <item>
+      <title>Database Design Using B-Trees</title>
+      <link>http://localhost:1313/post/databasedesignwithbtrees/</link>
+      <pubDate>Wed, 23 Aug 2023 11:50:51 +0530</pubDate>
+      <guid>http://localhost:1313/post/databasedesignwithbtrees/</guid>
+      <description>Hi guys, it’s alanturrr1703 again.&#xA;I’m back with another blog, and this time, we’re diving deep into the world of B-Trees, one of the most fundamental data structures in database design.</description>
+    </item>
+    <item>
+      <title>Database Design Using LSM Trees and SSTables</title>
+      <link>http://localhost:1313/post/databasedesignusinglsmtreesandsstables/</link>
+      <pubDate>Sun, 20 Aug 2023 11:50:51 +0530</pubDate>
+      <guid>http://localhost:1313/post/databasedesignusinglsmtreesandsstables/</guid>
+      <description>Hey everyone, it&amp;rsquo;s alanturrr1703 here again.&#xA;I’m back with another blog post for you all.</description>
+    </item>
+    <item>
+      <title>Database Design Using Hash Indexes</title>
+      <link>http://localhost:1313/post/databasedesignusinghashmaps/</link>
+      <pubDate>Fri, 18 Aug 2023 11:50:51 +0530</pubDate>
+      <guid>http://localhost:1313/post/databasedesignusinghashmaps/</guid>
+      <description>Hi guys, this is alanturrr1703.&#xA;This is my first blog, and honestly, I don’t know what I’m doing.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Serializability on The Silicon Safari</title>
+    <link>https://silicon-safari.github.io/tags/serializability/</link>
+    <description>Recent content in Serializability on The Silicon Safari</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 16 Sep 2023 19:00:00 +0530</lastBuildDate>
+    <atom:link href="https://silicon-safari.github.io/tags/serializability/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Serializable Snapshot Isolation in Databases</title>
+      <link>https://silicon-safari.github.io/allblogs/serializablesnapshotisolation/</link>
+      <pubDate>Sat, 16 Sep 2023 19:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/serializablesnapshotisolation/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re diving into Serializable Snapshot Isolation (SSI)—a powerful and advanced database isolation level that offers the benefits of both Snapshot Isolation (SI) and Serializability.</description>
+    </item>
+    <item>
+      <title>Understanding Serializable Snapshot Isolation in Databases</title>
+      <link>https://silicon-safari.github.io/databasedesign/serializablesnapshotisolation/</link>
+      <pubDate>Sat, 16 Sep 2023 19:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/databasedesign/serializablesnapshotisolation/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re diving into Serializable Snapshot Isolation (SSI)—a powerful and advanced database isolation level that offers the benefits of both Snapshot Isolation (SI) and Serializability.</description>
+    </item>
+    <item>
+      <title>Understanding Two-Phase Locking in Databases</title>
+      <link>https://silicon-safari.github.io/allblogs/twophaselockingsystem/</link>
+      <pubDate>Tue, 12 Sep 2023 18:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/twophaselockingsystem/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog! 😁 Today, we’re diving into the concept of Two-Phase Locking (2PL)—a fundamental technique used to maintain concurrency control in databases.</description>
+    </item>
+    <item>
+      <title>Understanding Two-Phase Locking in Databases</title>
+      <link>https://silicon-safari.github.io/databasedesign/twophaselockingsystem/</link>
+      <pubDate>Tue, 12 Sep 2023 18:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/databasedesign/twophaselockingsystem/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog! 😁 Today, we’re diving into the concept of Two-Phase Locking (2PL)—a fundamental technique used to maintain concurrency control in databases.</description>
+    </item>
+    <item>
+      <title>What is Serial Execution in Databases?</title>
+      <link>https://silicon-safari.github.io/allblogs/serialexecution/</link>
+      <pubDate>Sat, 09 Sep 2023 17:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/serialexecution/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: Serial Execution.</description>
+    </item>
+    <item>
+      <title>What is Serial Execution in Databases?</title>
+      <link>https://silicon-safari.github.io/databasedesign/serialexecution/</link>
+      <pubDate>Sat, 09 Sep 2023 17:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/databasedesign/serialexecution/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: Serial Execution.</description>
+    </item>
+  </channel>
+</rss>

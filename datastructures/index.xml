@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DataStructures on The Silicon Safari</title>
+    <link>https://silicon-safari.github.io/datastructures/</link>
+    <description>Recent content in DataStructures on The Silicon Safari</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 Mar 2024 20:00:00 +0530</lastBuildDate>
+    <atom:link href="https://silicon-safari.github.io/datastructures/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mastering Trees in Data Structures: A Comprehensive Guide</title>
+      <link>https://silicon-safari.github.io/datastructures/trees/</link>
+      <pubDate>Sun, 10 Mar 2024 20:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/datastructures/trees/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most important and widely-used data structures in computer science: Trees.</description>
+    </item>
+    <item>
+      <title>Understanding Queues: How to Build Custom Queues in Pseudocode</title>
+      <link>https://silicon-safari.github.io/datastructures/queues/</link>
+      <pubDate>Mon, 11 Dec 2023 10:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/datastructures/queues/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re exploring another essential data structure that plays a crucial role in a wide range of applications: the Queue.</description>
+    </item>
+    <item>
+      <title>Understanding Stacks: How to Build a Custom Stack in Pseudocode</title>
+      <link>https://silicon-safari.github.io/datastructures/stacks/</link>
+      <pubDate>Mon, 04 Dec 2023 23:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/datastructures/stacks/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re going to dive into another fundamental data structure: the Stack.</description>
+    </item>
+    <item>
+      <title>Understanding Linked Lists: How to Build Custom Linked Lists in Pseudocode</title>
+      <link>https://silicon-safari.github.io/datastructures/linkedlists/</link>
+      <pubDate>Tue, 28 Nov 2023 22:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/datastructures/linkedlists/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a core data structure that forms the foundation for many algorithms: Linked Lists.</description>
+    </item>
+    <item>
+      <title>Understanding Graphs</title>
+      <link>https://silicon-safari.github.io/datastructures/graphs/</link>
+      <pubDate>Mon, 13 Nov 2023 21:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/datastructures/graphs/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into the world of graphs in discrete mathematics, one of the most fundamental and widely used structures in computer science, mathematics, and various fields like networking, algorithms, and social media analysis.</description>
+    </item>
+    <item>
+      <title>Understanding Quadtrees: A Powerful Spatial Data Structure</title>
+      <link>https://silicon-safari.github.io/datastructures/quadtrees/</link>
+      <pubDate>Tue, 17 Oct 2023 20:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/datastructures/quadtrees/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back with another blog! 😄 Today, we’re going to explore a fascinating data structure that’s used in a variety of applications, especially in spatial data: the Quadtree.</description>
+    </item>
+  </channel>
+</rss>

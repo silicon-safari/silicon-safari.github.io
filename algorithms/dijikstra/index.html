@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most well-known algorithms in computer science: Dijkstra’s Algorithm.">
+  <meta itemprop="datePublished" content="2024-03-20T22:00:00+05:30">
+  <meta itemprop="dateModified" content="2024-03-20T22:00:00+05:30">
+  <meta itemprop="wordCount" content="1214">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most well-known algorithms in computer science: Dijkstra’s Algorithm.">
+
+
+<meta property="og:url" content="https://silicon-safari.github.io/algorithms/dijikstra/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most well-known algorithms in computer science: Dijkstra’s Algorithm.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="algorithms">
+    <meta property="article:published_time" content="2024-03-20T22:00:00+05:30">
+    <meta property="article:modified_time" content="2024-03-20T22:00:00+05:30">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "https://silicon-safari.github.io/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://silicon-safari.github.io/#website",
+      "url": "https://silicon-safari.github.io/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://silicon-safari.github.io/algorithms/dijikstra/#webpage",
+      "url": "https://silicon-safari.github.io/algorithms/dijikstra/",
+      "name": "Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/#website"
+      },
+      "about": {
+         "@id": "https://silicon-safari.github.io/#author"
+      },
+      "datePublished": "2024-03-20T22:00:00+05:30",
+      "dateModified": "2024-03-20T22:00:00+05:30",
+      "description": "Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most well-known algorithms in computer science: Dijkstra’s Algorithm.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://silicon-safari.github.io/algorithms/dijikstra/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/algorithms/dijikstra/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://silicon-safari.github.io/algorithms/dijikstra/#webpage"
+      },
+      "headline": "Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding",
+      "datePublished": "2024-03-20T22:00:00+05:30",
+      "dateModified": "2024-03-20T22:00:00+05:30",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "keywords": [
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "https://silicon-safari.github.io/algorithms/dijikstra/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://silicon-safari.github.io/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">Me and My Life</a>
+        </li><li>
+          <a href="/algorithms/">Algorithms</a>
+        </li><li>
+          <a href="/allblogs/">All Blogs</a>
+        </li><li>
+          <a href="/computernetworking/">Computer Networks</a>
+        </li><li>
+          <a href="/datastructures/">Data Structures</a>
+        </li><li>
+          <a href="/databasedesign/">Database Design</a>
+        </li><li>
+          <a href="/distributedsystems/">Distributed Sytems</a>
+        </li><li>
+          <a href="/theoryofcomputation/">Theory Of Computation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2024-03-20T22:00:00&#43;0530">Mar 20, 2024</time> <span class="readtime">&middot; 6 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most well-known algorithms in computer science: <strong>Dijkstra’s Algorithm</strong>. This algorithm is widely used to find the shortest path from a starting node to all other nodes in a weighted graph, making it indispensable in areas like network routing and GPS navigation.</p>
+<p>In this blog, we’ll cover the fundamentals of Dijkstra’s algorithm, walk through an example, and provide detailed pseudocode to help you implement it efficiently.</p>
+<p>Let’s dive right into it! 🚀</p>
+<hr>
+<h2 id="what-is-dijkstras-algorithm">What is Dijkstra’s Algorithm?</h2>
+<p><strong>Dijkstra’s Algorithm</strong> is a <strong>greedy algorithm</strong> used to find the shortest path between nodes in a weighted graph. It calculates the shortest path from a starting node (source) to all other nodes in the graph. It works only on graphs with <strong>non-negative weights</strong>.</p>
+<h3 id="key-concepts">Key Concepts:</h3>
+<ul>
+<li><strong>Shortest Path</strong>: The path between two nodes with the smallest sum of edge weights.</li>
+<li><strong>Weighted Graph</strong>: A graph where edges have weights, representing the cost of moving from one node to another.</li>
+</ul>
+<h3 id="problem-statement">Problem Statement:</h3>
+<p>Given a graph and a starting node, find the shortest path to all other nodes. The graph can be represented using an <strong>adjacency list</strong> or <strong>adjacency matrix</strong>.</p>
+<hr>
+<h2 id="how-dijkstras-algorithm-works">How Dijkstra’s Algorithm Works</h2>
+<h3 id="basic-steps">Basic Steps:</h3>
+<ol>
+<li><strong>Initialize</strong>: Create a distance array to store the shortest distance from the source to each node. Set the distance to the source as 0 and to all other nodes as infinity.</li>
+<li><strong>Select the Node</strong>: Pick the unvisited node with the smallest distance (initially the source node).</li>
+<li><strong>Update Distances</strong>: For each neighboring node, calculate the tentative distance from the source. If this new distance is shorter than the currently known distance, update the distance.</li>
+<li><strong>Mark the Node as Visited</strong>: Once all neighboring nodes are considered, mark the current node as visited, meaning we have found the shortest path to this node.</li>
+<li><strong>Repeat</strong>: Continue selecting the next unvisited node with the smallest distance and repeat the process until all nodes are visited.</li>
+</ol>
+<hr>
+<h2 id="pseudocode-for-dijkstras-algorithm">Pseudocode for Dijkstra’s Algorithm</h2>
+<h3 id="data-structures">Data Structures:</h3>
+<ul>
+<li><strong>Graph</strong>: Adjacency list or matrix representation of the graph.</li>
+<li><strong>Distance Array (<code>dist[]</code>)</strong>: Stores the shortest distance from the source node to each node.</li>
+<li><strong>Priority Queue (Min-Heap)</strong>: To efficiently select the node with the smallest distance.</li>
+<li><strong>Visited Array (<code>visited[]</code>)</strong>: Keeps track of whether a node has been visited.</li>
+</ul>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Dijkstra(graph, source):
+    # Number of nodes in the graph
+    n = length(graph)
+
+    # Distance array initialized to infinity
+    dist = array of size n, initialized to infinity
+    dist[source] = 0
+
+    # Visited array to keep track of visited nodes
+    visited = array of size n, initialized to False
+
+    # Priority queue (min-heap) to select the node with the smallest distance
+    pq = PriorityQueue()
+    pq.push((0, source))  # (distance, node)
+
+    # Main loop of the algorithm
+    While not pq.isEmpty():
+        # Extract node with smallest distance
+        currentDist, u = pq.pop()
+
+        # Skip if the node is already visited
+        If visited[u]:
+            Continue
+
+        # Mark the current node as visited
+        visited[u] = True
+
+        # Iterate through all neighbors of the current node
+        For each neighbor, weight in graph[u]:
+            v = neighbor
+            newDist = currentDist + weight
+
+            # If a shorter path is found, update the distance and push to pq
+            If newDist &lt; dist[v]:
+                dist[v] = newDist
+                pq.push((newDist, v))
+
+    Return dist  # Returns the shortest distance to all nodes from the source
+</code></pre><h3 id="explanation-of-the-pseudocode">Explanation of the Pseudocode:</h3>
+<ol>
+<li><strong>Initialize</strong>: The <code>dist[]</code> array is initialized to infinity for all nodes except the source node, which is set to 0. The <code>visited[]</code> array helps ensure we don’t revisit nodes.</li>
+<li><strong>Priority Queue</strong>: The priority queue stores pairs <code>(distance, node)</code> to efficiently extract the node with the smallest distance.</li>
+<li><strong>Main Loop</strong>: The algorithm selects the unvisited node with the smallest distance (using the priority queue), marks it as visited, and updates distances for its neighbors.</li>
+<li><strong>Distance Update</strong>: For each neighbor of the current node, if a shorter path is found, the distance is updated, and the neighbor is pushed onto the priority queue.</li>
+<li><strong>Repeat</strong>: The process continues until all nodes are visited, and the <code>dist[]</code> array contains the shortest distances from the source to all other nodes.</li>
+</ol>
+<hr>
+<h2 id="example-walkthrough">Example Walkthrough</h2>
+<p>Let’s go through a small example to understand how Dijkstra’s Algorithm works step-by-step.</p>
+<h3 id="graph-representation">Graph Representation:</h3>
+<pre tabindex="0"><code>        2
+    (A)-----(B)
+    / |     / |
+   4  |    1  | 3
+  /   |   /   |
+(C)   |  7    (D)
+  \   |       /
+   1  |      5
+    \ |     /
+    (E)-----
+</code></pre><ul>
+<li><strong>Nodes</strong>: A, B, C, D, E</li>
+<li><strong>Edges</strong> (weights):
+<ul>
+<li>A -&gt; B (2)</li>
+<li>A -&gt; C (4)</li>
+<li>A -&gt; E (1)</li>
+<li>B -&gt; D (3)</li>
+<li>B -&gt; E (1)</li>
+<li>C -&gt; E (1)</li>
+<li>E -&gt; D (5)</li>
+</ul>
+</li>
+</ul>
+<h3 id="starting-node-a">Starting Node: <code>A</code></h3>
+<h4 id="step-1-initialize">Step 1: Initialize</h4>
+<ul>
+<li><code>dist = [0, ∞, ∞, ∞, ∞]</code> (Distances to A, B, C, D, E)</li>
+<li>Priority Queue: <code>[(0, A)]</code></li>
+</ul>
+<h4 id="step-2-process-node-a">Step 2: Process Node <code>A</code></h4>
+<ul>
+<li>Current node: <code>A</code>, Current distance: <code>0</code></li>
+<li>Neighbors: <code>B(2)</code>, <code>C(4)</code>, <code>E(1)</code></li>
+<li>Update distances:
+<ul>
+<li><code>dist[B] = 2</code></li>
+<li><code>dist[C] = 4</code></li>
+<li><code>dist[E] = 1</code></li>
+</ul>
+</li>
+<li>Priority Queue: <code>[(1, E), (2, B), (4, C)]</code></li>
+</ul>
+<h4 id="step-3-process-node-e">Step 3: Process Node <code>E</code></h4>
+<ul>
+<li>Current node: <code>E</code>, Current distance: <code>1</code></li>
+<li>Neighbors: <code>A</code>, <code>B(1)</code>, <code>C(1)</code>, <code>D(5)</code></li>
+<li>Update distances:
+<ul>
+<li><code>dist[B] = min(2, 1 + 1) = 2</code></li>
+<li><code>dist[C] = min(4, 1 + 1) = 2</code></li>
+<li><code>dist[D] = 1 + 5 = 6</code></li>
+</ul>
+</li>
+<li>Priority Queue: <code>[(2, B), (2, C), (6, D)]</code></li>
+</ul>
+<h4 id="step-4-process-node-b">Step 4: Process Node <code>B</code></h4>
+<ul>
+<li>Current node: <code>B</code>, Current distance: <code>2</code></li>
+<li>Neighbors: <code>A</code>, <code>D(3)</code>, <code>E(1)</code></li>
+<li>Update distances:
+<ul>
+<li><code>dist[D] = min(6, 2 + 3) = 5</code></li>
+</ul>
+</li>
+<li>Priority Queue: <code>[(2, C), (5, D), (6, D)]</code></li>
+</ul>
+<h4 id="step-5-process-node-c">Step 5: Process Node <code>C</code></h4>
+<ul>
+<li>Current node: <code>C</code>, Current distance: <code>2</code></li>
+<li>Neighbors: <code>A</code>, <code>E(1)</code></li>
+<li>No updates needed.</li>
+<li>Priority Queue: <code>[(5, D), (6, D)]</code></li>
+</ul>
+<h4 id="step-6-process-node-d">Step 6: Process Node <code>D</code></h4>
+<ul>
+<li>Current node: <code>D</code>, Current distance: <code>5</code></li>
+<li>Neighbors: <code>B</code>, <code>E</code></li>
+<li>No updates needed.</li>
+<li>Priority Queue: <code>[(6, D)]</code></li>
+</ul>
+<h4 id="step-7-process-node-d-again">Step 7: Process Node <code>D</code> (again)</h4>
+<ul>
+<li>Current node: <code>D</code>, Current distance: <code>6</code> (already processed)</li>
+</ul>
+<h3 id="final-distances">Final Distances:</h3>
+<ul>
+<li><code>dist = [0, 2, 2, 5, 1]</code></li>
+<li>Shortest distances from <code>A</code>:
+<ul>
+<li>To <code>B</code>: 2</li>
+<li>To <code>C</code>: 2</li>
+<li>To <code>D</code>: 5</li>
+<li>To <code>E</code>: 1</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="time-complexity-of-dijkstras-algorithm">Time Complexity of Dijkstra’s Algorithm</h2>
+<p>The time complexity of Dijkstra’s Algorithm depends on how the graph is represented and the data structure used for the priority queue.</p>
+<ul>
+<li><strong>Priority Queue (Min-Heap)</strong>: If we use a priority queue implemented as a min-heap, the complexity is:
+<ul>
+<li><strong>O(E log V)</strong>, where <code>E</code> is the number of edges, and <code>V</code> is the number of vertices.</li>
+</ul>
+</li>
+</ul>
+<p>This is efficient for sparse graphs where the number of edges is much less than the number of vertices squared.</p>
+<hr>
+<h2 id="when-to-use-dijkstras-algorithm">When to Use Dijkstra’s Algorithm</h2>
+<p>Dijkstra’s Algorithm is ideal for:</p>
+<ul>
+<li><strong>Finding shortest paths in weighted graphs</strong> with non-negative weights.</li>
+<li><strong>Routing in network systems</strong>, such as finding the shortest path in computer networks or GPS-based navigation systems.</li>
+<li><strong>Planning and scheduling</strong>: Used to optimize routes or tasks in logistics and project management.</li>
+</ul>
+<p>However, Dijkstra’s algorithm cannot handle graphs with <strong>negative weights</strong>. For those cases, you would use <strong>Bellman-Ford’s Algorithm</strong>.</p>
+<hr>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>In this blog, we explored <strong>Dijkstra’s Algorithm</strong>, one</p>
+<p>of the most important algorithms for finding the shortest path in a weighted graph. We covered the key steps, provided pseudocode, and walked through a sample graph to understand how it works. Dijkstra’s algorithm is efficient, but it requires non-negative edge weights.</p>
+<p>Understanding Dijkstra’s algorithm will help you tackle many graph-based problems, from network routing to optimization tasks.</p>
+<p>That’s all for today! I hope this post gave you a clear understanding of Dijkstra’s Algorithm. Until next time, happy coding! 🚀</p>
+
+  </div>
+
+  
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="https://silicon-safari.github.io/algorithms/dijikstra/"
+     data-text="Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="https://silicon-safari.github.io/algorithms/dijikstra/"
+     data-text="Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="https://silicon-safari.github.io/algorithms/dijikstra/"
+     data-text="Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="https://silicon-safari.github.io/algorithms/dijikstra/"
+     data-text="Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="https://silicon-safari.github.io/algorithms/dijikstra/"
+     data-text="Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+      
+  
+
+
+    
+</body>
+</html>

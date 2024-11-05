@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Understanding Remote Procedure Call (RPC) in Distributed Systems &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Understanding Remote Procedure Call (RPC) in Distributed Systems">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back again with another blog! 😄 Today, we’re diving into a fundamental concept in distributed systems: Remote Procedure Call (RPC).">
+  <meta itemprop="datePublished" content="2023-10-12T15:00:00+05:30">
+  <meta itemprop="dateModified" content="2023-10-12T15:00:00+05:30">
+  <meta itemprop="wordCount" content="1379">
+  <meta itemprop="keywords" content="Distributed Systems,RPC,Remote Procedure Call,GRPC,Thrift,JSON-RPC,Microservices,Serialization,Network Communication,Client-Server,Cross-Language Communication">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding Remote Procedure Call (RPC) in Distributed Systems">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back again with another blog! 😄 Today, we’re diving into a fundamental concept in distributed systems: Remote Procedure Call (RPC).">
+
+
+<meta property="og:url" content="https://silicon-safari.github.io/distributedsystems/rpc/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Understanding Remote Procedure Call (RPC) in Distributed Systems">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back again with another blog! 😄 Today, we’re diving into a fundamental concept in distributed systems: Remote Procedure Call (RPC).">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="distributedsystems">
+    <meta property="article:published_time" content="2023-10-12T15:00:00+05:30">
+    <meta property="article:modified_time" content="2023-10-12T15:00:00+05:30">
+    <meta property="article:tag" content="Distributed Systems">
+    <meta property="article:tag" content="RPC">
+    <meta property="article:tag" content="Remote Procedure Call">
+    <meta property="article:tag" content="GRPC">
+    <meta property="article:tag" content="Thrift">
+    <meta property="article:tag" content="JSON-RPC">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "https://silicon-safari.github.io/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://silicon-safari.github.io/#website",
+      "url": "https://silicon-safari.github.io/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://silicon-safari.github.io/distributedsystems/rpc/#webpage",
+      "url": "https://silicon-safari.github.io/distributedsystems/rpc/",
+      "name": "Understanding Remote Procedure Call (RPC) in Distributed Systems",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/#website"
+      },
+      "about": {
+         "@id": "https://silicon-safari.github.io/#author"
+      },
+      "datePublished": "2023-10-12T15:00:00+05:30",
+      "dateModified": "2023-10-12T15:00:00+05:30",
+      "description": "Hey everyone, it’s alanturrr1703 back again with another blog! 😄 Today, we’re diving into a fundamental concept in distributed systems: Remote Procedure Call (RPC).",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://silicon-safari.github.io/distributedsystems/rpc/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/distributedsystems/rpc/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://silicon-safari.github.io/distributedsystems/rpc/#webpage"
+      },
+      "headline": "Understanding Remote Procedure Call (RPC) in Distributed Systems",
+      "datePublished": "2023-10-12T15:00:00+05:30",
+      "dateModified": "2023-10-12T15:00:00+05:30",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "keywords": [
+        "Distributed Systems",
+        "RPC",
+        "Remote Procedure Call",
+        "GRPC",
+        "Thrift",
+        "JSON-RPC",
+        "Microservices",
+        "Serialization",
+        "Network Communication",
+        "Client-Server",
+        "Cross-Language Communication"
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "https://silicon-safari.github.io/distributedsystems/rpc/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://silicon-safari.github.io/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">Me and My Life</a>
+        </li><li>
+          <a href="/algorithms/">Algorithms</a>
+        </li><li>
+          <a href="/allblogs/">All Blogs</a>
+        </li><li>
+          <a href="/computernetworking/">Computer Networks</a>
+        </li><li>
+          <a href="/datastructures/">Data Structures</a>
+        </li><li>
+          <a href="/databasedesign/">Database Design</a>
+        </li><li>
+          <a href="/distributedsystems/">Distributed Sytems</a>
+        </li><li>
+          <a href="/theoryofcomputation/">Theory Of Computation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Understanding Remote Procedure Call (RPC) in Distributed Systems</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2023-10-12T15:00:00&#43;0530">Oct 12, 2023</time> <span class="readtime">&middot; 7 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it’s alanturrr1703 back again with another blog! 😄 Today, we’re diving into a fundamental concept in distributed systems: <strong>Remote Procedure Call (RPC)</strong>. RPC is a powerful mechanism that allows programs to communicate across different systems and networks as if they were making local calls. If you’re working with microservices or distributed applications, understanding RPC is key to building scalable and efficient systems.</p>
+<p>Let’s explore what RPC is, how it works, and why it’s so important for modern architectures! 🚀</p>
+<h2 id="what-is-remote-procedure-call-rpc">What is Remote Procedure Call (RPC)?</h2>
+<p><strong>Remote Procedure Call (RPC)</strong> is a communication protocol used in distributed systems where a program can execute a procedure (function or subroutine) on a remote system just as if it were a local procedure. This abstraction simplifies distributed computing by hiding the complexities of network communication from developers.</p>
+<p>In simpler terms, with RPC, a program can call a function located on another machine or service without needing to know the details of the underlying network communication.</p>
+<h3 id="key-features-of-rpc">Key Features of RPC:</h3>
+<ul>
+<li><strong>Transparency</strong>: The client interacts with the server as if the server’s procedures were local. The complexity of network communication is abstracted away.</li>
+<li><strong>Cross-Language Support</strong>: RPC frameworks often support multiple programming languages, enabling cross-language communication between services.</li>
+<li><strong>Efficiency</strong>: RPC is designed to be lightweight and efficient, making it ideal for inter-service communication in microservices and distributed systems.</li>
+</ul>
+<h2 id="how-does-rpc-work">How Does RPC Work?</h2>
+<p>The basic operation of an RPC system involves a <strong>client-server</strong> interaction. Here’s a simplified breakdown of the process:</p>
+<ol>
+<li>
+<p><strong>Client Calls a Remote Procedure</strong>: The client program calls a procedure that resides on a remote server. To the client, it feels like calling a local function.</p>
+</li>
+<li>
+<p><strong>Stub Generation</strong>: The RPC framework generates <strong>stubs</strong> (client-side and server-side proxies) that handle the communication between the client and the server. These stubs serialize and deserialize the request and response data.</p>
+</li>
+<li>
+<p><strong>Request Transmission</strong>: The client’s request is <strong>serialized</strong> (converted into a byte stream) and sent over the network to the server.</p>
+</li>
+<li>
+<p><strong>Procedure Execution on Server</strong>: The server receives the request, <strong>deserializes</strong> it, and invokes the requested procedure.</p>
+</li>
+<li>
+<p><strong>Response Transmission</strong>: After executing the procedure, the server serializes the result and sends it back to the client.</p>
+</li>
+<li>
+<p><strong>Client Receives Response</strong>: The client deserializes the response and continues execution as if the remote procedure was executed locally.</p>
+</li>
+</ol>
+<h3 id="example-of-an-rpc-call">Example of an RPC Call</h3>
+<p>Let’s say you have a <strong>Client A</strong> and <strong>Server B</strong>. Client A wants to call a <code>getUserDetails</code> function that resides on Server B:</p>
+<ol>
+<li><strong>Client A</strong> calls <code>getUserDetails(userId)</code> as if it were a local function.</li>
+<li>The client-side RPC stub serializes the <code>userId</code> and sends the request to <strong>Server B</strong>.</li>
+<li><strong>Server B</strong>’s RPC handler deserializes the request and invokes <code>getUserDetails</code> on the server.</li>
+<li>The server-side function retrieves the user details from the database.</li>
+<li>The result is serialized and sent back to <strong>Client A</strong>.</li>
+<li><strong>Client A</strong> receives the response and processes the user details.</li>
+</ol>
+<h2 id="rpc-frameworks">RPC Frameworks</h2>
+<p>Several frameworks and protocols are available to implement RPC in distributed systems. Let’s explore some of the most popular ones:</p>
+<h3 id="1-grpc">1. <strong>gRPC</strong></h3>
+<p><strong>gRPC</strong> is an open-source RPC framework developed by Google. It uses <strong>Protocol Buffers (Protobuf)</strong> for efficient serialization and supports multiple languages, making it a popular choice for microservices.</p>
+<ul>
+<li>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>Efficient binary serialization with Protocol Buffers.</li>
+<li>Supports streaming and multiplexing.</li>
+<li>Built-in support for authentication, load balancing, and deadlines.</li>
+</ul>
+</li>
+<li>
+<p><strong>Use Case</strong>: gRPC is ideal for high-performance systems and microservices where you need efficient, cross-language communication.</p>
+</li>
+</ul>
+<h3 id="2-apache-thrift">2. <strong>Apache Thrift</strong></h3>
+<p>Originally developed by Facebook, <strong>Apache Thrift</strong> is both a serialization framework and an RPC system. It supports a wide range of programming languages and provides an Interface Definition Language (IDL) to define service interfaces.</p>
+<ul>
+<li>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>Cross-language support with automatic code generation.</li>
+<li>Efficient and fast binary serialization.</li>
+</ul>
+</li>
+<li>
+<p><strong>Use Case</strong>: Thrift is suitable for systems where services need to communicate across multiple languages.</p>
+</li>
+</ul>
+<h3 id="3-json-rpc">3. <strong>JSON-RPC</strong></h3>
+<p><strong>JSON-RPC</strong> is a simple, lightweight RPC protocol that uses <strong>JSON</strong> for serialization. It’s easy to implement and ideal for systems that require lightweight communication.</p>
+<ul>
+<li>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>Simple and easy to use.</li>
+<li>Human-readable JSON format for requests and responses.</li>
+</ul>
+</li>
+<li>
+<p><strong>Use Case</strong>: JSON-RPC is ideal for lightweight applications and systems that don’t require binary serialization.</p>
+</li>
+</ul>
+<h3 id="4-xml-rpc">4. <strong>XML-RPC</strong></h3>
+<p><strong>XML-RPC</strong> is another simple protocol that uses <strong>XML</strong> for data serialization. It’s one of the older RPC protocols and is still used in some legacy systems.</p>
+<ul>
+<li>
+<p><strong>Pros</strong>:</p>
+<ul>
+<li>Widely supported in older systems.</li>
+<li>Simple to implement.</li>
+</ul>
+</li>
+<li>
+<p><strong>Use Case</strong>: XML-RPC is mostly used in legacy applications where XML is preferred for communication.</p>
+</li>
+</ul>
+<h2 id="synchronous-vs-asynchronous-rpc">Synchronous vs. Asynchronous RPC</h2>
+<h3 id="1-synchronous-rpc">1. <strong>Synchronous RPC</strong>:</h3>
+<p>In <strong>synchronous RPC</strong>, the client sends a request and waits (blocks) for the server to respond before continuing execution. This is the most common type of RPC but can lead to delays if the server takes too long to respond or is unavailable.</p>
+<ul>
+<li><strong>Pros</strong>: Simple and intuitive. The client receives a response before continuing.</li>
+<li><strong>Cons</strong>: Can lead to performance bottlenecks due to blocking behavior.</li>
+</ul>
+<h3 id="2-asynchronous-rpc">2. <strong>Asynchronous RPC</strong>:</h3>
+<p>In <strong>asynchronous RPC</strong>, the client sends a request to the server but doesn’t wait for the response. Instead, it can continue executing other tasks and handle the server’s response when it arrives.</p>
+<ul>
+<li><strong>Pros</strong>: Non-blocking, which improves performance and scalability in distributed systems.</li>
+<li><strong>Cons</strong>: More complex to implement since the client must handle the response asynchronously.</li>
+</ul>
+<h2 id="why-use-rpc-in-distributed-systems">Why Use RPC in Distributed Systems?</h2>
+<h3 id="1-simplifies-communication">1. <strong>Simplifies Communication</strong></h3>
+<p>RPC abstracts the complexity of network communication, making it easy for developers to write distributed applications. By hiding the networking layer, developers can focus on logic rather than transport details.</p>
+<h3 id="2-cross-language-communication">2. <strong>Cross-Language Communication</strong></h3>
+<p>Most RPC frameworks, like gRPC and Thrift, support multiple programming languages. This allows services written in different languages to communicate seamlessly, making it ideal for heterogeneous systems.</p>
+<h3 id="3-improves-performance">3. <strong>Improves Performance</strong></h3>
+<p>RPC frameworks like gRPC use efficient binary serialization (like Protobuf) to reduce the size of messages transmitted over the network. This makes RPC ideal for high-performance systems where bandwidth and latency are concerns.</p>
+<h3 id="4-fault-tolerance">4. <strong>Fault Tolerance</strong></h3>
+<p>Many RPC frameworks provide built-in support for retries, timeouts, and failover, making them more resilient to network failures and transient errors in distributed environments.</p>
+<h2 id="challenges-with-rpc">Challenges with RPC</h2>
+<p>While RPC is a powerful abstraction, it comes with its own set of challenges:</p>
+<h3 id="1-network-failures">1. <strong>Network Failures</strong></h3>
+<p>RPC relies on network communication, and networks can be unreliable. Latency, packet loss, or disconnections can cause RPC calls to fail, requiring robust error handling and retries.</p>
+<h3 id="2-tight-coupling">2. <strong>Tight Coupling</strong></h3>
+<p>RPC can lead to <strong>tight coupling</strong> between services since the client must know the exact signature of the remote procedure. This can be problematic when services evolve independently.</p>
+<h3 id="3-latency-overhead">3. <strong>Latency Overhead</strong></h3>
+<p>While RPC makes remote calls feel like local ones, it still incurs network latency. This can affect performance, especially in systems that make frequent RPC calls across services.</p>
+<h3 id="4-serialization-overhead">4. <strong>Serialization Overhead</strong></h3>
+<p>RPC frameworks use serialization and deserialization, which can introduce performance overhead, especially if the data being transferred is large or the serialization format is inefficient.</p>
+<h2 id="use-cases-of-rpc">Use Cases of RPC</h2>
+<p>RPC is widely used in distributed systems and microservices architectures. Here are a few common use cases:</p>
+<h3 id="1-microservices-communication">1. <strong>Microservices Communication</strong></h3>
+<p>In a <strong>microservices</strong> architecture, services often need to communicate with each other to fulfill a request. RPC frameworks like <strong>gRPC</strong> or <strong>Thrift</strong> are commonly used to enable this inter-service communication efficiently.</p>
+<h3 id="2-distributed-databases">2. <strong>Distributed Databases</strong></h3>
+<p>Many distributed databases use RPC internally to synchronize state across nodes. For example, <strong>Cassandra</strong> and <strong>HBase</strong> use RPC for node-to-node communication.</p>
+<h3 id="3-client-server-applications">3. <strong>Client-Server Applications</strong></h3>
+<p>In client-server architectures, RPC allows clients to invoke functions on remote servers, such as fetching data or performing computations, without exposing the complexity of the server’s implementation.</p>
+<h3 id="4-remote-services-and-apis">4. <strong>Remote Services and APIs</strong></h3>
+<p>Cloud-based services often expose APIs using RPC frameworks, enabling developers to call remote services over the internet. For example, gRPC is commonly used for high-performance APIs.</p>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p><strong>Remote Procedure Call (RPC)</strong> is a fundamental concept in distributed systems, providing a seamless way for services to communicate across networks as if they were calling local functions. By abstracting the complexity of networking, RPC allows developers to focus on business logic while ensuring efficient and reliable communication between services.</p>
+<p>From microservices to distributed databases, RPC is everywhere in modern architectures. Whether you&rsquo;re using <strong>gRPC</strong>, <strong>Thrift</strong>, or <strong>JSON-RPC</strong>, understanding how RPC works and the trade-offs involved can help you design more scalable and efficient systems.</p>
+<p>That’s all for today! I hope this blog helped you understand RPC and its importance in distributed computing. Until next time, happy coding! 🚀</p>
+
+  </div>
+
+  
+<div>
+  <ul class="tags">
+  <li>
+    <a href="https://silicon-safari.github.io/tags/distributed-systems/" class="tag-link">Distributed Systems</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/rpc/" class="tag-link">RPC</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/remote-procedure-call/" class="tag-link">Remote Procedure Call</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/grpc/" class="tag-link">GRPC</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/thrift/" class="tag-link">Thrift</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/json-rpc/" class="tag-link">JSON-RPC</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/microservices/" class="tag-link">Microservices</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/serialization/" class="tag-link">Serialization</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/network-communication/" class="tag-link">Network Communication</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/client-server/" class="tag-link">Client-Server</a>
+  </li>
+  
+  <li>
+    <a href="https://silicon-safari.github.io/tags/cross-language-communication/" class="tag-link">Cross-Language Communication</a>
+  </li>
+  </ul>
+</div>
+
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="https://silicon-safari.github.io/distributedsystems/rpc/"
+     data-text="Understanding Remote Procedure Call (RPC) in Distributed Systems"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="https://silicon-safari.github.io/distributedsystems/rpc/"
+     data-text="Understanding Remote Procedure Call (RPC) in Distributed Systems"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="https://silicon-safari.github.io/distributedsystems/rpc/"
+     data-text="Understanding Remote Procedure Call (RPC) in Distributed Systems"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="https://silicon-safari.github.io/distributedsystems/rpc/"
+     data-text="Understanding Remote Procedure Call (RPC) in Distributed Systems"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="https://silicon-safari.github.io/distributedsystems/rpc/"
+     data-text="Understanding Remote Procedure Call (RPC) in Distributed Systems"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+      
+  
+
+
+    
+</body>
+</html>

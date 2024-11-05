@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Paxos on The Silicon Safari</title>
+    <link>https://silicon-safari.github.io/tags/paxos/</link>
+    <description>Recent content in Paxos on The Silicon Safari</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 15 Oct 2023 18:00:00 +0530</lastBuildDate>
+    <atom:link href="https://silicon-safari.github.io/tags/paxos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Two Generals Problem: A Classic Dilemma in Distributed Systems</title>
+      <link>https://silicon-safari.github.io/allblogs/twogeneralsproblem/</link>
+      <pubDate>Sun, 15 Oct 2023 18:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/twogeneralsproblem/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a fundamental theoretical problem in distributed systems: The Two Generals Problem.</description>
+    </item>
+    <item>
+      <title>The Two Generals Problem: A Classic Dilemma in Distributed Systems</title>
+      <link>https://silicon-safari.github.io/distributedsystems/twogeneralsproblem/</link>
+      <pubDate>Sun, 15 Oct 2023 18:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/distributedsystems/twogeneralsproblem/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a fundamental theoretical problem in distributed systems: The Two Generals Problem.</description>
+    </item>
+    <item>
+      <title>Understanding Distributed Consensus: The Backbone of Fault-Tolerant Systems</title>
+      <link>https://silicon-safari.github.io/allblogs/distributedconsensus/</link>
+      <pubDate>Sat, 07 Oct 2023 10:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/distributedconsensus/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most important and challenging concepts in distributed systems: Distributed Consensus.</description>
+    </item>
+    <item>
+      <title>Understanding Distributed Consensus: The Backbone of Fault-Tolerant Systems</title>
+      <link>https://silicon-safari.github.io/distributedsystems/distributedconsensus/</link>
+      <pubDate>Sat, 07 Oct 2023 10:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/distributedsystems/distributedconsensus/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most important and challenging concepts in distributed systems: Distributed Consensus.</description>
+    </item>
+  </channel>
+</rss>

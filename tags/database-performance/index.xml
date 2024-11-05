@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Database Performance on The Silicon Safari</title>
+    <link>https://silicon-safari.github.io/tags/database-performance/</link>
+    <description>Recent content in Database Performance on The Silicon Safari</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Sep 2023 20:00:00 +0530</lastBuildDate>
+    <atom:link href="https://silicon-safari.github.io/tags/database-performance/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What is Column-Oriented Storage in Databases?</title>
+      <link>https://silicon-safari.github.io/allblogs/columnorientedstorage/</link>
+      <pubDate>Mon, 25 Sep 2023 20:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/columnorientedstorage/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog post! 😄 Today, we’ll be exploring a fascinating concept in the world of databases: Column-Oriented Storage.</description>
+    </item>
+    <item>
+      <title>What is Column-Oriented Storage in Databases?</title>
+      <link>https://silicon-safari.github.io/databasedesign/columnorientedstorage/</link>
+      <pubDate>Mon, 25 Sep 2023 20:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/databasedesign/columnorientedstorage/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog post! 😄 Today, we’ll be exploring a fascinating concept in the world of databases: Column-Oriented Storage.</description>
+    </item>
+    <item>
+      <title>What is Serial Execution in Databases?</title>
+      <link>https://silicon-safari.github.io/allblogs/serialexecution/</link>
+      <pubDate>Sat, 09 Sep 2023 17:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/serialexecution/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: Serial Execution.</description>
+    </item>
+    <item>
+      <title>What is Serial Execution in Databases?</title>
+      <link>https://silicon-safari.github.io/databasedesign/serialexecution/</link>
+      <pubDate>Sat, 09 Sep 2023 17:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/databasedesign/serialexecution/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: Serial Execution.</description>
+    </item>
+  </channel>
+</rss>

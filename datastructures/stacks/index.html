@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Understanding Stacks: How to Build a Custom Stack in Pseudocode &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Understanding Stacks: How to Build a Custom Stack in Pseudocode">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re going to dive into another fundamental data structure: the Stack.">
+  <meta itemprop="datePublished" content="2023-12-04T23:00:00+05:30">
+  <meta itemprop="dateModified" content="2023-12-04T23:00:00+05:30">
+  <meta itemprop="wordCount" content="1075">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding Stacks: How to Build a Custom Stack in Pseudocode">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re going to dive into another fundamental data structure: the Stack.">
+
+
+<meta property="og:url" content="https://silicon-safari.github.io/datastructures/stacks/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Understanding Stacks: How to Build a Custom Stack in Pseudocode">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re going to dive into another fundamental data structure: the Stack.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="datastructures">
+    <meta property="article:published_time" content="2023-12-04T23:00:00+05:30">
+    <meta property="article:modified_time" content="2023-12-04T23:00:00+05:30">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "https://silicon-safari.github.io/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://silicon-safari.github.io/#website",
+      "url": "https://silicon-safari.github.io/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://silicon-safari.github.io/datastructures/stacks/#webpage",
+      "url": "https://silicon-safari.github.io/datastructures/stacks/",
+      "name": "Understanding Stacks: How to Build a Custom Stack in Pseudocode",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/#website"
+      },
+      "about": {
+         "@id": "https://silicon-safari.github.io/#author"
+      },
+      "datePublished": "2023-12-04T23:00:00+05:30",
+      "dateModified": "2023-12-04T23:00:00+05:30",
+      "description": "Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re going to dive into another fundamental data structure: the Stack.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://silicon-safari.github.io/datastructures/stacks/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/datastructures/stacks/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://silicon-safari.github.io/datastructures/stacks/#webpage"
+      },
+      "headline": "Understanding Stacks: How to Build a Custom Stack in Pseudocode",
+      "datePublished": "2023-12-04T23:00:00+05:30",
+      "dateModified": "2023-12-04T23:00:00+05:30",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "keywords": [
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "https://silicon-safari.github.io/datastructures/stacks/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://silicon-safari.github.io/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">Me and My Life</a>
+        </li><li>
+          <a href="/algorithms/">Algorithms</a>
+        </li><li>
+          <a href="/allblogs/">All Blogs</a>
+        </li><li>
+          <a href="/computernetworking/">Computer Networks</a>
+        </li><li>
+          <a href="/datastructures/">Data Structures</a>
+        </li><li>
+          <a href="/databasedesign/">Database Design</a>
+        </li><li>
+          <a href="/distributedsystems/">Distributed Sytems</a>
+        </li><li>
+          <a href="/theoryofcomputation/">Theory Of Computation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Understanding Stacks: How to Build a Custom Stack in Pseudocode</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2023-12-04T23:00:00&#43;0530">Dec 4, 2023</time> <span class="readtime">&middot; 6 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re going to dive into another fundamental data structure: the <strong>Stack</strong>. Stacks are widely used in programming for a variety of applications, from reversing data to managing function calls. In this blog, we’ll break down what a stack is, how it works, and how to implement common operations like <strong>push</strong>, <strong>pop</strong>, and <strong>peek</strong> using <strong>pseudocode</strong>. Plus, we’ll cover both array-based and linked-list-based implementations.</p>
+<p>Let’s get started! 🚀</p>
+<h2 id="what-is-a-stack">What is a Stack?</h2>
+<p>A <strong>stack</strong> is a linear data structure that follows the <strong>Last In, First Out (LIFO)</strong> principle. This means that the last element added to the stack will be the first one to be removed. You can think of a stack like a pile of books: the last book you put on top is the first one you take off.</p>
+<h3 id="basic-operations">Basic Operations:</h3>
+<ul>
+<li><strong>Push</strong>: Add an element to the top of the stack.</li>
+<li><strong>Pop</strong>: Remove the element from the top of the stack.</li>
+<li><strong>Peek (Top)</strong>: Look at the top element without removing it.</li>
+<li><strong>isEmpty</strong>: Check if the stack is empty.</li>
+</ul>
+<h3 id="key-features">Key Features:</h3>
+<ul>
+<li><strong>LIFO</strong>: Last In, First Out.</li>
+<li><strong>No random access</strong>: You can only access the top element.</li>
+</ul>
+<h3 id="applications-of-stacks">Applications of Stacks:</h3>
+<ul>
+<li><strong>Expression Evaluation</strong>: Stacks are used to evaluate arithmetic expressions and reverse polish notation.</li>
+<li><strong>Function Call Management</strong>: Stacks are used in memory to manage function calls and recursive functions.</li>
+<li><strong>Undo Mechanism</strong>: Many applications like text editors use stacks to manage undo operations.</li>
+<li><strong>Backtracking</strong>: Stacks are useful for algorithms like Depth-First Search (DFS).</li>
+</ul>
+<h2 id="types-of-stack-implementations">Types of Stack Implementations</h2>
+<p>Stacks can be implemented in two main ways:</p>
+<ol>
+<li><strong>Array-based implementation</strong></li>
+<li><strong>Linked-list-based implementation</strong></li>
+</ol>
+<p>Let’s look at how to implement stacks using these methods, complete with pseudocode for each operation.</p>
+<h2 id="array-based-stack-implementation">Array-Based Stack Implementation</h2>
+<p>In the array-based implementation, we use an array to store stack elements. The stack has a fixed size, and we use an integer <code>top</code> to keep track of the index of the topmost element in the stack.</p>
+<h3 id="a-initialize-stack">(a) <strong>Initialize Stack</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InitializeStack(size):
+    Create an array of size &#39;size&#39;
+    Set top = -1  # Indicates the stack is empty
+</code></pre><h3 id="b-push-operation">(b) <strong>Push Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Push(stack, top, size, data):
+    If top == size - 1:
+        Print &#34;Stack Overflow&#34;
+        Return
+    top = top + 1
+    stack[top] = data
+</code></pre><h3 id="c-pop-operation">(c) <strong>Pop Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Pop(stack, top):
+    If top == -1:
+        Print &#34;Stack Underflow&#34;
+        Return NULL
+    data = stack[top]
+    top = top - 1
+    Return data
+</code></pre><h3 id="d-peek-operation">(d) <strong>Peek Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Peek(stack, top):
+    If top == -1:
+        Print &#34;Stack is empty&#34;
+        Return NULL
+    Return stack[top]
+</code></pre><h3 id="e-isempty-operation">(e) <strong>isEmpty Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function isEmpty(top):
+    Return top == -1
+</code></pre><h3 id="array-based-example">Array-Based Example:</h3>
+<pre tabindex="0"><code>Stack = [1, 2, 3]  # Top element is 3
+top = 2
+</code></pre><p>In the array-based implementation, we need to be cautious of <strong>stack overflow</strong> (trying to push when the stack is full) and <strong>stack underflow</strong> (trying to pop from an empty stack).</p>
+<h2 id="linked-list-based-stack-implementation">Linked-List-Based Stack Implementation</h2>
+<p>In the linked-list-based implementation, the stack is dynamic in size. Each element is represented as a node with two fields: <strong>data</strong> and a pointer to the <strong>next</strong> node. The <code>top</code> pointer points to the topmost element of the stack.</p>
+<h3 id="node-structure">Node Structure</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Structure Node:
+    data
+    next
+</code></pre><h3 id="a-initialize-stack-1">(a) <strong>Initialize Stack</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InitializeStack():
+    Set top = NULL  # Empty stack
+</code></pre><h3 id="b-push-operation-1">(b) <strong>Push Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Push(top, data):
+    Create newNode with data
+    newNode.next = top
+    top = newNode
+    Return top
+</code></pre><h3 id="c-pop-operation-1">(c) <strong>Pop Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Pop(top):
+    If top == NULL:
+        Print &#34;Stack Underflow&#34;
+        Return NULL
+    data = top.data
+    top = top.next
+    Return data
+</code></pre><h3 id="d-peek-operation-1">(d) <strong>Peek Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function Peek(top):
+    If top == NULL:
+        Print &#34;Stack is empty&#34;
+        Return NULL
+    Return top.data
+</code></pre><h3 id="e-isempty-operation-1">(e) <strong>isEmpty Operation</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function isEmpty(top):
+    Return top == NULL
+</code></pre><h3 id="linked-list-based-example">Linked-List-Based Example:</h3>
+<p>Let’s visualize the stack as a linked list:</p>
+<pre tabindex="0"><code>top → [data: 3, next: → [data: 2, next: → [data: 1, next: NULL]]]
+</code></pre><p>Here, the top element is 3.</p>
+<h2 id="circular-stack-implementation">Circular Stack Implementation</h2>
+<p>In some cases, you might want to implement a <strong>circular stack</strong>, where the stack behaves like a circular queue, wrapping around when it reaches the end of the array. While this is less common, it can be useful in scenarios like <strong>fixed-size circular buffers</strong>.</p>
+<h3 id="a-push-operation-circular-stack">(a) <strong>Push Operation (Circular Stack)</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function PushCircular(stack, top, size, data):
+    nextIndex = (top + 1) % size
+    If nextIndex == 0 and top == size - 1:
+        Print &#34;Stack Overflow&#34;
+        Return
+    top = nextIndex
+    stack[top] = data
+</code></pre><h3 id="b-pop-operation-circular-stack">(b) <strong>Pop Operation (Circular Stack)</strong></h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function PopCircular(stack, top, size):
+    If top == -1:
+        Print &#34;Stack Underflow&#34;
+        Return NULL
+    data = stack[top]
+    top = (top - 1 + size) % size
+    Return data
+</code></pre><p>Circular stacks are a bit trickier and require proper handling of indices, but they are useful when you have a fixed memory space, like when implementing a ring buffer.</p>
+<h2 id="stack-operations-and-time-complexity">Stack Operations and Time Complexity</h2>
+<ul>
+<li><strong>Push</strong>: O(1) – We simply insert an element at the top.</li>
+<li><strong>Pop</strong>: O(1) – We remove the top element.</li>
+<li><strong>Peek</strong>: O(1) – We retrieve the top element.</li>
+<li><strong>isEmpty</strong>: O(1) – We check if the stack is empty.</li>
+</ul>
+<p>All of these operations are highly efficient and take constant time.</p>
+<h2 id="real-world-applications-of-stacks">Real-World Applications of Stacks</h2>
+<h3 id="1-function-call-management-call-stack">1. <strong>Function Call Management (Call Stack)</strong></h3>
+<p>Stacks are used to manage function calls in programming languages. When a function is called, its details (return address, parameters, etc.) are pushed onto the stack, and when the function returns, the details are popped from the stack.</p>
+<h3 id="2-expression-evaluation">2. <strong>Expression Evaluation</strong></h3>
+<p>Stacks are used to evaluate expressions like <strong>infix</strong>, <strong>postfix</strong> (reverse Polish notation), and <strong>prefix</strong> notation. Stacks help in converting between these notations and evaluating the expressions efficiently.</p>
+<h3 id="3-backtracking-algorithms">3. <strong>Backtracking Algorithms</strong></h3>
+<p>In algorithms like <strong>Depth-First Search (DFS)</strong>, stacks are used to keep track of the nodes to visit and backtrack when needed.</p>
+<h3 id="4-undo-mechanisms">4. <strong>Undo Mechanisms</strong></h3>
+<p>Many applications, such as text editors, use stacks to store the history of operations. When the user presses &ldquo;Undo,&rdquo; the latest operation is popped from the stack.</p>
+<h3 id="5-balancing-parentheses">5. <strong>Balancing Parentheses</strong></h3>
+<p>Stacks are often used to check if parentheses or brackets in an expression are balanced, making sure every opening bracket has a corresponding closing bracket.</p>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p><strong>Stacks</strong> are a foundational data structure that is incredibly useful in various applications, from managing function calls to evaluating expressions. Whether you choose to implement stacks using arrays or linked lists depends on your use case, but understanding both implementations will make you a stronger programmer.</p>
+<p>I hope this post gave you a clear understanding of how stacks work, and how to implement their basic operations in pseudocode. Whether you&rsquo;re building an undo feature or working with recursion, stacks will undoubtedly come in handy!</p>
+<p>That’s all for today! Until next time, happy coding! 🚀</p>
+
+  </div>
+
+  
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="https://silicon-safari.github.io/datastructures/stacks/"
+     data-text="Understanding Stacks: How to Build a Custom Stack in Pseudocode"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="https://silicon-safari.github.io/datastructures/stacks/"
+     data-text="Understanding Stacks: How to Build a Custom Stack in Pseudocode"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="https://silicon-safari.github.io/datastructures/stacks/"
+     data-text="Understanding Stacks: How to Build a Custom Stack in Pseudocode"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="https://silicon-safari.github.io/datastructures/stacks/"
+     data-text="Understanding Stacks: How to Build a Custom Stack in Pseudocode"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="https://silicon-safari.github.io/datastructures/stacks/"
+     data-text="Understanding Stacks: How to Build a Custom Stack in Pseudocode"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+      
+  
+
+
+    
+</body>
+</html>

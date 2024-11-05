@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a fundamental concept in computer science: Sorting Algorithms.">
+  <meta itemprop="datePublished" content="2024-02-25T16:00:00+05:30">
+  <meta itemprop="dateModified" content="2024-02-25T16:00:00+05:30">
+  <meta itemprop="wordCount" content="1392">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a fundamental concept in computer science: Sorting Algorithms.">
+
+
+<meta property="og:url" content="https://silicon-safari.github.io/allblogs/sorting/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a fundamental concept in computer science: Sorting Algorithms.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="allblogs">
+    <meta property="article:published_time" content="2024-02-25T16:00:00+05:30">
+    <meta property="article:modified_time" content="2024-02-25T16:00:00+05:30">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "https://silicon-safari.github.io/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://silicon-safari.github.io/#website",
+      "url": "https://silicon-safari.github.io/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://silicon-safari.github.io/allblogs/sorting/#webpage",
+      "url": "https://silicon-safari.github.io/allblogs/sorting/",
+      "name": "Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/#website"
+      },
+      "about": {
+         "@id": "https://silicon-safari.github.io/#author"
+      },
+      "datePublished": "2024-02-25T16:00:00+05:30",
+      "dateModified": "2024-02-25T16:00:00+05:30",
+      "description": "Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a fundamental concept in computer science: Sorting Algorithms.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "https://silicon-safari.github.io/allblogs/sorting/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "https://silicon-safari.github.io/allblogs/sorting/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "https://silicon-safari.github.io/allblogs/sorting/#webpage"
+      },
+      "headline": "Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode",
+      "datePublished": "2024-02-25T16:00:00+05:30",
+      "dateModified": "2024-02-25T16:00:00+05:30",
+      "publisher": {
+        "@id": "https://silicon-safari.github.io/#author"
+      },
+      "keywords": [
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "https://silicon-safari.github.io/allblogs/sorting/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="https://silicon-safari.github.io/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">Me and My Life</a>
+        </li><li>
+          <a href="/algorithms/">Algorithms</a>
+        </li><li>
+          <a href="/allblogs/">All Blogs</a>
+        </li><li>
+          <a href="/computernetworking/">Computer Networks</a>
+        </li><li>
+          <a href="/datastructures/">Data Structures</a>
+        </li><li>
+          <a href="/databasedesign/">Database Design</a>
+        </li><li>
+          <a href="/distributedsystems/">Distributed Sytems</a>
+        </li><li>
+          <a href="/theoryofcomputation/">Theory Of Computation</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2024-02-25T16:00:00&#43;0530">Feb 25, 2024</time> <span class="readtime">&middot; 7 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a fundamental concept in computer science: <strong>Sorting Algorithms</strong>. Sorting is essential for organizing data, making searches faster, and optimizing various operations. In this blog, we’ll cover 12 popular sorting algorithms, explaining how they work with pseudocode for each.</p>
+<p>Let’s dive in and understand how to sort like a pro! 🚀</p>
+<h2 id="1-bubble-sort">1. Bubble Sort</h2>
+<p><strong>Bubble Sort</strong> is one of the simplest sorting algorithms. It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. This process continues until the list is sorted.</p>
+<h3 id="pseudocode-for-bubble-sort">Pseudocode for Bubble Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function BubbleSort(array):
+    n = length(array)
+    For i = 0 to n - 1:
+        For j = 0 to n - i - 2:
+            If array[j] &gt; array[j + 1]:
+                Swap(array[j], array[j + 1])
+</code></pre><h3 id="time-complexity">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(n) (already sorted)</li>
+<li><strong>Worst case</strong>: O(n²)</li>
+</ul>
+<hr>
+<h2 id="2-insertion-sort">2. Insertion Sort</h2>
+<p><strong>Insertion Sort</strong> works by building a sorted portion of the array one element at a time. It takes each element from the unsorted portion and inserts it into the correct position in the sorted portion.</p>
+<h3 id="pseudocode-for-insertion-sort">Pseudocode for Insertion Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function InsertionSort(array):
+    For i = 1 to length(array) - 1:
+        key = array[i]
+        j = i - 1
+        While j &gt;= 0 and array[j] &gt; key:
+            array[j + 1] = array[j]
+            j = j - 1
+        array[j + 1] = key
+</code></pre><h3 id="time-complexity-1">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(n)</li>
+<li><strong>Worst case</strong>: O(n²)</li>
+</ul>
+<hr>
+<h2 id="3-selection-sort">3. Selection Sort</h2>
+<p><strong>Selection Sort</strong> repeatedly finds the minimum element from the unsorted portion and swaps it with the first unsorted element. It has a simple but inefficient approach.</p>
+<h3 id="pseudocode-for-selection-sort">Pseudocode for Selection Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function SelectionSort(array):
+    For i = 0 to length(array) - 1:
+        minIndex = i
+        For j = i + 1 to length(array) - 1:
+            If array[j] &lt; array[minIndex]:
+                minIndex = j
+        Swap(array[i], array[minIndex])
+</code></pre><h3 id="time-complexity-2">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(n²)</li>
+<li><strong>Worst case</strong>: O(n²)</li>
+</ul>
+<hr>
+<h2 id="4-merge-sort">4. Merge Sort</h2>
+<p><strong>Merge Sort</strong> is a divide-and-conquer algorithm that divides the array into two halves, recursively sorts them, and then merges them into a sorted array.</p>
+<h3 id="pseudocode-for-merge-sort">Pseudocode for Merge Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function MergeSort(array):
+    If length(array) &gt; 1:
+        mid = length(array) / 2
+        leftHalf = array[0:mid]
+        rightHalf = array[mid:length(array)]
+
+        MergeSort(leftHalf)
+        MergeSort(rightHalf)
+
+        i = j = k = 0
+        While i &lt; length(leftHalf) and j &lt; length(rightHalf):
+            If leftHalf[i] &lt; rightHalf[j]:
+                array[k] = leftHalf[i]
+                i = i + 1
+            Else:
+                array[k] = rightHalf[j]
+                j = j + 1
+            k = k + 1
+
+        While i &lt; length(leftHalf):
+            array[k] = leftHalf[i]
+            i = i + 1
+            k = k + 1
+
+        While j &lt; length(rightHalf):
+            array[k] = rightHalf[j]
+            j = j + 1
+            k = k + 1
+</code></pre><h3 id="time-complexity-3">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(n log n)</li>
+<li><strong>Worst case</strong>: O(n log n)</li>
+</ul>
+<hr>
+<h2 id="5-quick-sort">5. Quick Sort</h2>
+<p><strong>Quick Sort</strong> is a divide-and-conquer algorithm that selects a <strong>pivot</strong> element and partitions the array into two halves. Elements smaller than the pivot go to the left, and those larger go to the right, and the process is repeated recursively.</p>
+<h3 id="pseudocode-for-quick-sort">Pseudocode for Quick Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function QuickSort(array, low, high):
+    If low &lt; high:
+        pivotIndex = Partition(array, low, high)
+        QuickSort(array, low, pivotIndex - 1)
+        QuickSort(array, pivotIndex + 1, high)
+
+Function Partition(array, low, high):
+    pivot = array[high]
+    i = low - 1
+    For j = low to high - 1:
+        If array[j] &lt; pivot:
+            i = i + 1
+            Swap(array[i], array[j])
+    Swap(array[i + 1], array[high])
+    Return i + 1
+</code></pre><h3 id="time-complexity-4">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(n log n)</li>
+<li><strong>Worst case</strong>: O(n²)</li>
+</ul>
+<hr>
+<h2 id="6-heap-sort">6. Heap Sort</h2>
+<p><strong>Heap Sort</strong> is based on a <strong>binary heap</strong> data structure. The array is first transformed into a max-heap, and then the largest element is repeatedly removed and placed at the end.</p>
+<h3 id="pseudocode-for-heap-sort">Pseudocode for Heap Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function HeapSort(array):
+    BuildMaxHeap(array)
+    For i = length(array) - 1 to 1:
+        Swap(array[0], array[i])
+        MaxHeapify(array, 0, i)
+
+Function BuildMaxHeap(array):
+    For i = floor(length(array) / 2) - 1 to 0:
+        MaxHeapify(array, i, length(array))
+
+Function MaxHeapify(array, i, n):
+    largest = i
+    left = 2 * i + 1
+    right = 2 * i + 2
+
+    If left &lt; n and array[left] &gt; array[largest]:
+        largest = left
+    If right &lt; n and array[right] &gt; array[largest]:
+        largest = right
+    If largest != i:
+        Swap(array[i], array[largest])
+        MaxHeapify(array, largest, n)
+</code></pre><h3 id="time-complexity-5">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(n log n)</li>
+<li><strong>Worst case</strong>: O(n log n)</li>
+</ul>
+<hr>
+<h2 id="7-counting-sort">7. Counting Sort</h2>
+<p><strong>Counting Sort</strong> is a non-comparison-based algorithm. It works by counting the number of occurrences of each distinct element in the array, and then calculating the correct position for each element.</p>
+<h3 id="pseudocode-for-counting-sort">Pseudocode for Counting Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function CountingSort(array, maxVal):
+    count = array of zeros of size maxVal + 1
+    output = array of zeros of size length(array)
+
+    For i = 0 to length(array) - 1:
+        count[array[i]] = count[array[i]] + 1
+
+    For i = 1 to maxVal:
+        count[i] = count[i] + count[i - 1]
+
+    For i = length(array) - 1 down to 0:
+        output[count[array[i]] - 1] = array[i]
+        count[array[i]] = count[array[i]] - 1
+
+    Return output
+</code></pre><h3 id="time-complexity-6">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(n + k)</li>
+<li><strong>Worst case</strong>: O(n + k)</li>
+</ul>
+<hr>
+<h2 id="8-radix-sort">8. Radix Sort</h2>
+<p><strong>Radix Sort</strong> sorts the array digit by digit, starting from the least significant digit and moving to the most significant digit. It uses counting sort as a subroutine.</p>
+<h3 id="pseudocode-for-radix-sort">Pseudocode for Radix Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function RadixSort(array, maxDigit):
+    For digit = 1 to maxDigit:
+        CountingSortByDigit(array, digit)
+
+Function CountingSortByDigit(array, digit):
+    # Similar to Counting Sort but applied to the digit place
+</code></pre><h3 id="time-complexity-7">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(nk)</li>
+<li><strong>Worst case</strong>: O(nk)</li>
+</ul>
+<hr>
+<h2 id="9-bucket-sort">9. Bucket Sort</h2>
+<p><strong>Bucket Sort</strong> works by distributing elements into several <strong>buckets</strong>, sorting the elements in each bucket, and then merging the buckets.</p>
+<h3 id="pseudocode-for-bucket-sort">Pseudocode for Bucket Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function BucketSort(array):
+    buckets = Create n empty buckets
+
+    For i = 0 to length(array) - 1:
+        index = floor(array[i] * n)
+        Insert array[i] into bucket[index]
+
+    For i = 0 to n - 1:
+        Sort each bucket
+
+    Concatenate all buckets into array
+</code></pre><h3 id="time-complexity-8">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(n + k)</li>
+<li><strong>Worst case</strong>: O(n²)</li>
+</ul>
+<hr>
+<h2 id="10-shell-sort">10. Shell Sort</h2>
+<p><strong>Shell Sort</strong> is an optimization of insertion sort that allows the exchange of far-apart elements. It uses a gap sequence to divide the list into sublists and sorts them.</p>
+<h3 id="pseudocode-for-shell-sort">Pseudocode for Shell Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function ShellSort(array):
+    gap = length(array) / 2
+    While gap &gt; 0:
+        For i = gap to length(array) - 1:
+            temp = array[i]
+            j = i
+            While j &gt;= gap and array[j - gap] &gt; temp:
+                array[j] = array[j - gap]
+                j = j - gap
+            array[j] = temp
+        gap = gap / 2
+</code></pre><h3 id="time-complexity-9">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(n log n)</li>
+<li><strong>Worst case</strong>: O(n</li>
+</ul>
+<p>²)</p>
+<hr>
+<h2 id="11-tim-sort">11. Tim Sort</h2>
+<p><strong>Tim Sort</strong> is a hybrid sorting algorithm based on merge sort and insertion sort. It is the default sorting algorithm in Python.</p>
+<h3 id="pseudocode-for-tim-sort">Pseudocode for Tim Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function TimSort(array):
+    Run = 32
+    For i = 0 to length(array) - 1 in steps of Run:
+        InsertionSort(array, i, min(i + Run - 1, length(array) - 1))
+
+    size = Run
+    While size &lt; length(array):
+        For left = 0 to length(array) - 1 in steps of 2 * size:
+            mid = left + size - 1
+            right = min(left + 2 * size - 1, length(array) - 1)
+            Merge(array, left, mid, right)
+        size = size * 2
+</code></pre><h3 id="time-complexity-10">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(n)</li>
+<li><strong>Worst case</strong>: O(n log n)</li>
+</ul>
+<hr>
+<h2 id="12-pigeonhole-sort">12. Pigeonhole Sort</h2>
+<p><strong>Pigeonhole Sort</strong> is used when the number of elements and the range of possible key values are approximately the same. It places elements into holes (or pigeonholes) corresponding to their key values.</p>
+<h3 id="pseudocode-for-pigeonhole-sort">Pseudocode for Pigeonhole Sort:</h3>
+<pre tabindex="0"><code class="language-pseudocode" data-lang="pseudocode">Function PigeonholeSort(array):
+    minVal = min(array)
+    maxVal = max(array)
+    size = maxVal - minVal + 1
+    holes = array of empty lists of size
+
+    For i = 0 to length(array) - 1:
+        holes[array[i] - minVal].append(array[i])
+
+    index = 0
+    For i = 0 to size - 1:
+        For each element in holes[i]:
+            array[index] = element
+            index = index + 1
+</code></pre><h3 id="time-complexity-11">Time Complexity:</h3>
+<ul>
+<li><strong>Best case</strong>: O(n + range)</li>
+<li><strong>Worst case</strong>: O(n + range)</li>
+</ul>
+<hr>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>In this blog, we’ve explored 12 popular sorting algorithms, ranging from simple ones like <strong>Bubble Sort</strong> to more complex algorithms like <strong>Tim Sort</strong> and <strong>Pigeonhole Sort</strong>. Each sorting algorithm has its strengths and weaknesses, and the choice of which to use depends on the specific requirements of your problem.</p>
+<p>Sorting is a fundamental aspect of computer science, and understanding how these algorithms work will help you build more efficient solutions for organizing and processing data.</p>
+<p>That’s all for today! I hope this post gave you a solid understanding of sorting algorithms and how to implement them. Until next time, happy coding! 🚀</p>
+
+  </div>
+
+  
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="https://silicon-safari.github.io/allblogs/sorting/"
+     data-text="Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="https://silicon-safari.github.io/allblogs/sorting/"
+     data-text="Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="https://silicon-safari.github.io/allblogs/sorting/"
+     data-text="Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="https://silicon-safari.github.io/allblogs/sorting/"
+     data-text="Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="https://silicon-safari.github.io/allblogs/sorting/"
+     data-text="Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+      
+  
+
+
+    
+</body>
+</html>

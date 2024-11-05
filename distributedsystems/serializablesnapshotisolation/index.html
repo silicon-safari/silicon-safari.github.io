@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Understanding Serializable Snapshot Isolation in Databases &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Understanding Serializable Snapshot Isolation in Databases">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re diving into Serializable Snapshot Isolation (SSI)—a powerful and advanced database isolation level that offers the benefits of both Snapshot Isolation (SI) and Serializability.">
+  <meta itemprop="datePublished" content="2023-09-16T19:00:00+05:30">
+  <meta itemprop="dateModified" content="2023-09-16T19:00:00+05:30">
+  <meta itemprop="wordCount" content="1175">
+  <meta itemprop="keywords" content="Databases,Serializable Snapshot Isolation,SSI,Concurrency Control,Isolation Levels,Snapshot Isolation,Serializability,Transactions">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding Serializable Snapshot Isolation in Databases">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re diving into Serializable Snapshot Isolation (SSI)—a powerful and advanced database isolation level that offers the benefits of both Snapshot Isolation (SI) and Serializability.">
+
+
+<meta property="og:url" content="http://localhost:1313/distributedsystems/serializablesnapshotisolation/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Understanding Serializable Snapshot Isolation in Databases">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re diving into Serializable Snapshot Isolation (SSI)—a powerful and advanced database isolation level that offers the benefits of both Snapshot Isolation (SI) and Serializability.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="distributedsystems">
+    <meta property="article:published_time" content="2023-09-16T19:00:00+05:30">
+    <meta property="article:modified_time" content="2023-09-16T19:00:00+05:30">
+    <meta property="article:tag" content="Databases">
+    <meta property="article:tag" content="Serializable Snapshot Isolation">
+    <meta property="article:tag" content="SSI">
+    <meta property="article:tag" content="Concurrency Control">
+    <meta property="article:tag" content="Isolation Levels">
+    <meta property="article:tag" content="Snapshot Isolation">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "http://localhost:1313/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "http://localhost:1313/#website",
+      "url": "http://localhost:1313/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "http://localhost:1313/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "http://localhost:1313/distributedsystems/serializablesnapshotisolation/#webpage",
+      "url": "http://localhost:1313/distributedsystems/serializablesnapshotisolation/",
+      "name": "Understanding Serializable Snapshot Isolation in Databases",
+      "isPartOf": {
+        "@id": "http://localhost:1313/#website"
+      },
+      "about": {
+         "@id": "http://localhost:1313/#author"
+      },
+      "datePublished": "2023-09-16T19:00:00+05:30",
+      "dateModified": "2023-09-16T19:00:00+05:30",
+      "description": "Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re diving into Serializable Snapshot Isolation (SSI)—a powerful and advanced database isolation level that offers the benefits of both Snapshot Isolation (SI) and Serializability.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "http://localhost:1313/distributedsystems/serializablesnapshotisolation/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "http://localhost:1313/distributedsystems/serializablesnapshotisolation/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "http://localhost:1313/distributedsystems/serializablesnapshotisolation/#webpage"
+      },
+      "headline": "Understanding Serializable Snapshot Isolation in Databases",
+      "datePublished": "2023-09-16T19:00:00+05:30",
+      "dateModified": "2023-09-16T19:00:00+05:30",
+      "publisher": {
+        "@id": "http://localhost:1313/#author"
+      },
+      "keywords": [
+        "Databases",
+        "Serializable Snapshot Isolation",
+        "SSI",
+        "Concurrency Control",
+        "Isolation Levels",
+        "Snapshot Isolation",
+        "Serializability",
+        "Transactions"
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "http://localhost:1313/distributedsystems/serializablesnapshotisolation/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="http://localhost:1313/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">Me and My Life</a>
+        </li><li>
+          <a href="/databasedesign/">Database Design</a>
+        </li><li>
+          <a href="/distributedsystems/">Distributed Sytems</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Understanding Serializable Snapshot Isolation in Databases</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2023-09-16T19:00:00&#43;0530">Sep 16, 2023</time> <span class="readtime">&middot; 6 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re diving into <strong>Serializable Snapshot Isolation (SSI)</strong>—a powerful and advanced database isolation level that offers the benefits of both <strong>Snapshot Isolation (SI)</strong> and <strong>Serializability</strong>.</p>
+<p>If you’ve been following along with my blogs about isolation levels and concurrency control, SSI is the perfect next step in understanding how modern databases handle transactions efficiently and safely. Let’s jump right in!</p>
+<h2 id="what-is-snapshot-isolation">What is Snapshot Isolation?</h2>
+<p>Before we get to <strong>Serializable Snapshot Isolation (SSI)</strong>, let&rsquo;s quickly revisit <strong>Snapshot Isolation (SI)</strong>.</p>
+<p>In <strong>Snapshot Isolation</strong>, each transaction works on a <strong>consistent snapshot</strong> of the database as it was at the moment the transaction began. This means that during a transaction, you won’t see any changes made by other concurrent transactions. You work on the data <strong>as if no other transactions are happening</strong>. However, once your transaction is done, all your changes will be visible to other transactions.</p>
+<p>Snapshot Isolation solves problems like <strong>dirty reads</strong> and <strong>non-repeatable reads</strong>, but it isn’t perfect. It can still suffer from issues like <strong>write skew</strong>, where two transactions make conflicting updates based on the same data.</p>
+<h2 id="what-is-serializable-snapshot-isolation-ssi">What is Serializable Snapshot Isolation (SSI)?</h2>
+<p><strong>Serializable Snapshot Isolation (SSI)</strong> takes Snapshot Isolation and makes it even stronger by ensuring <strong>serializability</strong>—the gold standard of database isolation.</p>
+<p>With <strong>Serializability</strong>, transactions behave <strong>as if they were executed one by one</strong> in some serial order, even though they might actually be running concurrently. SSI achieves this while allowing <strong>high concurrency</strong> like Snapshot Isolation, but it avoids dangerous anomalies like <strong>write skew</strong> that can still occur in plain Snapshot Isolation.</p>
+<h3 id="how-it-works">How It Works:</h3>
+<ul>
+<li>Just like in Snapshot Isolation, each transaction operates on a <strong>snapshot</strong> of the database.</li>
+<li>However, <strong>Serializable Snapshot Isolation</strong> introduces additional checks to ensure that if two transactions would cause an inconsistency by running concurrently, one of them will be <strong>rolled back</strong>. This ensures the final result of the transactions is the same as if they had run in <strong>serial order</strong>.</li>
+</ul>
+<h3 id="example-of-serializable-snapshot-isolation">Example of Serializable Snapshot Isolation</h3>
+<p>Let’s revisit our classic banking example:</p>
+<ul>
+<li><strong>Transaction 1</strong>: Transfers ₹500 from Account A to Account B.</li>
+<li><strong>Transaction 2</strong>: Transfers ₹300 from Account A to Account C.</li>
+</ul>
+<p>Both transactions start at roughly the same time, reading the balances of Account A. Under regular Snapshot Isolation, both transactions might proceed based on outdated information, potentially leaving Account A with an inconsistent balance. However, with <strong>SSI</strong>, the database checks for conflicts, and if it detects that both transactions are modifying the same data (Account A’s balance), it will <strong>abort</strong> one of them, ensuring serializability.</p>
+<p>This way, the final outcome is the same as if the transactions had run one after the other, maintaining consistency in the database.</p>
+<h2 id="key-benefits-of-serializable-snapshot-isolation">Key Benefits of Serializable Snapshot Isolation</h2>
+<h3 id="1-eliminates-write-skew">1. <strong>Eliminates Write Skew</strong></h3>
+<p>In standard Snapshot Isolation, <strong>write skew</strong> can occur when two transactions read the same data and make decisions that conflict with each other. For example, both transactions might see enough funds in an account and decide to withdraw money, leaving the account overdrawn once both complete.</p>
+<p>In SSI, write skew is prevented by checking for conflicts and aborting one of the transactions if necessary.</p>
+<h3 id="2-highly-concurrency-friendly">2. <strong>Highly Concurrency-Friendly</strong></h3>
+<p>SSI allows multiple transactions to run concurrently without requiring them to lock resources as strictly as <strong>Strict Two-Phase Locking (2PL)</strong> would. This leads to better performance while still ensuring <strong>serializable</strong> outcomes.</p>
+<h3 id="3-avoids-phantom-reads">3. <strong>Avoids Phantom Reads</strong></h3>
+<p>Phantom reads occur when a transaction reads a set of rows that satisfy a condition, but another transaction inserts or deletes rows that change the result of the original query. SSI ensures that such anomalies don’t occur by detecting and resolving conflicts, making it as safe as the serializable isolation level.</p>
+<h3 id="4-efficiency-over-strict-serial-execution">4. <strong>Efficiency over Strict Serial Execution</strong></h3>
+<p>While serializability is traditionally guaranteed by strict locking, which can slow down performance, SSI provides a smarter approach. It allows transactions to proceed concurrently but steps in to roll back conflicting transactions only when necessary. This way, SSI provides <strong>serializable</strong> isolation without the heavy performance penalty of strict serial execution.</p>
+<h2 id="how-ssi-differs-from-other-isolation-levels">How SSI Differs from Other Isolation Levels</h2>
+<table>
+<thead>
+<tr>
+<th>Isolation Level</th>
+<th>Description</th>
+<th>Example Scenario</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Read Committed</strong></td>
+<td>Only sees committed data, but allows non-repeatable and phantom reads</td>
+<td>Reads may see different data during a transaction</td>
+</tr>
+<tr>
+<td><strong>Snapshot Isolation</strong></td>
+<td>Each transaction operates on a snapshot of the data but may suffer from write skew</td>
+<td>Prevents dirty reads but allows write skew</td>
+</tr>
+<tr>
+<td><strong>Serializable</strong></td>
+<td>The strictest isolation level, simulates transactions running one by one</td>
+<td>Highest data integrity but can be slow due to locking</td>
+</tr>
+<tr>
+<td><strong>Serializable Snapshot Isolation (SSI)</strong></td>
+<td>Combines the benefits of Snapshot Isolation and Serializability</td>
+<td>High concurrency with no write skew or phantom reads</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ssi-vs-traditional-serializable-isolation">SSI vs Traditional Serializable Isolation</h3>
+<p>Traditional <strong>Serializable Isolation</strong> often uses <strong>strict locking</strong> (e.g., <strong>Two-Phase Locking</strong>) to ensure transactions behave as if they were executed in serial order. However, locking can cause <strong>performance bottlenecks</strong>, especially in high-concurrency environments, because transactions must wait for locks to be released.</p>
+<p><strong>SSI</strong> avoids this by allowing transactions to run concurrently while still providing <strong>serializable results</strong> through <strong>conflict detection</strong>. This makes it more efficient for <strong>write-heavy or read-heavy systems</strong> where a high degree of concurrency is needed.</p>
+<h2 id="how-ssi-works-behind-the-scenes">How SSI Works Behind the Scenes</h2>
+<p>The core mechanism that makes SSI possible is <strong>conflict detection</strong>. Here’s how it works:</p>
+<ol>
+<li>
+<p><strong>Tracking Dependencies</strong>: While transactions run, the database tracks dependencies between them. If two transactions are accessing the same data and making changes that could lead to a conflict, the system notes this.</p>
+</li>
+<li>
+<p><strong>Conflict Detection</strong>: If the database detects a conflict (e.g., both transactions are trying to write to the same row), it aborts one of the transactions. This rollback ensures that the transactions remain serializable.</p>
+</li>
+<li>
+<p><strong>Retry Mechanism</strong>: The transaction that is aborted is typically retried automatically. This means the user doesn’t have to handle the rollback manually; the database ensures that the transaction is re-executed until it completes successfully without conflicts.</p>
+</li>
+</ol>
+<h2 id="when-to-use-serializable-snapshot-isolation">When to Use Serializable Snapshot Isolation?</h2>
+<p>While SSI offers both strong consistency and concurrency, it’s most useful in scenarios where you need high reliability without sacrificing performance. Here are a few use cases:</p>
+<ol>
+<li>
+<p><strong>Financial Systems</strong>: Any system handling critical financial data, such as banking or stock trading, benefits from SSI. It ensures no inconsistent updates or withdrawals happen simultaneously.</p>
+</li>
+<li>
+<p><strong>Inventory Systems</strong>: In systems managing inventory levels, concurrent transactions updating stock can lead to over-sales or stock depletion. SSI prevents conflicting updates.</p>
+</li>
+<li>
+<p><strong>High-Concurrency Applications</strong>: If your application has many users or transactions happening simultaneously, and you need both performance and consistency, SSI is ideal. It gives the same level of data safety as Serializable Isolation but with better concurrency.</p>
+</li>
+</ol>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p><strong>Serializable Snapshot Isolation (SSI)</strong> is a powerful isolation level that combines the <strong>performance benefits of Snapshot Isolation</strong> with the <strong>strong guarantees of serializability</strong>. By detecting and resolving conflicts during concurrent transactions, it ensures that the database behaves as if transactions were executed one by one, without the performance bottlenecks of traditional serial execution.</p>
+<p>SSI strikes the perfect balance between consistency and concurrency, making it a go-to solution for many modern high-performance databases.</p>
+<p>I hope this post helped clarify the magic behind SSI! Until next time, keep exploring the world of databases. 🚀</p>
+
+  </div>
+
+  
+<div>
+  <ul class="tags">
+  <li>
+    <a href="http://localhost:1313/tags/databases/" class="tag-link">Databases</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/serializable-snapshot-isolation/" class="tag-link">Serializable Snapshot Isolation</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/ssi/" class="tag-link">SSI</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/concurrency-control/" class="tag-link">Concurrency Control</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/isolation-levels/" class="tag-link">Isolation Levels</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/snapshot-isolation/" class="tag-link">Snapshot Isolation</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/serializability/" class="tag-link">Serializability</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/transactions/" class="tag-link">Transactions</a>
+  </li>
+  </ul>
+</div>
+
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="http://localhost:1313/distributedsystems/serializablesnapshotisolation/"
+     data-text="Understanding Serializable Snapshot Isolation in Databases"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="http://localhost:1313/distributedsystems/serializablesnapshotisolation/"
+     data-text="Understanding Serializable Snapshot Isolation in Databases"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="http://localhost:1313/distributedsystems/serializablesnapshotisolation/"
+     data-text="Understanding Serializable Snapshot Isolation in Databases"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="http://localhost:1313/distributedsystems/serializablesnapshotisolation/"
+     data-text="Understanding Serializable Snapshot Isolation in Databases"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="http://localhost:1313/distributedsystems/serializablesnapshotisolation/"
+     data-text="Understanding Serializable Snapshot Isolation in Databases"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+</body>
+</html>

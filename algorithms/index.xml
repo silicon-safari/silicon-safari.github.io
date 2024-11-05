@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Algorithms on The Silicon Safari</title>
+    <link>https://silicon-safari.github.io/algorithms/</link>
+    <description>Recent content in Algorithms on The Silicon Safari</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 20 Mar 2024 22:00:00 +0530</lastBuildDate>
+    <atom:link href="https://silicon-safari.github.io/algorithms/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Dijkstra’s Algorithm: A Guide to Shortest Path Finding</title>
+      <link>https://silicon-safari.github.io/algorithms/dijikstra/</link>
+      <pubDate>Wed, 20 Mar 2024 22:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/algorithms/dijikstra/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most well-known algorithms in computer science: Dijkstra’s Algorithm.</description>
+    </item>
+    <item>
+      <title>Solving Sudoku with Dynamic Programming: A Step-by-Step Guide</title>
+      <link>https://silicon-safari.github.io/algorithms/sudokusolver/</link>
+      <pubDate>Sun, 17 Mar 2024 21:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/algorithms/sudokusolver/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into one of the most popular puzzle challenges—Sudoku—and how we can solve it using Dynamic Programming (DP).</description>
+    </item>
+    <item>
+      <title>Mastering Dynamic Programming: Detailed Guide with 7 Essential Problems and Solutions</title>
+      <link>https://silicon-safari.github.io/algorithms/dynamicprogramming/</link>
+      <pubDate>Sun, 03 Mar 2024 19:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/algorithms/dynamicprogramming/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we are diving deep into the world of Dynamic Programming (DP), a vital technique in problem-solving, especially in competitive programming and complex real-world applications.</description>
+    </item>
+    <item>
+      <title>Understanding Sorting Algorithms: A Guide to 12 Sorting Techniques with Pseudocode</title>
+      <link>https://silicon-safari.github.io/algorithms/sorting/</link>
+      <pubDate>Sun, 25 Feb 2024 16:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/algorithms/sorting/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re diving into a fundamental concept in computer science: Sorting Algorithms.</description>
+    </item>
+    <item>
+      <title>Understanding Linear Search and Binary Search: A Guide to Searching Algorithms</title>
+      <link>https://silicon-safari.github.io/algorithms/linearsearch/</link>
+      <pubDate>Tue, 20 Feb 2024 15:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/algorithms/linearsearch/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 Today, we’re going to explore two of the most fundamental search algorithms: Linear Search and Binary Search.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>Write Skew vs Phantom Writes in Databases &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="Write Skew vs Phantom Writes in Databases">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back with another blog! 😄 Today, we’ll be tackling two advanced phenomena in databases: Write Skew and Phantom Writes.">
+  <meta itemprop="datePublished" content="2023-09-06T16:00:00+05:30">
+  <meta itemprop="dateModified" content="2023-09-06T16:00:00+05:30">
+  <meta itemprop="wordCount" content="972">
+  <meta itemprop="keywords" content="Databases,Write Skew,Phantom Writes,Concurrency,Isolation Levels,Snapshot Isolation,Serializable Isolation,Transactions,Database Consistency">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Write Skew vs Phantom Writes in Databases">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back with another blog! 😄 Today, we’ll be tackling two advanced phenomena in databases: Write Skew and Phantom Writes.">
+
+
+<meta property="og:url" content="http://localhost:1313/distributedsystems/writeskewandphantomwrites/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="Write Skew vs Phantom Writes in Databases">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back with another blog! 😄 Today, we’ll be tackling two advanced phenomena in databases: Write Skew and Phantom Writes.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="distributedsystems">
+    <meta property="article:published_time" content="2023-09-06T16:00:00+05:30">
+    <meta property="article:modified_time" content="2023-09-06T16:00:00+05:30">
+    <meta property="article:tag" content="Databases">
+    <meta property="article:tag" content="Write Skew">
+    <meta property="article:tag" content="Phantom Writes">
+    <meta property="article:tag" content="Concurrency">
+    <meta property="article:tag" content="Isolation Levels">
+    <meta property="article:tag" content="Snapshot Isolation">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "http://localhost:1313/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description": "Exploring software development, system design, DevOps, ML, and AI"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "http://localhost:1313/#website",
+      "url": "http://localhost:1313/",
+      "name": "The Silicon Safari",
+      "description": "Exploring software development, system design, DevOps, ML, and AI",
+      "publisher": {
+        "@id": "http://localhost:1313/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "http://localhost:1313/distributedsystems/writeskewandphantomwrites/#webpage",
+      "url": "http://localhost:1313/distributedsystems/writeskewandphantomwrites/",
+      "name": "Write Skew vs Phantom Writes in Databases",
+      "isPartOf": {
+        "@id": "http://localhost:1313/#website"
+      },
+      "about": {
+         "@id": "http://localhost:1313/#author"
+      },
+      "datePublished": "2023-09-06T16:00:00+05:30",
+      "dateModified": "2023-09-06T16:00:00+05:30",
+      "description": "Hey everyone, it\u0026rsquo;s alanturrr1703 back with another blog! 😄 Today, we’ll be tackling two advanced phenomena in databases: Write Skew and Phantom Writes.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "http://localhost:1313/distributedsystems/writeskewandphantomwrites/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "http://localhost:1313/distributedsystems/writeskewandphantomwrites/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "http://localhost:1313/distributedsystems/writeskewandphantomwrites/#webpage"
+      },
+      "headline": "Write Skew vs Phantom Writes in Databases",
+      "datePublished": "2023-09-06T16:00:00+05:30",
+      "dateModified": "2023-09-06T16:00:00+05:30",
+      "publisher": {
+        "@id": "http://localhost:1313/#author"
+      },
+      "keywords": [
+        "Databases",
+        "Write Skew",
+        "Phantom Writes",
+        "Concurrency",
+        "Isolation Levels",
+        "Snapshot Isolation",
+        "Serializable Isolation",
+        "Transactions",
+        "Database Consistency"
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "http://localhost:1313/distributedsystems/writeskewandphantomwrites/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+      <p class="lead">Exploring software development, system design, DevOps, ML, and AI</p>
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="http://localhost:1313/">Home</a>
+        </li>
+        <li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/databasedesign/">Database Design</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">Write Skew vs Phantom Writes in Databases</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2023-09-06T16:00:00&#43;0530">Sep 6, 2023</time> <span class="readtime">&middot; 5 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it&rsquo;s alanturrr1703 back with another blog! 😄 Today, we’ll be tackling two advanced phenomena in databases: <strong>Write Skew</strong> and <strong>Phantom Writes</strong>. If you’re familiar with isolation levels and database transactions, understanding these concepts will help you dig deeper into potential concurrency issues. Let’s dive in!</p>
+<h2 id="the-problem-with-concurrency">The Problem with Concurrency</h2>
+<p>When multiple transactions run at the same time in a database, they can interact with each other in unexpected ways. That’s where issues like <strong>Write Skew</strong> and <strong>Phantom Writes</strong> come in.</p>
+<p>These issues occur when transactions interact with data in ways that cause subtle, often hard-to-detect inconsistencies. Let’s break them down and understand the impact they have on database consistency.</p>
+<h2 id="what-is-write-skew">What is Write Skew?</h2>
+<p><strong>Write Skew</strong> happens when two concurrent transactions read the same data, make decisions based on what they read, and then write changes that end up violating some business rules or constraints.</p>
+<h3 id="how-it-works">How It Works:</h3>
+<p>Write skew occurs in systems with <strong>Snapshot Isolation</strong> or even <strong>Serializable Isolation</strong> when two transactions read overlapping data and then perform writes that depend on the result of those reads. Since each transaction reads from a consistent snapshot, they’re unaware of each other’s changes, leading to skewed results.</p>
+<h3 id="example">Example:</h3>
+<p>Let’s say you have two doctors on call at a hospital, and the rule is that <strong>at least one doctor must be on call</strong> at all times. You have a table tracking their availability:</p>
+<ul>
+<li>Doctor A: On Call</li>
+<li>Doctor B: On Call</li>
+</ul>
+<p>Now, both Doctor A and Doctor B decide they want to go off call at the same time. Here’s what happens:</p>
+<ol>
+<li><strong>Transaction 1 (Doctor A)</strong> reads the table, sees that Doctor B is still on call, and decides to go off call.</li>
+<li><strong>Transaction 2 (Doctor B)</strong> reads the table, sees that Doctor A is still on call, and also decides to go off call.</li>
+<li>Both transactions commit without realizing the other is going off call too, violating the rule that one doctor must be on call at all times.</li>
+</ol>
+<p>After both transactions commit, <strong>neither doctor is on call</strong>, which breaks the business rule. This is a classic <strong>write skew</strong> scenario because both transactions made changes based on stale data without knowing what the other transaction was doing.</p>
+<h3 id="key-points">Key Points:</h3>
+<ul>
+<li><strong>Write Skew</strong> is a concurrency anomaly where two transactions make decisions based on outdated data, leading to an inconsistent result.</li>
+<li>It happens even in <strong>Snapshot Isolation</strong>, where transactions get a consistent snapshot of the data.</li>
+</ul>
+<h2 id="what-are-phantom-writes">What are Phantom Writes?</h2>
+<p><strong>Phantom Writes</strong> occur when a transaction reads a set of rows, makes a decision based on that data, and then another transaction adds or removes rows that would have changed the original transaction&rsquo;s decision.</p>
+<h3 id="how-it-works-1">How It Works:</h3>
+<p>Phantom writes happen when a transaction queries a range of rows (e.g., all rows where a condition is true) and then another transaction inserts or deletes rows that would have matched that condition.</p>
+<p>In lower isolation levels like <strong>Read Committed</strong> or <strong>Repeatable Read</strong>, these new rows appear or disappear like &ldquo;phantoms,&rdquo; hence the name <strong>phantom writes</strong>.</p>
+<h3 id="example-1">Example:</h3>
+<p>Let’s consider a <strong>banking</strong> scenario. A transaction (Transaction 1) is checking the total balance of all accounts that have a balance greater than ₹10,000 to ensure the bank holds enough liquidity. Here’s what happens:</p>
+<ol>
+<li><strong>Transaction 1</strong> reads all accounts with a balance over ₹10,000.</li>
+<li><strong>Transaction 2</strong> inserts a new account with a balance of ₹15,000, but this happens after Transaction 1 has finished its read.</li>
+<li><strong>Transaction 1</strong> is unaware of this new account when it makes its decision about liquidity.</li>
+</ol>
+<p>If Transaction 1’s decision impacts something like bank reserves, the result might be incorrect because <strong>phantom rows</strong> (like the new ₹15,000 account) were inserted during the transaction.</p>
+<h3 id="key-points-1">Key Points:</h3>
+<ul>
+<li><strong>Phantom Writes</strong> refer to rows that &ldquo;appear&rdquo; or &ldquo;disappear&rdquo; during a transaction&rsquo;s execution, affecting decisions based on queries.</li>
+<li>These issues typically arise with <strong>range queries</strong> (e.g., &ldquo;find all rows where the balance is over ₹10,000&rdquo;).</li>
+</ul>
+<h2 id="key-differences-between-write-skew-and-phantom-writes">Key Differences Between Write Skew and Phantom Writes</h2>
+<p>Here’s a quick comparison of these two phenomena:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Write Skew</th>
+<th>Phantom Writes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Type of Issue</strong></td>
+<td>Caused by concurrent decisions based on outdated reads</td>
+<td>Caused by inserts or deletes during a transaction</td>
+</tr>
+<tr>
+<td><strong>Occurs When</strong></td>
+<td>Two transactions read and write overlapping data</td>
+<td>A transaction reads a range of rows, and another inserts or deletes rows in that range</td>
+</tr>
+<tr>
+<td><strong>Common in</strong></td>
+<td>Snapshot Isolation</td>
+<td>Read Committed, Repeatable Read</td>
+</tr>
+<tr>
+<td><strong>Example Scenario</strong></td>
+<td>Both doctors going off call based on outdated reads</td>
+<td>New account added during a transaction that reads accounts over ₹10,000</td>
+</tr>
+</tbody>
+</table>
+<h2 id="how-to-prevent-write-skew-and-phantom-writes">How to Prevent Write Skew and Phantom Writes?</h2>
+<p>Both <strong>Write Skew</strong> and <strong>Phantom Writes</strong> can lead to dangerous inconsistencies, but fortunately, there are ways to prevent these issues:</p>
+<h3 id="1-for-write-skew">1. <strong>For Write Skew</strong>:</h3>
+<ul>
+<li><strong>Serializable Isolation</strong>: This isolation level is stricter than Snapshot Isolation and ensures that transactions behave as if they are executed one after another, preventing write skew.</li>
+<li><strong>Explicit Locking</strong>: You can use locks on the rows or tables involved in the transactions to avoid write skew by preventing concurrent transactions from interfering with each other.</li>
+</ul>
+<h3 id="2-for-phantom-writes">2. <strong>For Phantom Writes</strong>:</h3>
+<ul>
+<li><strong>Serializable Isolation</strong>: This is the highest level of isolation and ensures that transactions read data as if they were executed sequentially, preventing phantom writes.</li>
+<li><strong>Range Locks</strong>: Some databases allow locking ranges of data so that new rows can’t be inserted into the range during a transaction.</li>
+</ul>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>Both <strong>Write Skew</strong> and <strong>Phantom Writes</strong> can introduce subtle bugs in your database systems if not properly handled. These concurrency anomalies might not occur often, but when they do, they can lead to serious inconsistencies, especially in systems that require high data integrity like banking or medical records.</p>
+<p>Understanding these issues and knowing how to prevent them through proper isolation levels or locking mechanisms is crucial for building reliable database applications.</p>
+<p>That’s all for today! Hope this post helped you get a deeper understanding of these concurrency issues. Until next time! 🚀</p>
+
+  </div>
+
+  
+<div>
+  <ul class="tags">
+  <li>
+    <a href="http://localhost:1313/tags/databases/" class="tag-link">Databases</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/write-skew/" class="tag-link">Write Skew</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/phantom-writes/" class="tag-link">Phantom Writes</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/concurrency/" class="tag-link">Concurrency</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/isolation-levels/" class="tag-link">Isolation Levels</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/snapshot-isolation/" class="tag-link">Snapshot Isolation</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/serializable-isolation/" class="tag-link">Serializable Isolation</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/transactions/" class="tag-link">Transactions</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/database-consistency/" class="tag-link">Database Consistency</a>
+  </li>
+  </ul>
+</div>
+
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="http://localhost:1313/distributedsystems/writeskewandphantomwrites/"
+     data-text="Write Skew vs Phantom Writes in Databases"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="http://localhost:1313/distributedsystems/writeskewandphantomwrites/"
+     data-text="Write Skew vs Phantom Writes in Databases"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="http://localhost:1313/distributedsystems/writeskewandphantomwrites/"
+     data-text="Write Skew vs Phantom Writes in Databases"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="http://localhost:1313/distributedsystems/writeskewandphantomwrites/"
+     data-text="Write Skew vs Phantom Writes in Databases"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="http://localhost:1313/distributedsystems/writeskewandphantomwrites/"
+     data-text="Write Skew vs Phantom Writes in Databases"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+</body>
+</html>

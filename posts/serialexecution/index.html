@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.133.0">
+
+  <title>What is Serial Execution in Databases? &middot; The Silicon Safari</title>
+
+  <meta name="description" content="" />
+
+  
+  <meta itemprop="name" content="What is Serial Execution in Databases?">
+  <meta itemprop="description" content="Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: Serial Execution.">
+  <meta itemprop="datePublished" content="2023-09-09T17:00:00+05:30">
+  <meta itemprop="dateModified" content="2023-09-09T17:00:00+05:30">
+  <meta itemprop="wordCount" content="921">
+  <meta itemprop="keywords" content="Databases,Serial Execution,Concurrency Control,Isolation Levels,Transaction Management,Serializability,Database Performance">
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="What is Serial Execution in Databases?">
+  <meta name="twitter:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: Serial Execution.">
+
+
+<meta property="og:url" content="http://localhost:1313/posts/serialexecution/">
+  <meta property="og:site_name" content="The Silicon Safari">
+  <meta property="og:title" content="What is Serial Execution in Databases?">
+  <meta property="og:description" content="Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: Serial Execution.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-09-09T17:00:00+05:30">
+    <meta property="article:modified_time" content="2023-09-09T17:00:00+05:30">
+    <meta property="article:tag" content="Databases">
+    <meta property="article:tag" content="Serial Execution">
+    <meta property="article:tag" content="Concurrency Control">
+    <meta property="article:tag" content="Isolation Levels">
+    <meta property="article:tag" content="Transaction Management">
+    <meta property="article:tag" content="Serializability">
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type":"Person",
+      "@id": "http://localhost:1313/#author",
+      "name":  null ,
+      "image": {
+        "@type":"ImageObject",
+        
+        
+      },
+      "description":  null 
+    },
+    {
+      "@type": "WebSite",
+      "@id": "http://localhost:1313/#website",
+      "url": "http://localhost:1313/",
+      "name": "The Silicon Safari",
+      "description":  null ,
+      "publisher": {
+        "@id": "http://localhost:1313/#author"
+      },
+      "inLanguage": "en-us"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "http://localhost:1313/posts/serialexecution/#webpage",
+      "url": "http://localhost:1313/posts/serialexecution/",
+      "name": "What is Serial Execution in Databases?",
+      "isPartOf": {
+        "@id": "http://localhost:1313/#website"
+      },
+      "about": {
+         "@id": "http://localhost:1313/#author"
+      },
+      "datePublished": "2023-09-09T17:00:00+05:30",
+      "dateModified": "2023-09-09T17:00:00+05:30",
+      "description": "Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: Serial Execution.",
+      "inLanguage": "en-us",
+      "potentialAction": [
+        {
+          "@type": "ReadAction",
+          "target": [
+            "http://localhost:1313/posts/serialexecution/"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "Article",
+      "isPartOf": {
+        "@id": "http://localhost:1313/posts/serialexecution/#webpage"
+      },
+      "mainEntityOfPage": {
+        "@id": "http://localhost:1313/posts/serialexecution/#webpage"
+      },
+      "headline": "What is Serial Execution in Databases?",
+      "datePublished": "2023-09-09T17:00:00+05:30",
+      "dateModified": "2023-09-09T17:00:00+05:30",
+      "publisher": {
+        "@id": "http://localhost:1313/#author"
+      },
+      "keywords": [
+        "Databases",
+        "Serial Execution",
+        "Concurrency Control",
+        "Isolation Levels",
+        "Transaction Management",
+        "Serializability",
+        "Database Performance"
+      ],
+      "articleSection": [
+      ],
+      "inLanguage": "en-us",
+      "author": {
+        "@type": "Person",
+        "name":  null 
+      },
+      "potentialAction": [
+        {
+          "@type": "CommentAction",
+          "name": "Comment",
+          "target": [
+            "http://localhost:1313/posts/serialexecution/#comments"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/print.css"
+        media="print">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/poole.css">
+
+  <link type="text/css"
+        rel="stylesheet"
+        href="/css/hyde.css">
+
+  
+
+
+  
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap">
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+        integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+        crossorigin="anonymous" />
+
+  <link rel="apple-touch-icon-precomposed"
+        sizes="144x144"
+        href="/apple-touch-icon-144-precomposed.png">
+
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  </head>
+<body>
+  <aside class="sidebar">
+  <div class="container">
+    <div class="sidebar-about">
+      
+        
+      
+
+      <h1>The Silicon Safari</h1>
+
+      
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li>
+          <a href="http://localhost:1313/">Home</a>
+        </li>
+        <li>
+          <a href="/posts/">Posts</a>
+        </li><li>
+          <a href="/about/">About</a>
+        </li><li>
+          <a href="/category/">Categories</a>
+        </li>
+      </ul>
+    </nav>
+
+    <section class="social-icons">
+      
+    </section>
+  </div>
+</aside>
+
+
+  <main class="content container">
+  <div class="post">
+  <h1 class="title">What is Serial Execution in Databases?</h1>
+  
+
+  <div class="post-date">
+    <time datetime="2023-09-09T17:00:00&#43;0530">Sep 9, 2023</time> <span class="readtime">&middot; 5 min read</span>
+  </div>
+
+  <div>
+  <p>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: <strong>Serial Execution</strong>. If you&rsquo;ve been following along with my posts about isolation levels, concurrency issues like write skew and phantom writes, then understanding <strong>serial execution</strong> will give you a solid foundation on how databases ensure data consistency.</p>
+<p>Let’s dive right in!</p>
+<h2 id="what-is-serial-execution">What is Serial Execution?</h2>
+<p><strong>Serial Execution</strong> in the context of databases refers to running transactions <strong>one at a time</strong> in sequence, without any overlap. When transactions are executed serially, each transaction is completed before the next one begins, ensuring that there are no concurrency issues. This provides the highest level of <strong>isolation</strong> because each transaction operates as if it has exclusive access to the database.</p>
+<p>In other words:</p>
+<ul>
+<li>Transaction 1 completes entirely before Transaction 2 begins.</li>
+<li>Transaction 2 completes before Transaction 3 starts, and so on.</li>
+</ul>
+<p>When transactions are executed serially, they cannot interfere with each other because there’s no simultaneous access to the database. The outcome of the transactions is always consistent, as if they were processed in a perfectly orderly sequence.</p>
+<h3 id="why-is-serial-execution-important">Why Is Serial Execution Important?</h3>
+<p>Serial execution provides the ultimate form of <strong>isolation</strong> in a database system, which is essential for maintaining data <strong>integrity</strong>. By ensuring that transactions are processed one after another, it avoids all the common concurrency issues like:</p>
+<ul>
+<li><strong>Dirty reads</strong></li>
+<li><strong>Non-repeatable reads</strong></li>
+<li><strong>Phantom writes</strong></li>
+<li><strong>Write skew</strong></li>
+</ul>
+<p>Each transaction sees a <strong>consistent view</strong> of the data without worrying about other transactions modifying the same data simultaneously.</p>
+<h3 id="example-of-serial-execution">Example of Serial Execution:</h3>
+<p>Imagine a bank database where two transactions are occurring:</p>
+<ul>
+<li><strong>Transaction 1</strong>: Transfers ₹500 from Account A to Account B.</li>
+<li><strong>Transaction 2</strong>: Transfers ₹200 from Account B to Account C.</li>
+</ul>
+<p>In a serial execution, these transactions would happen one after the other:</p>
+<ol>
+<li><strong>Transaction 1</strong> completes, moving ₹500 from Account A to Account B. Once this is done, Account A’s balance decreases, and Account B’s balance increases.</li>
+<li><strong>Transaction 2</strong> then starts, reading the updated balance from Account B and transferring ₹200 to Account C.</li>
+</ol>
+<p>This sequential processing ensures that each transaction operates on the latest, consistent data.</p>
+<h2 id="serial-execution-vs-concurrency">Serial Execution vs. Concurrency</h2>
+<p>While serial execution guarantees data consistency, it has a major downside: <strong>performance</strong>. Running transactions one at a time can cause significant delays, especially in systems with many users and transactions. Imagine thousands of users trying to interact with a system, but only one transaction can run at a time. This can lead to a major bottleneck!</p>
+<p>That’s why <strong>concurrency control</strong> mechanisms exist in modern databases. These mechanisms allow transactions to run simultaneously while still maintaining some level of isolation, improving overall system performance without sacrificing data integrity.</p>
+<h2 id="how-does-serial-execution-compare-to-isolation-levels">How Does Serial Execution Compare to Isolation Levels?</h2>
+<h3 id="1-serializable-isolation">1. <strong>Serializable Isolation</strong>:</h3>
+<ul>
+<li><strong>Serializable Isolation</strong> is the strictest isolation level, and it simulates <strong>serial execution</strong>. It guarantees that the outcome of transactions is <strong>equivalent</strong> to running them one by one in sequence, even if they are actually running concurrently.</li>
+<li>It’s not as restrictive as serial execution because it allows concurrency under the hood, but it ensures the results are <strong>as if</strong> the transactions had been executed serially.</li>
+</ul>
+<h3 id="2-snapshot-isolation">2. <strong>Snapshot Isolation</strong>:</h3>
+<ul>
+<li><strong>Snapshot Isolation</strong> allows concurrent transactions but ensures each transaction works with a <strong>consistent snapshot</strong> of the database. It doesn&rsquo;t guarantee serial execution, but it prevents issues like <strong>dirty reads</strong> and <strong>non-repeatable reads</strong>.</li>
+<li>However, Snapshot Isolation can still result in issues like <strong>write skew</strong>, which doesn’t occur in true serial execution.</li>
+</ul>
+<h3 id="3-read-committed-and-repeatable-read">3. <strong>Read Committed and Repeatable Read</strong>:</h3>
+<ul>
+<li>These isolation levels allow much more concurrency and often don’t enforce the strict rules that serial execution would, which can lead to anomalies like <strong>phantom reads</strong> or <strong>non-repeatable reads</strong>.</li>
+</ul>
+<h2 id="pros-and-cons-of-serial-execution">Pros and Cons of Serial Execution</h2>
+<h3 id="pros">Pros:</h3>
+<ul>
+<li><strong>Guaranteed Data Consistency</strong>: Since transactions don’t overlap, there’s no risk of anomalies like dirty reads, phantom writes, or write skew.</li>
+<li><strong>No Concurrency Issues</strong>: With serial execution, you completely avoid all the typical issues that arise from concurrent transactions.</li>
+<li><strong>Simplicity</strong>: It’s the simplest model conceptually—just process transactions one at a time.</li>
+</ul>
+<h3 id="cons">Cons:</h3>
+<ul>
+<li><strong>Poor Performance</strong>: The major downside of serial execution is the lack of concurrency. If only one transaction can run at a time, it significantly reduces throughput, especially in high-traffic systems.</li>
+<li><strong>Scalability</strong>: Serial execution doesn’t scale well in systems with many concurrent users or transactions. The longer the queue of transactions, the more the system becomes bottlenecked.</li>
+</ul>
+<h2 id="when-is-serial-execution-used">When is Serial Execution Used?</h2>
+<p>In most practical database systems, pure serial execution is rarely used because of the performance trade-offs. However, some scenarios do benefit from serial execution, or at least a simulation of it, through <strong>Serializable Isolation</strong>:</p>
+<ol>
+<li><strong>Financial Applications</strong>: Systems where transaction integrity is critical, such as banking or stock trading, may use Serializable Isolation to ensure data consistency.</li>
+<li><strong>Critical Business Rules</strong>: Applications that enforce strict business rules (e.g., inventory management, medical record systems) may opt for serial execution to avoid any risk of concurrency-related issues.</li>
+<li><strong>Batch Processing</strong>: Systems that perform batch transactions at low-traffic times may opt for serial execution to simplify transaction management.</li>
+</ol>
+<h2 id="wrapping-it-up">Wrapping It Up</h2>
+<p>Serial execution provides the ultimate isolation by ensuring transactions run one after the other. While this guarantees data consistency, it comes at the cost of performance, which is why databases often turn to more sophisticated concurrency control mechanisms.</p>
+<p>However, understanding serial execution is key to grasping how databases balance consistency and performance. Even if it&rsquo;s not always practical to use in high-concurrency systems, its principles lay the foundation for advanced isolation levels like <strong>Serializable Isolation</strong>.</p>
+<p>Hope this gave you a clearer picture of serial execution! Until next time, keep learning and coding. 🚀</p>
+
+  </div>
+
+  
+<div>
+  <ul class="tags">
+  <li>
+    <a href="http://localhost:1313/tags/databases/" class="tag-link">Databases</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/serial-execution/" class="tag-link">Serial Execution</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/concurrency-control/" class="tag-link">Concurrency Control</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/isolation-levels/" class="tag-link">Isolation Levels</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/transaction-management/" class="tag-link">Transaction Management</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/serializability/" class="tag-link">Serializability</a>
+  </li>
+  
+  <li>
+    <a href="http://localhost:1313/tags/database-performance/" class="tag-link">Database Performance</a>
+  </li>
+  </ul>
+</div>
+
+
+
+  <div class="share-buttons">
+  <a class="twitter-share-button"
+     href="#"
+     title="Share on Twitter"
+     data-url="http://localhost:1313/posts/serialexecution/"
+     data-text="What is Serial Execution in Databases?"><i class="fab fa-twitter"></i></a>
+
+  <a class="linkedin-share-button"
+     href="#"
+     title="Share on LinkedIn"
+     data-url="http://localhost:1313/posts/serialexecution/"
+     data-text="What is Serial Execution in Databases?"><i class="fab fa-linkedin-in"></i></a>
+
+  <a class="facebook-share-button"
+     href="#"
+     title="Share on Facebook"
+     data-url="http://localhost:1313/posts/serialexecution/"
+     data-text="What is Serial Execution in Databases?"><i class="fab fa-facebook"></i></a>
+
+  <a class="telegram-share-button"
+     href="#"
+     title="Share on Telegram"
+     data-url="http://localhost:1313/posts/serialexecution/"
+     data-text="What is Serial Execution in Databases?"><i class="fab fa-telegram"></i></a>
+
+  <a class="pinterest-share-button"
+     href="#"
+     title="Share on Pinterest"
+     data-url="http://localhost:1313/posts/serialexecution/"
+     data-text="What is Serial Execution in Databases?"><i class="fab fa-pinterest"></i></a>
+</div>
+
+
+  
+</div>
+  </main>
+
+  <footer>
+  <div>
+    <p>
+      &copy;  2024
+
+      
+
+      
+    </p>
+  </div>
+</footer>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"
+          integrity="sha256-MAgcygDRahs+F/Nk5Vz387whB4kSK9NXlDN3w58LLq0="
+          crossorigin="anonymous"></script>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/soho.js"></script>
+
+  
+
+    
+</body>
+</html>

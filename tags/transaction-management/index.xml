@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Transaction Management on The Silicon Safari</title>
+    <link>https://silicon-safari.github.io/tags/transaction-management/</link>
+    <description>Recent content in Transaction Management on The Silicon Safari</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 Sep 2023 18:00:00 +0530</lastBuildDate>
+    <atom:link href="https://silicon-safari.github.io/tags/transaction-management/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Understanding Two-Phase Locking in Databases</title>
+      <link>https://silicon-safari.github.io/allblogs/twophaselockingsystem/</link>
+      <pubDate>Tue, 12 Sep 2023 18:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/twophaselockingsystem/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog! 😁 Today, we’re diving into the concept of Two-Phase Locking (2PL)—a fundamental technique used to maintain concurrency control in databases.</description>
+    </item>
+    <item>
+      <title>Understanding Two-Phase Locking in Databases</title>
+      <link>https://silicon-safari.github.io/databasedesign/twophaselockingsystem/</link>
+      <pubDate>Tue, 12 Sep 2023 18:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/databasedesign/twophaselockingsystem/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again with another blog! 😁 Today, we’re diving into the concept of Two-Phase Locking (2PL)—a fundamental technique used to maintain concurrency control in databases.</description>
+    </item>
+    <item>
+      <title>What is Serial Execution in Databases?</title>
+      <link>https://silicon-safari.github.io/allblogs/serialexecution/</link>
+      <pubDate>Sat, 09 Sep 2023 17:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/serialexecution/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: Serial Execution.</description>
+    </item>
+    <item>
+      <title>What is Serial Execution in Databases?</title>
+      <link>https://silicon-safari.github.io/databasedesign/serialexecution/</link>
+      <pubDate>Sat, 09 Sep 2023 17:00:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/databasedesign/serialexecution/</guid>
+      <description>Hey everyone, it’s alanturrr1703 back again! 😄 In today’s blog, we’re going to talk about something fundamental to databases: Serial Execution.</description>
+    </item>
+    <item>
+      <title>Introduction to ACID Properties in Databases</title>
+      <link>https://silicon-safari.github.io/allblogs/introtoacidproperties/</link>
+      <pubDate>Sun, 27 Aug 2023 12:30:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/allblogs/introtoacidproperties/</guid>
+      <description>Hey everyone, it&amp;rsquo;s alanturrr1703 back again with another blog! This time, we’ll be exploring something essential in the world of databases—ACID properties.</description>
+    </item>
+    <item>
+      <title>Introduction to ACID Properties in Databases</title>
+      <link>https://silicon-safari.github.io/databasedesign/introtoacidproperties/</link>
+      <pubDate>Sun, 27 Aug 2023 12:30:00 +0530</pubDate>
+      <guid>https://silicon-safari.github.io/databasedesign/introtoacidproperties/</guid>
+      <description>Hey everyone, it&amp;rsquo;s alanturrr1703 back again with another blog! This time, we’ll be exploring something essential in the world of databases—ACID properties.</description>
+    </item>
+  </channel>
+</rss>
